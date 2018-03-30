@@ -7,12 +7,16 @@ var express    = require("express"),
 app.set('view engine', 'ejs');
 app.set('views', "/home/ubuntu/workspace/app/views");
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static('/home/ubuntu/workspace/app/views/public'));
 ///////////////////////////////////////////////////////
     
 app.get('/', function(req, res){
-    res.render("index");
+    res.render("login");
 });
 
+app.get('/main', function(req, res){
+    res.render("index"); 
+});
 
 
 
