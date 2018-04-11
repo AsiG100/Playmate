@@ -7,7 +7,7 @@ var express    = require("express"),
     // User        = require("./data_access/schemas.js");
     
 //FILES
-//var dataAcess = require("./data_access/dataAccess.js");
+var dataAcess = require("./data_access/dataAccess.js");
     
 //SETTINGS---------------------------------------------
 app.set('view engine', 'ejs');
@@ -35,6 +35,12 @@ app.get('/', function(req, res){
 
 app.get('/register', function(req, res){
     res.render("signUp");
+});
+
+app.post('/register', function(req,res){
+    var user = req.body.user;
+    console.log(user);
+    dataAcess.saveUserToDB(user);
 });
 
 app.get('/main', function(req, res){

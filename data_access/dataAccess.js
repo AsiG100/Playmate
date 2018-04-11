@@ -9,18 +9,18 @@ var User = models.user;
 function saveUserToDB(userDetails)
 {
     User.create({
-        name: userDetails.name,
+        name: userDetails.username,
         password: userDetails.password,
-        birthDate: userDetails.birthDate,
+        email: userDetails.email,
+        birthDate: userDetails.dateOfBirth,
         address: 
             {
-                country: userDetails.country,
                 city: userDetails.city,
                 street: userDetails.street,
-                streetNum:userDetails.streetNum
+                streetNum:userDetails.number
             },
         gameProgress: 0,
-        image: userDetails.image,
+        //image: userDetails.image,
         sportTypes: [],
         groups: [],
         favoriteUsers: [],
