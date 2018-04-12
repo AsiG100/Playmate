@@ -32,19 +32,9 @@ body, html {
 	box-sizing: border-box;
 	height: 100%;
 	font-family: Poppins-Regular, sans-serif;
-    background: #ad5389; 
-   /* background: -webkit-linear-gradient(to right, #3c1053, #ad5389); */
-    /*background: linear-gradient(to right, #3c1053, #ad5389); */
-	/*background: linear-gradient(to right, #B993D6, #8CA6DB);*/ 
-	/*background: linear-gradient(to right, #FF8008, #FFC837)*/ 
-	/*background: linear-gradient(to right, #CC95C0, #DBD4B4, #7AA1D2)*/ 
-	background: linear-gradient(to right, #002966, #037BB5, #002966)
-	/*background: linear-gradient(to right, #fd746c, #ff9068)*/ 
-	/*background: linear-gradient(to right, #D1913C, #FFD194)*/ 
-	/*background: linear-gradient(to right, #8e9eab, #eef2f3)*/ 
-	/*background: linear-gradient(to right, #6441A5, #2a0845)*/ 
-	/*background: linear-gradient(to right, #00c6ff, #0072ff)*/ 
-	/*background: linear-gradient(to right, #9D50BB, #6E48AA)*/
+  background: #43C6AC;
+  background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);
+  background: linear-gradient(to left, #F8FFAE, #43C6AC);
 }
 
 /*---------------------------------------------*/
@@ -151,6 +141,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
+  margin-top: 15px;
   
   background-position: center;
   background-size: cover;
@@ -258,7 +249,12 @@ iframe {
 .btn-face:hover{
   color: #fff;
 }
-
+/*//////////////////////////////////////////////////////////////////
+[ Navigation ]*/
+/*.navbar-brand {*/
+/*  font-family: 'Gloria Hallelujah', cursive;*/
+/*  font-size: 40px;*/
+/*}*/
 
 /*------------------------------------------------------------------
 [ Input ]*/

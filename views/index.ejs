@@ -1,14 +1,76 @@
 <!doctype html>
 <html>
     <head>
+        <title>Playmate - Home</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--Bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!--Glyphicons-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/homePage.css">
+        <link rel="stylesheet" type="text/css" href="css/header.css">
+        <!--============================================ FONTS ==========================================-->
+        <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     </head>
     <body>
-        <main class="container">
         <header>
-            <h1 class="jumbotron">Welcome to the app</h1>
+            <% include partials/header %>
         </header>
+        <main class="container">
+            <div class="card text-center cardEvent">
+                <div class="card-header">
+                    Running - Advenced
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">5km run</h5>
+                    <p class="card-text">circle running at 9pm starting at hertzel st. 15</p>
+                    <a href="#" class="btn btn-primary">Go to event</a>
+                </div>
+                <div class="card-footer text-muted">
+                    5 days ago
+                </div>
+            </div>
+            <div class="card text-center">
+                <div class="card-header">
+                    Featured
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go to event</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+            <div class="card text-center">
+                <div class="card-header">
+                    Featured
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go to event</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+            <div class="card text-center">
+                <div class="card-header">
+                    Featured
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go to event</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
         </main>
     </body>
 </html>

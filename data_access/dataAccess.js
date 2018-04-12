@@ -48,10 +48,19 @@ function getUserFromDB(){
     });    
 }
 
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }else{
+        res.redirect('login');
+    }
+}
+
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {
                 saveUserToDB: saveUserToDB,
-                getUserFromDB: getUserFromDB
+                getUserFromDB: getUserFromDB,
+                isLoggedIn: isLoggedIn
              }
 
 //EXPORT---------------------------------------

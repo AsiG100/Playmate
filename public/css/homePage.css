@@ -1,0 +1,12 @@
+main {
+    margin-top: 30px;
+}
+
+main .card {
+    width: 70%;
+    display: block;
+    margin: auto;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+

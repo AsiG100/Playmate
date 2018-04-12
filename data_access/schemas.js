@@ -24,7 +24,6 @@ var sportTypeModel = mongoose.model('Type', sportTypeSchema);
 var userSchema = new mongoose.Schema({
         name: String,
         password: String,
-        email: String,
         birthDate: Date,
         address:{
                     country: String,

@@ -26,20 +26,19 @@
 /*//////////////////////////////////////////////////////////////////*/
 
 
-body, html {
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
-	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
-    /*background: #ad5389; 
+body,
+html {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  height: 100%;
+  font-family: Poppins-Regular, sans-serif;
+  /*background: #ad5389; 
     background: -webkit-linear-gradient(to right, #3c1053, #ad5389); 
     background: linear-gradient(to right, #3c1053, #ad5389); */
-    background: #43C6AC;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #F8FFAE, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
+  background: #43C6AC;
+  background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);
+  background: linear-gradient(to left, #F8FFAE, #43C6AC);
 }
 
 /*---------------------------------------------*/
@@ -105,13 +104,6 @@ button:hover {
 iframe {
 	border: none !important;
 }
-/*//////////////////////////////////////////////////////////////////
-[ Navigation ]*/
-.navbar-brand {
-  font-family: 'Gloria Hallelujah', cursive;
-  font-size: 46px;
-}
-
 
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
