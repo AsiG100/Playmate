@@ -24,7 +24,7 @@
 	<main>
         <div class="container-login100">
             <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                <form action="/main" class="login100-form validate-form flex-sb flex-w">
+                <form action="/register" method="POST" class="login100-form validate-form flex-sb flex-w">
 					
                     <p class="txt1 m-t-20 col-md-12">Username</p>
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
@@ -34,7 +34,7 @@
 					
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Password</p>
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password"placeholder="My password is...">
+                        <input class="input100" type="password" name="user[password]"placeholder="My password is...">
                         <span class="focus-input100"></span>
                     </div>
 					
@@ -46,9 +46,26 @@
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Date Of Birth</p>
                     <div class="wrap-input100 validate-input" data-validate="Date Of Birth is required">
-                        <input class="input100" type="date" name="user[dateOfBirthob]">
+                        <input class="input100" type="date" name="user[dateOfBirth]">
                         <span class="focus-input100"></span>
                     </div>
+                    
+                    <p class="txt1 p-t-13 p-b-9 col-md-12">City</p>
+                    <div class="wrap-input100 validate-input" data-validate="City is required">
+                        <input class="input100" type="text" name="user[city]" placeholder="I live in...">
+                        <span class="focus-input100"></span>
+                    </div>
+					
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Street</p>
+                    <div class="wrap-input100 validate-input" data-validate="Street name is required">
+                        <input class="input100" type="text" name="user[street]" placeholder="My street name is...">
+                        <span class="focus-input100"></span>
+                    </div>
+					
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Number</p>
+                    <div class="wrap-input100 validate-input" data-validate="House number is required">
+                        <input class="input100" type="text" name="user[number]" placeholder="My house number is...">
+                        <span class="focus-input100"></span>
 
                     <div class="col-md-12 m-t-17">
                         <button class="login100-form-btn" href="/index.ejs">

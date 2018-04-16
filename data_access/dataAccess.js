@@ -6,35 +6,28 @@ var models = require("./schemas");
 var User = models.user;
 
 //FUNCTIONS-------------------------
-function saveUserToDB(userDetails)
+function saveUserToDB(user, userDetails)
 {
-    User.create({
-        name: userDetails.username,
-        password: userDetails.password,
-        email: userDetails.email,
-        birthDate: userDetails.dateOfBirth,
-        address: 
-            {
-                city: userDetails.city,
-                street: userDetails.street,
-                streetNum:userDetails.number
-            },
-        gameProgress: 0,
-        //image: userDetails.image,
-        sportTypes: [],
-        groups: [],
-        favoriteUsers: [],
-        preferences: []
+    user.email = userDetails.email;
+    user.birthDate = userDetails.dateOfBirth;
+    user.address = {
+        city: userDetails.city,
+        street: userDetails.street,
+        streetNum: userDetails.number
+    };
+    user.gameProgress= 0;
+    user.save(function(err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log("saved to DB");
+        }
+    });
         
-    }, function(err, user){
-    if(err){
-        console.log(err);
-    }else{
-        console.log('succeded to save user to DB:');
-        console.log(user);
-    }
-});
+        //image: userDetails.image,
 }
+
+
 
 function getUserFromDB(){
     User.find({}, function(err, users){
@@ -50,11 +43,22 @@ function getUserFromDB(){
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
-        return next();
-    }else{
+         console.log(req.body.user);
+         return next();
+    }
+    else{
+        console.log("user is not logged in");
         res.redirect('login');
     }
 }
+
+// function checkOwnership(req, res, next){
+//     if(req.isAuthenticated()){
+        
+//     }else{
+        
+//     }
+// }
 
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Playmate - Sign Up</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Glyphicons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" 
+    integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/signup.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    
+    <!--============================================ FONTS ==========================================-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Poppins:400,500" rel="stylesheet">
+    <!--=============================================================================================-->
+</head>
+<body>
+	<% include partials/header %>
+	<main>
+        <div class="container-login100">
+            <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+                <form action="/main" class="login100-form validate-form flex-sb flex-w">
+					
+                    <p class="txt1 m-t-20 col-md-12">Event Name</p>
+                    <div class="wrap-input100 validate-input" data-validate="Event name is required">
+                        <input class="input100" type="text" name="" placeholder="My event name is...">
+                        <span class="focus-input100"></span>
+                    </div>
+					
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
+                    <div class="wrap-input100 validate-input" data-validate="Sport type is required">
+                        <select class="input100" name="" size="1">
+							<option value="Football"> Football </option>
+							<option value="Basketball"> Basketball </option>
+							<option value="Running"> Running </option>
+							<option value="Swimming"> Swimming </option>
+							<option value="TRX"> TRX </option>
+							<option value="Tennis"> Tennis </option>
+							<option value="Bowling"> Bowling </option>
+						</select>
+                        <span class="focus-input100"></span>
+                    </div>
+					
+                    <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
+                    <div class="wrap-input100 validate-input" data-validate="Location is required">
+                        <select class="input100" name="" size="1">
+							<option value="North"> North </option>
+							<option value="Haifa"> Haifa </option>
+							<option value="Center"> Center </option>
+							<option value="Tel Aviv"> Tel Aviv </option>
+							<option value="Jerusalem"> Jerusalem </option>
+							<option value="South"> South </option>
+							<option value="Beer Sheva"> Beer Sheva </option>
+						</select>
+                        <span class="focus-input100"></span>
+                    </div>
+					
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Date Of Event</p>
+                    <div class="wrap-input100 validate-input" data-validate="Date Of Event is required">
+                        <input class="input100" type="date" name="">
+                        <span class="focus-input100"></span>
+                    </div>
+					
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Time Of Event</p>
+                    <div class="wrap-input100 validate-input" data-validate="Time Of Event is required">
+                        <input class="input100" type="time" name="">
+                        <span class="focus-input100"></span>
+                    </div>
+                    
+                    <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
+                    <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
+                        <input class="input100" type="number" name="">
+                        <span class="focus-input100"></span>
+                    </div>
+					
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
+                    <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
+                        <input class="input100" type="number" name="">
+                        <span class="focus-input100"></span>
+                    </div>
+					
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
+                    <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
+                        <select class="input100" name="" size="1">
+							<option value="Noob"> Noob </option>
+							<option value="Rookie"> Rookie </option>
+							<option value="Intermediate"> Intermediate </option>
+							<option value="Advanced"> Advanced </option>
+							<option value="Master"> Master </option>
+						</select>
+                        <span class="focus-input100"></span>
+                    </div>
+					
+                    <div class="col-md-12 m-t-17">
+                        <button class="login100-form-btn" href="/index.ejs">
+							Create Event
+						</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+	</main>
+</body>
+
+</html>

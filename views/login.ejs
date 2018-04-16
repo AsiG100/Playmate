@@ -20,16 +20,16 @@
     <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     <!--=============================================================================================-->
 </head>
-<body>
+<body class="bodyClass">
   <% include partials/header %>
     <div class="container-login100">
       <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-        <form action="/main" class="login100-form validate-form flex-sb flex-w">
-          <p class="col-md-12 p-b-10 text-center">Sign In With</p>
-          <a href="#" class="btn-face col-md-6">
+        <p class="col-md-12 p-b-10 text-center">Sign In With</p>
+          <a href="/auth/facebook" class="btn-face col-md-6">
 						<i class="fab fa-facebook-square"></i>
 						Facebook
 					</a>
+        <form action="/login" method="POST" class="login100-form validate-form flex-sb flex-w">
           <p class="txt1 m-t-20 col-md-12">Username</p>
           <div class="wrap-input100 validate-input" data-validate="Username is required">
             <input class="input100" type="text" name="username">
@@ -42,12 +42,12 @@
 						</a>
           </p>
           <div class="wrap-input100 validate-input" data-validate="Password is required">
-            <input class="input100" type="password" name="pass">
+            <input class="input100" type="password" name="password">
             <span class="focus-input100"></span>
           </div>
 
           <div class="col-md-12 m-t-17">
-            <button class="login100-form-btn">
+            <button type="submit" class="login100-form-btn">
 							Sign In
 						</button>
           </div>

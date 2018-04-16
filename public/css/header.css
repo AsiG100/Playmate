@@ -161,15 +161,16 @@
 /*  border-top: 5px solid #ffffff;*/
 /*}*/
 
-body, html {
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
-	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
-  background: #43C6AC;
-  background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);
-  background: linear-gradient(to left, #F8FFAE, #43C6AC);
+.a-nav {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 66px;
 }
 
 .navbar-nav {
@@ -186,5 +187,20 @@ body, html {
 
 .navbar-brand {
   font-family: 'Courgette', cursive;
-  font-size: 40px;
 }
+
+.list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
+}
+

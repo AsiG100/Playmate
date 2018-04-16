@@ -5,8 +5,9 @@ var mongoose = require("mongoose"),
 var eventSchema = new mongoose.Schema({
          name: String,
          location: String, //The location URI
-         numOfParticipates: Number,
-         // creator: user
+         maxNumOfParticipates: Number,
+         minNumOfParticipates: Number,
+         // creator: user 
          dateOfCreation: Date,
          dateOfEvent: Date,
          // sportType: sportType
@@ -24,7 +25,8 @@ var sportTypeModel = mongoose.model('Type', sportTypeSchema);
 var userSchema = new mongoose.Schema({
         name: String,
         password: String,
-        birthDate: Date,
+        birthDate: String,
+        email: String,
         address:{
                     country: String,
                     city: String,
