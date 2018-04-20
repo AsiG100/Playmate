@@ -11,6 +11,11 @@
 				<li class="nav-item active list">
 					<a class="nav-link a-nav" href="#">Home <span class="sr-only">(current)</span></a>
 				</li>
+				<li>
+					<%if(user != undefined){%>
+					<img src="<%= user.image %>" alt="profile image" width="50" height="50"/>
+					<%}%>
+				</li>
 			</ul>
 		</div>
 	</nav>

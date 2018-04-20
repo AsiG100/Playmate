@@ -2,18 +2,36 @@ var mongoose = require("mongoose"),
     passportLocalMongoose = require("passport-local-mongoose");
 
 //SCHEMAS AND MODELS/////////////////////////////////////
+
+var groupSchema = new mongoose.Schema({
+        name: String,
+        type: String,
+        dayOfActivity: String,
+        timeOfActivity: String,
+        location: String,
+        minParticipants: Number,
+        maxParticipants: Number,
+        level: String,
+        events: [{type: mongoose.Schema.Types.ObjectId, ref: "Event"}],
+        admin: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}],
+        participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}]
+});
+var groupModel  = mongoose.model("Group", groupSchema);
+
 var eventSchema = new mongoose.Schema({
          name: String,
          location: String, //The location URI
-         maxNumOfParticipates: Number,
-         minNumOfParticipates: Number,
-         // creator: user 
+         maxNumOfParticipants: Number,
+         minNumOfParticipants: Number,
          dateOfCreation: Date,
          dateOfEvent: Date,
-         // sportType: sportType
-         // level: level // From beginner to expert
+         timeOfActivity: String,
+         sportType: String,
+         level: String, // From beginner to expert
          gameLevel: Number,//The individual score
-         agesRange: String // Ages of the participates
+         agesRange: String, // Ages of the participates
+         admin: {type:mongoose.Schema.Types.ObjectId, ref:"User"},
+         participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}]
 });
 var eventModel = mongoose.model("Event", eventSchema);
 
@@ -23,6 +41,11 @@ var sportTypeSchema = new mongoose.Schema({
 var sportTypeModel = mongoose.model('Type', sportTypeSchema);
 
 var userSchema = new mongoose.Schema({
+        facebook: {
+            id: String,
+            token: String,
+            friends: []
+        },
         name: String,
         password: String,
         birthDate: String,
@@ -35,14 +58,14 @@ var userSchema = new mongoose.Schema({
                 },
         sportTypes: [{type: mongoose.Schema.Types.ObjectId, ref: "Type"}], //Sport types the user interested in
         events: [{type: mongoose.Schema.Types.ObjectId, ref: "Event"}], //Events the user participates in
-        // groups[]
+        groups: [{type: mongoose.Schema.Types.ObjectId, ref: "Group"}], //Groups the user participates in
         gameProgress: Number, //The score of each user
-        // favoriteUsers[]
-        // preferences[] //Hours, age ranges, locations ,etc...
-        image: String //URL of a profile pic
+        favoriteUsers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+        preferences: [String], //Hours, age ranges, locations ,etc...
+        image: String
 });
     userSchema.plugin(passportLocalMongoose);
 var userModel = mongoose.model('User', userSchema);
 
 ///EXPORTS/////////////////////////////////////////////////
-module.exports = {'user' : userModel, 'sportType': sportTypeModel, 'event': eventModel};
+module.exports = {'user' : userModel, 'sportType': sportTypeModel, 'event': eventModel, 'group': groupModel};

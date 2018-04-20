@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Playmate - Sign Up</title>
+    <title>Playmate - add a group</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Bootstrap-->
@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" 
     integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/signup.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="icon" type="image/png" href="../css/images/icons/Playmate logo.ico"/>
+    <link rel="stylesheet" type="text/css" href="../css/util.css">
+    <link rel="stylesheet" type="text/css" href="../css/default.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
     
     <!--============================================ FONTS ==========================================-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Poppins:400,500" rel="stylesheet">
@@ -24,17 +25,17 @@
 	<main>
         <div class="container-login100">
             <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                <form action="/main" class="login100-form validate-form flex-sb flex-w">
+                <form action="/groups" method="POST" class="login100-form validate-form flex-sb flex-w">
 					
-                    <p class="txt1 m-t-20 col-md-12">Event Name</p>
-                    <div class="wrap-input100 validate-input" data-validate="Event name is required">
-                        <input class="input100" type="text" name="" placeholder="My event name is...">
+                    <p class="txt1 m-t-20 col-md-12">Group Name</p>
+                    <div class="wrap-input100 validate-input" data-validate="Group name is required">
+                        <input class="input100" type="text" name="group[name]" placeholder="My group name is...">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
                     <div class="wrap-input100 validate-input" data-validate="Sport type is required">
-                        <select class="input100" name="" size="1">
+                        <select class="input100" name="group[type]" size="1">
 							<option value="Football"> Football </option>
 							<option value="Basketball"> Basketball </option>
 							<option value="Running"> Running </option>
@@ -46,9 +47,30 @@
                         <span class="focus-input100"></span>
                     </div>
 					
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Weekly day Of Activity</p>
+                    <div class="wrap-input100 validate-input" data-validate="Day of activity is required">
+                        <select class="input100" name="group[day]" size="1">
+							<option value="Sunday"> Sunday </option>
+							<option value="Monday"> Monday </option>
+							<option value="Tuesday"> Tuesday </option>
+							<option value="Wednesday"> Wednesday </option>
+							<option value="Thursday"> Thursday </option>
+							<option value="Friday"> Friday </option>
+							<option value="Saturday"> Saturday </option>
+						</select>
+                        <span class="focus-input100"></span>
+                    </div>
+					
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Weekly Time Of Activity</p>
+                    <div class="wrap-input100 validate-input" data-validate="Time Of Event is required">
+                        <input class="input100" type="time" name="group[time]">
+                        <span class="focus-input100"></span>
+                    </div>
+					
+					
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
                     <div class="wrap-input100 validate-input" data-validate="Location is required">
-                        <select class="input100" name="" size="1">
+                        <select class="input100" name="group[location]" size="1">
 							<option value="North"> North </option>
 							<option value="Haifa"> Haifa </option>
 							<option value="Center"> Center </option>
@@ -60,33 +82,21 @@
                         <span class="focus-input100"></span>
                     </div>
 					
-					<p class="txt1 p-t-13 p-b-9 col-md-12">Date Of Event</p>
-                    <div class="wrap-input100 validate-input" data-validate="Date Of Event is required">
-                        <input class="input100" type="date" name="">
-                        <span class="focus-input100"></span>
-                    </div>
-					
-					<p class="txt1 p-t-13 p-b-9 col-md-12">Time Of Event</p>
-                    <div class="wrap-input100 validate-input" data-validate="Time Of Event is required">
-                        <input class="input100" type="time" name="">
-                        <span class="focus-input100"></span>
-                    </div>
-                    
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                        <input class="input100" type="number" name="">
+                        <input class="input100" type="number" name="group[minParticipants]">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                        <input class="input100" type="number" name="">
+                        <input class="input100" type="number" name="group[maxParticipants]">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
-                        <select class="input100" name="" size="1">
+                        <select class="input100" name="group[level]" size="1">
 							<option value="Noob"> Noob </option>
 							<option value="Rookie"> Rookie </option>
 							<option value="Intermediate"> Intermediate </option>
@@ -95,7 +105,7 @@
 						</select>
                         <span class="focus-input100"></span>
                     </div>
-					
+
                     <div class="col-md-12 m-t-17">
                         <button class="login100-form-btn" href="/index.ejs">
 							Create Event

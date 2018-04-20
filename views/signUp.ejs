@@ -1,81 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Playmate - Sign Up</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--Glyphicons-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" 
-    integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="css/images/icons/Playmate logo.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/default.css">
     <link rel="stylesheet" type="text/css" href="css/signup.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-    
     <!--============================================ FONTS ==========================================-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Poppins:400,500" rel="stylesheet">
     <!--=============================================================================================-->
 </head>
+
 <body>
-	<% include partials/header %>
-	<main>
+    <main>
         <div class="container-login100">
             <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                <form action="/register" method="POST" class="login100-form validate-form flex-sb flex-w">
-					
-                    <p class="txt1 m-t-20 col-md-12">Username</p>
-                    <div class="wrap-input100 validate-input" data-validate="Username is required">
-                        <input class="input100" type="text" name="user[username]" placeholder="My user name is...">
-                        <span class="focus-input100"></span>
-                    </div>
-					
-                    <p class="txt1 p-t-13 p-b-9 col-md-12">Password</p>
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="user[password]"placeholder="My password is...">
-                        <span class="focus-input100"></span>
-                    </div>
-					
-					<p class="txt1 p-t-13 p-b-9 col-md-12">E-mail</p>
+                <form action="/upload" method="post" enctype="multipart/form-data" id="imageUpload">
+                    <div class="col-sm-12 col-md-6 center">
+                                <p class="txt1 m-t-20">Profile Image</p>
+                                <div class="wrap-input100 validate-input resizeImgInput" data-validate="Profile Image is required">
+                                    <input type="file" name="myImage" accept="css/images/*" onchange="preview_image(event)">
+                                    <img id="output_image"/>
+                                </div>
+                            </div>
+                </form>
+                <form action="/register" method="post" class="login100-form validate-form flex-sb flex-w">
+                            <p class="txt1 m-t-20">Username</p>
+                            <div class="wrap-input100 validate-input col-sm-12" data-validate="Username is required">
+                                <input class="input100" type="text" name="user[username]" placeholder="My user name is...">
+                                <span class="focus-input100"></span>
+                            </div>
+                    
+                            <p class="txt1 p-t-13 p-b-9">Password</p>
+                            <div class="wrap-input100 validate-input col-sm-12" data-validate="Password is required">
+                                <input class="input100" type="password" name="user[password]" placeholder="My password is...">
+                                <span class="focus-input100"></span>
+                            </div>
+                    
+                    <p class="txt1 p-t-13 p-b-9 col-sm-12">E-mail</p>
                     <div class="wrap-input100 validate-input" data-validate="E-mail is required">
-                        <input class="input100" type="email" name="user[email]"placeholder="My E-mail is...">
+                        <input class="input100" type="email" name="user[email]" placeholder="My E-mail is...">
                         <span class="focus-input100"></span>
                     </div>
-					
-					<p class="txt1 p-t-13 p-b-9 col-md-12">Date Of Birth</p>
+
+                    <p class="txt1 p-t-13 p-b-9 col-sm-12">Date Of Birth</p>
                     <div class="wrap-input100 validate-input" data-validate="Date Of Birth is required">
                         <input class="input100" type="date" name="user[dateOfBirth]">
                         <span class="focus-input100"></span>
                     </div>
-                    
-                    <p class="txt1 p-t-13 p-b-9 col-md-12">City</p>
+
+                    <p class="txt1 p-t-13 p-b-9 col-sm-12">City</p>
                     <div class="wrap-input100 validate-input" data-validate="City is required">
                         <input class="input100" type="text" name="user[city]" placeholder="I live in...">
                         <span class="focus-input100"></span>
                     </div>
-					
-					<p class="txt1 p-t-13 p-b-9 col-md-12">Street</p>
+
+                    <p class="txt1 p-t-13 p-b-9 col-sm-12">Street</p>
                     <div class="wrap-input100 validate-input" data-validate="Street name is required">
                         <input class="input100" type="text" name="user[street]" placeholder="My street name is...">
                         <span class="focus-input100"></span>
                     </div>
-					
-					<p class="txt1 p-t-13 p-b-9 col-md-12">Number</p>
+
+                    <p class="txt1 p-t-13 p-b-9 col-sm-12">Number</p>
                     <div class="wrap-input100 validate-input" data-validate="House number is required">
                         <input class="input100" type="text" name="user[number]" placeholder="My house number is...">
                         <span class="focus-input100"></span>
-
-                    <div class="col-md-12 m-t-17">
-                        <button class="login100-form-btn" href="/index.ejs">
+                    </div>
+                    <div class="container-login100-form-btn col-sm-12 m-t-17">
+                        <button class="login100-form-btn" type="submit">
 							Sign Up
 						</button>
                     </div>
                 </form>
             </div>
         </div>
-	</main>
+    </main>
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="css/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="css/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="css/bootstrap/js/popper.js"></script>
+	<script src="css/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="css/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="css/daterangepicker/moment.min.js"></script>
+	<script src="css/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="css/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/login.js"></script>
+	<script src="js/register.js"></script>
 </body>
 
 </html>
