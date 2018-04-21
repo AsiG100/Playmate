@@ -105,7 +105,6 @@ passport.use(new facebookStrategy({
     profileFields: ['emails','friends','birthday']
   },
   function(accessToken, refreshToken, profile, done) {
-      console.log(profile);
       process.nextTick(function(){
         User.findOne({ 'facebook.id': profile.id }, function (err, user) {
             if(err)
@@ -154,16 +153,7 @@ app.get('/index', function(req, res) {
 });
 
 app.get('/', dataAcess.isLoggedIn, function(req, res) {
-        var userGroups,userEvents;
-        
-        dataAcess.getEventsFromUser(req.user, function(events){
-            userEvents = events;
-        })
-        dataAcess.getGroupsFromUser(req.user, function(groups){
-            userGroups = groups;
-
-        })
-        res.render("index");
+        dataAcess.getUserContentAndRender(req, res);
 });
 
 app.get('/groups/add',dataAcess.isLoggedIn, function(req, res) {

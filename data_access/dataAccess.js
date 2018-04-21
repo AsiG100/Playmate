@@ -136,49 +136,26 @@ function isLoggedIn( req, res, next){
     }
 }
 
-function getEventsFromUser(user, cb){
-    User.findById(user._id, function(err, user){
-       if(err){
-           console.log(err);
-       }else{
-           var eventsArr = [];
-           user.events.forEach(function(event){
-               Event.findById(event,function(err, foundEvent){
+function getUserContentAndRender(req, res){
+        User.findById(req.user).populate("groups").exec(function(err, user){
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log(user.groups);
+                res.locals.groups = user.groups;
+                User.findById(user).populate('events').exec(function(err, user){
                    if(err){
                        console.log(err);
-                   }else{
-                    eventsArr.push(foundEvent);   
-                    console.log(foundEvent);
-
+                   } else{
+                       console.log(user.events);
+                       res.locals.events = user.events;
+                       res.render('index');
                    }
-               });
-           })
-           cb(eventsArr);
-       }
-    });
+                });
+            }
+        });
 }
-
-function getGroupsFromUser(user, cb){
-    User.findById(user._id, function(err, user){
-       if(err){
-           console.log(err);
-       }else{
-           var groupsArr = [];
-           user.groups.forEach(function(event){
-               Event.findById(event,function(err, foundGroup){
-                   if(err){
-                       console.log(err);
-                   }else{
-                    groupsArr.push(foundGroup);
-                    console.log(foundGroup);
-                   }
-               });
-           })
-           cb(groupsArr);
-       }
-       });
-    };
-
 
 
 //FUNCTIONS OBJECT TO EXPORT-------------------
@@ -191,8 +168,7 @@ var funcs = {
                 associateGroupToUser: associateGroupToUser,
                 saveEventToDB: saveEventToDB,
                 associateEventToUser: associateEventToUser,
-                getEventsFromUser: getEventsFromUser,
-                getGroupsFromUser: getGroupsFromUser
+                getUserContentAndRender: getUserContentAndRender
              }
 
 //EXPORT---------------------------------------
