@@ -60,6 +60,7 @@ function saveImageToDB(user, uploadedImage)
 
 function saveGroupToDB(group, cb){
     Group.create({
+        dateOfCreation: Date.now(),
         name: group.name,
         type: group.type,
         dayOfActivity: group.day,
@@ -144,12 +145,20 @@ function getUserContentAndRender(req, res){
             else{
                 console.log(user.groups);
                 res.locals.groups = user.groups;
+                //sort by time of creation
+                res.locals.groups.sort(function(a,b){
+                  return b.dateOfCreation - a.dateOfCreation;  
+                });
                 User.findById(user).populate('events').exec(function(err, user){
                    if(err){
                        console.log(err);
                    } else{
                        console.log(user.events);
                        res.locals.events = user.events;
+                       //sort by time of creation
+                       res.locals.events.sort(function(a,b){
+                          return b.dateOfCreation - a.dateOfCreation;  
+                       });
                        res.render('index');
                    }
                 });

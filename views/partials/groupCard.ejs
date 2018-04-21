@@ -1,0 +1,24 @@
+<div class="card text-center cardEvent">
+    <div class="card-header">
+        <%=groups[group].type %> -
+            <%= groups[group].level %>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            <%= groups[group].name %>
+        </h5>
+        <p class="card-text">The event is in
+            <%= groups[group].location %> on
+                <%= groups[group].dayOfActivity %>
+        </p>
+        <p class="card-text">Min number of participants is
+            <%=groups[group].minParticipants%> and max number of participants is
+                <%= groups[group].maxParticipants%>
+        </p>
+        <a href="#" class="btn btn-primary">Go to event</a>
+    </div>
+    <div class="card-footer text-muted">
+        At:
+        <%= groups[group].timeOfActivity %>
+    </div>
+</div>

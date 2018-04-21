@@ -1,0 +1,24 @@
+<div class="card text-center cardEvent">
+    <div class="card-header">
+        <%=events[event].agesRange %> -
+            <%= events[event].level %>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            <%= events[event].name %>
+        </h5>
+        <p class="card-text">The event is in
+            <%= events[event].location %> on
+                <%= events[event].dateOfEvent %>
+        </p>
+        <p class="card-text">Min number of participants is
+            <%=events[event].minNumOfParticipants%> and max number of participants is
+                <%= events[event].maxNumOfParticipants%>
+        </p>
+        <a href="#" class="btn btn-primary">Go to event</a>
+    </div>
+    <div class="card-footer text-muted">
+        At:
+        <%= events[event].timeOfActivity %>
+    </div>
+</div>

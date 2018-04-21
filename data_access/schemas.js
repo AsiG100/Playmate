@@ -4,6 +4,7 @@ var mongoose = require("mongoose"),
 //SCHEMAS AND MODELS/////////////////////////////////////
 
 var groupSchema = new mongoose.Schema({
+        dateOfCreation: Date,
         name: String,
         type: String,
         dayOfActivity: String,
