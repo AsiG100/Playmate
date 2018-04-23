@@ -166,6 +166,54 @@ function getUserContentAndRender(req, res){
         });
 }
 
+function updateEventInDB(eventID,updatedData){
+    Event.findById(eventID, function(err, event){
+       if(err){
+           console.log(err);
+       }else{
+         event.name = updatedData.name;
+         event.location = updatedData.location; //The location URI
+         event.maxNumOfParticipants = updatedData.maxNumOfParticipants;
+         event.minNumOfParticipants = updatedData.minNumOfParticipants;
+         event.dateOfEvent = updatedData.date;
+         event.timeOfActivity = updatedData.time;
+         event.sportType = updatedData.type;
+         event.level = updatedData.minLevel; // From beginner to expert
+         event.agesRange = "0 - 99"; // Ages of the participates
+         event.save(function(err){
+             if(err){
+                 console.log(err);
+             }else{
+                 console.log('event updated');
+             }
+         });
+       }
+    });
+}
+
+function updateGroupInDB(groupID,updatedData){
+    Group.findById(groupID, function(err, group){
+       if(err){
+           console.log(err);
+       }else{
+            group.name = updatedData.name;
+            group.type = updatedData.type;
+            group.dayOfActivity = updatedData.day;
+            group.timeOfActivity = updatedData.time;
+            group.location = updatedData.location;
+            group.minParticipants = updatedData.minParticipants;
+            group.maxParticipants = updatedData.maxParticipants;
+            group.level = updatedData.level;
+            group.save(function(err){
+             if(err){
+                 console.log(err);
+             }else{
+                 console.log('group updated');
+             }
+         });
+       }
+    });
+}
 
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {
@@ -177,7 +225,9 @@ var funcs = {
                 associateGroupToUser: associateGroupToUser,
                 saveEventToDB: saveEventToDB,
                 associateEventToUser: associateEventToUser,
-                getUserContentAndRender: getUserContentAndRender
+                getUserContentAndRender: getUserContentAndRender,
+                updateEventInDB: updateEventInDB,
+                updateGroupInDB: updateGroupInDB
              }
 
 //EXPORT---------------------------------------
