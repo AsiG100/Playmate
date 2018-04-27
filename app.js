@@ -180,6 +180,13 @@ app.post('/groups',dataAcess.isLoggedIn, function(req, res){
     
 });
 
+app.get('/groups/:id/edit',dataAcess.isLoggedIn ,function(req, res) {
+    var id = req.params.id;
+    dataAcess.getGroupFromDB(id, function(group){
+            res.render('editGroup',{group:group});    
+    });
+});
+
 app.get('/events/add',dataAcess.isLoggedIn, function(req, res) {
     res.render('addEvent');
 });

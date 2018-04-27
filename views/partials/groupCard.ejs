@@ -15,6 +15,7 @@
             <%=groups[group].minParticipants%> and max number of participants is
                 <%= groups[group].maxParticipants%>
         </p>
+        <a href="/groups/<%= groups[group]._id %>/edit" class="btn btn-warning">Edit</a>
         <a href="#" class="btn btn-primary">Go to event</a>
     </div>
     <div class="card-footer text-muted">

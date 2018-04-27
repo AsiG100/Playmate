@@ -80,6 +80,17 @@ function saveGroupToDB(group, cb){
     })
 }
 
+function getGroupFromDB(id, cb){
+    Group.findById(id, function(err, group) {
+       if(err){
+           console.log(err);
+       }else{
+           console.log('group retrieved');
+           cb(group);
+       }
+    });
+}
+
 function associateGroupToUser(group, user){
         user.groups.push(group._id);
         group.participants.push(user._id);
@@ -262,6 +273,7 @@ var funcs = {
                 saveUserToDB: saveUserToDB,
                 isLoggedIn: isLoggedIn,
                 saveGroupToDB: saveGroupToDB,
+                getGroupFromDB: getGroupFromDB,
                 saveImageToDB: saveImageToDB,
                 getUserFromDB: getUserFromDB,
                 associateGroupToUser: associateGroupToUser,
