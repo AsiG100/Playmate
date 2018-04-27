@@ -36,7 +36,7 @@
     <main>
         <div class="container-login100">
             <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                <form action="/upload" method="post" enctype="multipart/form-data" id="imageUpload">
+                <form action="/upload" method="POST" enctype="multipart/form-data" id="imageUpload">
                     <div class="col-sm-12 col-md-6 center">
                                 <p class="txt1 m-t-20">Profile Image</p>
                                 <div class="wrap-input100 validate-input resizeImgInput" data-validate="Profile Image is required">
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                 </form>
-                <form action="/register" method="post" class="login100-form validate-form flex-sb flex-w">
+                <form action="/register" method="POST" id="detailsUpload" class="login100-form validate-form flex-sb flex-w">
                             <p class="txt1 m-t-20">Username</p>
                             <div class="wrap-input100 validate-input col-sm-12" data-validate="Username is required">
                                 <input class="input100" type="text" name="user[username]" placeholder="My user name is...">
@@ -88,7 +88,7 @@
                         <span class="focus-input100"></span>
                     </div>
                     <div class="container-login100-form-btn col-sm-12 m-t-17">
-                        <button class="login100-form-btn" type="submit">
+                        <button class="login100-form-btn" id="submitForm">
 							Sign Up
 						</button>
                     </div>

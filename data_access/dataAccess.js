@@ -1,6 +1,7 @@
 var mongoose = require("mongoose"),
     passport = require("passport"),
     express  = require("express"),
+    request  = require("request"),
     app      = express(),
     fs       = require("fs"),
     upload   = require("./imgUpload");
@@ -54,7 +55,7 @@ function getUserFromDB(user, cb)
 function saveImageToDB(user, uploadedImage)
 {
     console.log(uploadedImage);
-    user.image = "images/"+uploadedImage.filename
+    user.image = "/images/"+uploadedImage.filename
     console.log('saved image');
 }
 
@@ -114,6 +115,17 @@ function saveEventToDB(event, cb){
     })
 }
 
+function getEventFromDB(id, cb){
+    Event.findById(id, function(err, event) {
+       if(err){
+           console.log(err);
+       }else{
+           console.log('event retrieved');
+           cb(event);
+       }
+    });
+}
+
 function associateEventToUser(event, user){
         user.events.push(event._id);
         event.participants.push(user._id);
@@ -137,13 +149,13 @@ function isLoggedIn( req, res, next){
     }
 }
 
-function getUserContentAndRender(req, res){
-        User.findById(req.user).populate("groups").exec(function(err, user){
+function getUserContentAndRender(userId, res, cb){
+        User.findById(userId).populate("groups").exec(function(err, user){
             if(err){
                 console.log(err);
             }
             else{
-                console.log(user.groups);
+                console.log('sent user groups');
                 res.locals.groups = user.groups;
                 //sort by time of creation
                 res.locals.groups.sort(function(a,b){
@@ -153,13 +165,13 @@ function getUserContentAndRender(req, res){
                    if(err){
                        console.log(err);
                    } else{
-                       console.log(user.events);
+                       console.log('sent user events');
                        res.locals.events = user.events;
                        //sort by time of creation
                        res.locals.events.sort(function(a,b){
                           return b.dateOfCreation - a.dateOfCreation;  
                        });
-                       res.render('index');
+                       cb(user);
                    }
                 });
             }
@@ -215,6 +227,36 @@ function updateGroupInDB(groupID,updatedData){
     });
 }
 
+function deleteEventFromDB(eventID){
+    Event.findByIdAndRemove(eventID, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log('event removed');
+        }
+    })
+}
+
+function deleteGroupFromDB(groupID){
+    Event.findByIdAndRemove(groupID, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log('group removed');
+        }
+    })
+}
+
+//after some other user will login with facebook
+function getFavoritesFromFB(user){
+    request('https://graph.facebook.com/v2.12/me?access_token='+user.facebook.token+'&fields=friends', function (err, res, body) {
+        if(err){
+            console.log(err);
+        }else{
+            console.log('body:', body); // Print the HTML for the Google homepage.
+        }});
+}
+
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {
                 saveUserToDB: saveUserToDB,
@@ -224,10 +266,14 @@ var funcs = {
                 getUserFromDB: getUserFromDB,
                 associateGroupToUser: associateGroupToUser,
                 saveEventToDB: saveEventToDB,
+                getEventFromDB: getEventFromDB,
                 associateEventToUser: associateEventToUser,
                 getUserContentAndRender: getUserContentAndRender,
                 updateEventInDB: updateEventInDB,
-                updateGroupInDB: updateGroupInDB
+                updateGroupInDB: updateGroupInDB,
+                deleteEventFromDB: deleteEventFromDB,
+                deleteGroupFromDB: deleteGroupFromDB,
+                getFavoritesFromFB: getFavoritesFromFB
              }
 
 //EXPORT---------------------------------------

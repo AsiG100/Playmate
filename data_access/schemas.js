@@ -25,7 +25,7 @@ var eventSchema = new mongoose.Schema({
          maxNumOfParticipants: Number,
          minNumOfParticipants: Number,
          dateOfCreation: Date,
-         dateOfEvent: Date,
+         dateOfEvent: String,
          timeOfActivity: String,
          sportType: String,
          level: String, // From beginner to expert
@@ -45,11 +45,10 @@ var userSchema = new mongoose.Schema({
         facebook: {
             id: String,
             token: String,
-            friends: []
         },
         name: String,
         password: String,
-        birthDate: String,
+        birthDate: Date,
         email: String,
         address:{
                     country: String,

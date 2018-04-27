@@ -7,5 +7,8 @@ function preview_image(event) {
     }
     
     reader.readAsDataURL(event.target.files[0]);
-    document.getElementById("imageUpload").submit();
+    document.querySelector('#imageUpload').submit();
 }
+
+// add a function that submits both forms (image before the details) asynchronously.
+    

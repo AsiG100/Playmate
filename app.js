@@ -51,7 +51,9 @@ app.post('/register', function(req, res) {
         }
         else {
             dataAcess.saveUserToDB(user, details);
-            dataAcess.saveImageToDB(user, uploadedImage);
+            if(uploadedImage){
+                dataAcess.saveImageToDB(user, uploadedImage);
+            }
             req.login(user, function(err) {
                 if (err) {
                 console.log(err);
@@ -102,9 +104,10 @@ passport.use(new facebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_SECRET,
     callbackURL: 'https://playmate-zmirnoff.c9users.io/auth/facebook/callback',
-    profileFields: ['emails','friends','birthday']
+    profileFields: ['emails','friends','birthday','name','picture']
   },
   function(accessToken, refreshToken, profile, done) {
+      console.log(profile);
       process.nextTick(function(){
         User.findOne({ 'facebook.id': profile.id }, function (err, user) {
             if(err)
@@ -119,8 +122,7 @@ passport.use(new facebookStrategy({
                 var newUser = new User();
                 newUser.facebook.id = profile.id;
                 newUser.facebook.token = accessToken;
-                newUser.facebook.friends = profile._json.friends;
-                newUser.image = "https://graph.facebook.com/"+profile.id+"/picture?type=normal";
+                newUser.image = "https://graph.facebook.com/"+profile.id+"/picture?type=large";
                 newUser.username = profile.name.givenName +" "+profile.name.familyName;
                 newUser.email = profile.emails[0].value;
                 newUser.birthDate = profile._json.birthday;
@@ -136,7 +138,7 @@ passport.use(new facebookStrategy({
 ));
 
 app.get('/auth/facebook' ,passport.authenticate('facebook', {authType: 'rerequest',
-                         scope: ['email','user_friends','user_birthday'] }));
+                         scope: ['email','user_friends','user_birthday','public_profile'] }));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
@@ -147,13 +149,12 @@ app.get('/auth/facebook/callback',
 
 ///ROUTES////////////////////////////////////////////////////
 
-//instant access to the index route, just right /index after the domain
-app.get('/index', function(req, res) {
-    res.render("index");
-});
 
 app.get('/', dataAcess.isLoggedIn, function(req, res) {
-        dataAcess.getUserContentAndRender(req, res);
+        dataAcess.getUserContentAndRender(req.user, res, function(){
+            res.render('index');
+        });
+        dataAcess.getFavoritesFromFB(req.user);
 });
 
 app.get('/groups/add',dataAcess.isLoggedIn, function(req, res) {
@@ -197,6 +198,20 @@ app.post('/events', function(req, res) {
         }});
         res.redirect('/');
     })
+});
+
+app.get('/events/:id/edit',dataAcess.isLoggedIn ,function(req, res) {
+    var id = req.params.id;
+    dataAcess.getEventFromDB(id, function(event){
+            res.render('editEvent',{event:event});    
+    });
+});
+
+app.get('/profile/:id',dataAcess.isLoggedIn, function(req, res) {
+    var id = req.params.id;
+    dataAcess.getUserContentAndRender(id, res, function(user){
+        res.render('profile',{profile:user});
+    });
 });
 //-----------------------------------------------------
 app.listen(process.env.PORT, process.env.IP, function() {
