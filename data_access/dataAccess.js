@@ -189,6 +189,7 @@ function getUserContentAndRender(userId, res, cb){
         });
 }
 
+//UPDATING////////////////////////////////////////////////  
 function updateEventInDB(eventID,updatedData){
     Event.findById(eventID, function(err, event){
        if(err){

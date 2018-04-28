@@ -35,7 +35,7 @@
 	<main>
         <div class="container-login100">
             <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                <form action="/events" method="POST" class="login100-form validate-form flex-sb flex-w">
+                <form action="/events/<%= event._id %>?_method=PUT" method="POST" class="login100-form validate-form flex-sb flex-w">
 					
                     <p class="txt1 m-t-20 col-md-12">Event Name</p>
                     <div class="wrap-input100 validate-input" data-validate="Event name is required">
