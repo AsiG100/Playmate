@@ -15,6 +15,9 @@
             <%=events[event].minNumOfParticipants%> and max number of participants is
                 <%= events[event].maxNumOfParticipants%>
         </p>
+        <form action="/events/<%= events[event]._id %>?_method=DELETE" method="POST" class="dis-inline">
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
         <a href="/events/<%= events[event]._id %>/edit" class="btn btn-warning">Edit</a>
         <a href="#" class="btn btn-primary">Go to event</a>
     </div>

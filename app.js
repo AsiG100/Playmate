@@ -3,6 +3,7 @@ var express = require("express"),
     request = require("request"),
     ejs     = require("ejs"),
     imageConvert = require("image-convert"),
+    methodOverride = require("method-override"),
     bodyParser = require('body-parser'),
     passport = require("passport"),
     localStrategy = require("passport-local"),
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs');
 app.set('views', "./views");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname+'/public'));
+app.use(methodOverride('_method'));
 //PASSPORT CONFIG/////////////////////////////
 app.use(require("express-session")({
     secret: "something",
@@ -74,10 +76,6 @@ app.post('/upload', function(req, res){
          console.log(req.file);
          uploadedImage = req.file;
      });
-});
-
-app.get('/login', function(req, res) {
-    res.render('login');
 });
 
 app.post('/login',
@@ -187,6 +185,12 @@ app.get('/groups/:id/edit',dataAcess.isLoggedIn ,function(req, res) {
     });
 });
 
+app.delete('/groups/:id', function(req, res){
+    var id = req.params.id;
+    dataAcess.deleteGroupFromDB(id);
+    res.redirect('/');
+});
+
 app.get('/events/add',dataAcess.isLoggedIn, function(req, res) {
     res.render('addEvent');
 });
@@ -214,12 +218,20 @@ app.get('/events/:id/edit',dataAcess.isLoggedIn ,function(req, res) {
     });
 });
 
+app.delete('/events/:id', function(req, res){
+    var id = req.params.id;
+    dataAcess.deleteEventFromDB(id);
+    res.redirect('/');
+});
+
 app.get('/profile/:id',dataAcess.isLoggedIn, function(req, res) {
     var id = req.params.id;
     dataAcess.getUserContentAndRender(id, res, function(user){
         res.render('profile',{profile:user});
     });
 });
+
+
 //-----------------------------------------------------
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log('The server is running on port ' + process.env.PORT + ' and ip ' + process.env.IP);

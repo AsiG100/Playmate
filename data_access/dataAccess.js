@@ -156,7 +156,7 @@ function isLoggedIn( req, res, next){
     }
     else{
         console.log("redirecting to login...");
-        res.redirect('/login');
+        res.render('login');
     }
 }
 
@@ -238,24 +238,58 @@ function updateGroupInDB(groupID,updatedData){
     });
 }
 
+//DELETES//////////////////////////////////////////////////////////
+
 function deleteEventFromDB(eventID){
-    Event.findByIdAndRemove(eventID, function(err){
+    Event.findById(eventID).populate("participants").exec (function(err, event) {
         if(err){
             console.log(err);
         }else{
-            console.log('event removed');
+            event.participants.forEach(function(user){
+               var index = user.events.indexOf(eventID);
+               console.log('the index is: ',index);
+                if (index > -1) {
+                  var removed = user.events.splice(index, 1);
+                  user.save();
+                  console.log('event removed from user: ',removed);
+                }
+            });
+            
+            event.remove(function(err){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log('event removed');
+                }
+            });
         }
-    })
+    });    
 }
 
 function deleteGroupFromDB(groupID){
-    Event.findByIdAndRemove(groupID, function(err){
+    Group.findById(groupID).populate("participants").exec(function(err, group) {
         if(err){
             console.log(err);
         }else{
-            console.log('group removed');
+            group.participants.forEach(function(user){
+               var index = user.groups.indexOf(groupID);
+               console.log('the index is: ',index);
+                if (index > -1) {
+                  var removed = user.groups.splice(index, 1);
+                  user.save();
+                  console.log('group removed from user: ',removed);
+                }
+            });
+            
+            group.remove(function(err){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log('group removed');
+                }
+            });
         }
-    })
+    });
 }
 
 //after some other user will login with facebook
