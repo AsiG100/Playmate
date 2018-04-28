@@ -46,13 +46,13 @@
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
                     <div class="wrap-input100 validate-input" data-validate="Sport type is required">
                         <select class="input100" name="event[type]" size="1">
-							<option value="Football" <% if(event.type == 'Football'){ %>selected<% } %> > Football </option>
-							<option value="Basketball" <% if(event.type == 'Basketball'){ %>selected<% } %> > Basketball </option>
-							<option value="Running" <% if(event.type == 'Running'){ %>selected<% } %> > Running </option>
-							<option value="Swimming" <% if(event.type == 'Swimming'){ %>selected<% } %> > Swimming </option>
-							<option value="TRX" <% if(event.type == 'TRX'){ %>selected<% } %> > TRX </option>
-							<option value="Tennis" <% if(event.type == 'Tennis'){ %>selected<% } %> > Tennis </option>
-							<option value="Bowling" <% if(event.type == 'Bowling'){ %>selected<% } %> > Bowling </option>
+							<option value="Football"<%=(event.type == 'Football')?'selected':''%> > Football </option>
+							<option value="Basketball" <%=(event.type == 'Basketball')?'selected':''%> > Basketball </option>
+							<option value="Running" <%=(event.type == 'Running')?'selected':''%> > Running </option>
+							<option value="Swimming" <%=(event.type == 'Swimming')?'selected':''%> > Swimming </option>
+							<option value="TRX" <%=(event.type == 'TRX')?'selected':''%> > TRX </option>
+							<option value="Tennis" <%=(event.type == 'Tennis')?'selected':''%>> Tennis </option>
+							<option value="Bowling" <%=(event.type == 'Bowling')?'selected':''%> > Bowling </option>
 						</select>
                         <span class="focus-input100"></span>
                     </div>
