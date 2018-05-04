@@ -155,7 +155,7 @@ app.get('/', dataAcess.isLoggedIn, function(req, res) {
         dataAcess.getFavoritesFromFB(req.user);
 });
 
-app.get('/groups/add',dataAcess.isLoggedIn, function(req, res) {
+app.get('/groups/add', dataAcess.isLoggedIn, function(req, res) {
     res.render('addGroup');
 });
 
@@ -178,18 +178,19 @@ app.post('/groups',dataAcess.isLoggedIn, function(req, res){
     
 });
 
+//-view a group
+app.get('/groups/:id', dataAcess.isLoggedIn, function(req, res) {
+    var id = req.params.id;
+    dataAcess.getUserFromDB({_id:id}, function(user){
+         res.render('viewGroup',{user:user});
+    });
+});
+
 app.get('/groups/:id/edit',dataAcess.isLoggedIn ,function(req, res) {
     var id = req.params.id;
     dataAcess.getGroupFromDB(id, function(group){
             res.render('editGroup',{group:group});    
     });
-});
-
-app.put('/groups/:id', function(req, res){
-    var id = req.params.id;
-    var group = req.body.group;
-    dataAcess.updateGroupInDB(id,group); 
-    res.redirect('/');
 });
 
 app.delete('/groups/:id', function(req, res){
@@ -202,7 +203,7 @@ app.get('/events/add',dataAcess.isLoggedIn, function(req, res) {
     res.render('addEvent');
 });
 
-app.post('/events', function(req, res) {
+app.post('/events', dataAcess.isLoggedIn, function(req, res) {
     var eventDetails = req.body.event;
     dataAcess.saveEventToDB(eventDetails, function(event){
          User.findById(req.user._id, function(err, user){
@@ -218,6 +219,14 @@ app.post('/events', function(req, res) {
     })
 });
 
+//-view an event
+app.get('/events/:id', dataAcess.isLoggedIn, function(req, res) {
+    var id = req.params.id;
+    dataAcess.getUserFromDB({_id:id}, function(user){
+         res.render('viewEvent',{user:user});
+    });
+});
+
 app.get('/events/:id/edit',dataAcess.isLoggedIn ,function(req, res) {
     var id = req.params.id;
     dataAcess.getEventFromDB(id, function(event){
@@ -225,14 +234,7 @@ app.get('/events/:id/edit',dataAcess.isLoggedIn ,function(req, res) {
     });
 });
 
-app.put('/events/:id', function(req, res){
-    var id = req.params.id;
-    var event = req.body.event;
-    dataAcess.updateEventInDB(id,event); 
-    res.redirect('/');
-});
-
-app.delete('/events/:id', function(req, res){
+app.delete('/events/:id', dataAcess.isLoggedIn, function(req, res){
     var id = req.params.id;
     dataAcess.deleteEventFromDB(id);
     res.redirect('/');

@@ -204,3 +204,25 @@
   width: auto;
 }
 
+.usernameNav {
+  font-size: 20px;
+  padding: 8px;
+}
+
+.dropdownCreateOptions: hover, .dropdownCreateOptions: focus{
+  background-color: #2980B9;
+}
+
+.dropdownCreateOptions {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}

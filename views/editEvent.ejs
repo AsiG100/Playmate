@@ -46,11 +46,15 @@
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
                     <div class="wrap-input100 validate-input" data-validate="Sport type is required">
                         <select class="input100" name="event[type]" size="1">
-							<option value="Football"<%=(event.type == 'Football')?'selected':''%> > Football </option>
+							<option value="Football"> Football </option>
 							<option value="Basketball" <%=(event.type == 'Basketball')?'selected':''%> > Basketball </option>
-							<option value="Running" <%=(event.type == 'Running')?'selected':''%> > Running </option>
+							<option value="Running" <%= (event.type == 'Running') ? 'selected' : ''%> > Running </option>
 							<option value="Swimming" <%=(event.type == 'Swimming')?'selected':''%> > Swimming </option>
-							<option value="TRX" <%=(event.type == 'TRX')?'selected':''%> > TRX </option>
+							<%if(event.type == 'TRX'){%>
+							    <option value="TRX" selected> TRX </option>
+							<% }else{ %>
+							    <option value="TRX"> TRX </option>
+							<% } %>
 							<option value="Tennis" <%=(event.type == 'Tennis')?'selected':''%>> Tennis </option>
 							<option value="Bowling" <%=(event.type == 'Bowling')?'selected':''%> > Bowling </option>
 						</select>
@@ -120,19 +124,19 @@
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
-	<script src="css/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/css/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="css/animsition/js/animsition.min.js"></script>
+	<script src="/css/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="css/bootstrap/js/popper.js"></script>
-	<script src="css/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/css/bootstrap/js/popper.js"></script>
+	<script src="/css/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="css/select2/select2.min.js"></script>
+	<script src="/css/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="css/daterangepicker/moment.min.js"></script>
-	<script src="css/daterangepicker/daterangepicker.js"></script>
+	<script src="/css/daterangepicker/moment.min.js"></script>
+	<script src="/css/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="css/countdowntime/countdowntime.js"></script>
+	<script src="/css/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 </body>
 

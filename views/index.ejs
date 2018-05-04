@@ -11,11 +11,13 @@
         <link rel="stylesheet" href="/css/bootstrap/css/bootstrap-grid.min.css">
         <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
         <!--Glyphicons-->
-        <link rel="stylesheet" type="text/css" href="css/util.css">
-        <link rel="stylesheet" type="text/css" href="css/homePage.css">
-        <link rel="stylesheet" type="text/css" href="css/header.css">
+        <link rel="stylesheet" type="text/css" href="/css/util.css">
+        <link rel="stylesheet" type="text/css" href="/css/homePage.css">
+        <link rel="stylesheet" type="text/css" href="/css/header.css">
         <!--============================================ FONTS ==========================================-->
         <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+        <!--============================================ Jquery ==========================================-->
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     </head>
     <body class="home-body">
         <header>
@@ -25,6 +27,61 @@
             <div class="row">
                 <div class="col-sm-12 col-md-3"></div>
                 <div class="col-sm-12 col-md-6">
+                    <div class="container searchArea">
+                        <div class="row">
+                            <div class="col-sm-12">
+                            
+                                <div class="input-group" id="adv-search">
+                                    <input type="text" class="form-control" placeholder="Search for events/groups" />
+                                    <div class="input-group-btn">
+                                        <div class="btn-group" role="group">
+                                            <div class="dropdown dropdown-lg">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                                    <form class="form-horizontal" role="form">
+                                                        <div class="form-group">
+                                                            <label for="filter">Filter by</label>
+                                                            <select class="form-control">
+                                                                <option value="0" selected>All Snippets</option>
+                                                                <option value="1">Featured</option>
+                                                                <option value="2">Most popular</option>
+                                                                <option value="3">Top rated</option>
+                                                                <option value="4">Most commented</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="contain">Author</label>
+                                                            <input class="form-control" type="text" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="contain">Contains the words</label>
+                                                            <input class="form-control" type="text" />
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--//////////////// CARDS /////////////////////////////-->
+                    <% if(groups.length == 0 && events.length == 0){ %>
+                        <div class="card text-center cardEvent">
+                        <div class="card-header">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">No pending events or groups</h5>
+                        </div>
+                        <div class="card-footer text-muted">
+                        </div>
+                    </div>
+                    <% }else{ %>
                     <% var group=0,event=0; %>
                     <%while((group+event)<(groups.length+events.length)){%>
                         <%if(group>=groups.length){%>
@@ -39,68 +96,69 @@
                         <% }else{ %>
                             <% include partials/eventCard %>
                             <% event++; %>
-                        <% } } %>
+                        <% } } } %>
                     
                     <!--/////////////////////EXAMPLES///////////////-->
-                    <div class="card text-center cardEvent">
-                        <div class="card-header">
-                            Running - Advenced
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">5km run</h5>
-                            <p class="card-text">circle running at 9pm starting at hertzel st. 15</p>
-                            <a href="#" class="btn btn-primary">Go to event</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            5 days ago
-                        </div>
-                    </div>
-                    <div class="card text-center">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go to event</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                    <div class="card text-center">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go to event</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                    <div class="card text-center">
-                        <div class="card-header">
-                            Featured
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go to event</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-3"></div>
-            </div>
+            <!--        <div class="card text-center cardEvent">-->
+            <!--            <div class="card-header">-->
+            <!--                Running - Advenced-->
+            <!--            </div>-->
+            <!--            <div class="card-body">-->
+            <!--                <h5 class="card-title">5km run</h5>-->
+            <!--                <p class="card-text">circle running at 9pm starting at hertzel st. 15</p>-->
+            <!--                <a href="#" class="btn btn-primary">Go to event</a>-->
+            <!--            </div>-->
+            <!--            <div class="card-footer text-muted">-->
+            <!--                5 days ago-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <!--        <div class="card text-center">-->
+            <!--            <div class="card-header">-->
+            <!--                Featured-->
+            <!--            </div>-->
+            <!--            <div class="card-body">-->
+            <!--                <h5 class="card-title">Special title treatment</h5>-->
+            <!--                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+            <!--                <a href="#" class="btn btn-primary">Go to event</a>-->
+            <!--            </div>-->
+            <!--            <div class="card-footer text-muted">-->
+            <!--                2 days ago-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <!--        <div class="card text-center">-->
+            <!--            <div class="card-header">-->
+            <!--                Featured-->
+            <!--            </div>-->
+            <!--            <div class="card-body">-->
+            <!--                <h5 class="card-title">Special title treatment</h5>-->
+            <!--                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+            <!--                <a href="#" class="btn btn-primary">Go to event</a>-->
+            <!--            </div>-->
+            <!--            <div class="card-footer text-muted">-->
+            <!--                2 days ago-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <!--        <div class="card text-center">-->
+            <!--            <div class="card-header">-->
+            <!--                Featured-->
+            <!--            </div>-->
+            <!--            <div class="card-body">-->
+            <!--                <h5 class="card-title">Special title treatment</h5>-->
+            <!--                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+            <!--                <a href="#" class="btn btn-primary">Go to event</a>-->
+            <!--            </div>-->
+            <!--            <div class="card-footer text-muted">-->
+            <!--                2 days ago-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="col-sm-12 col-md-3"></div>-->
+            <!--</div>-->
         </main>
         
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="/css/bootstrap/js/bootstrap.min.js"></script>
+        <!--<script src="/css/bootstrap/js/popper.min.js"></script>-->
     </body>
 </html>

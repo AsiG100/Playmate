@@ -15,10 +15,34 @@
 					<a href='/profile/<%= user._id %>'>
 					<li>
 						<img src="<%= user.image %>" alt="profile image" width="50" height="50"/>
-						<span><%= user.username %></span>
+						<span class="usernameNav"><%= user.username %></span>
 					</li></a>
-				<% } %>			
+				<% } %>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle dropbtn" onclick="myFunction()" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Create
+					</a>
+					<div class="dropdown-menu dropdownCreateOptions dropdown-content" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/events/add">Create event</a>
+						<a class="dropdown-item" href="/groups/add">Create group</a>
+					</div>
+				</li>
 			</ul>
+			<!--<div class="dropdown">-->
+			<!--	<button class="dropbtn createNavBtn">Create + -->
+			<!--		      <i class="fa fa-caret-down"></i>-->
+			<!--		    </button>-->
+			<!--	<div class="dropdown-content">-->
+			<!--		<a href="https://playmate-zmirnoff.c9users.io/events/add">Create Event</a>-->
+			<!--		<a href="https://playmate-zmirnoff.c9users.io/groups/add">Create Group</a>-->
+			<!--	</div>-->
+			<!--</div>-->
+			
 		</div>
+		
 	</nav>
 </header>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="/css/bootstrap/js/bootstrap.min.js"></script>
