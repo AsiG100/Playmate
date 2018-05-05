@@ -178,6 +178,13 @@ app.post('/groups',dataAcess.isLoggedIn, function(req, res){
     
 });
 
+app.put('/groups/:id', function(req, res){
+    var id = req.params.id;
+    var group = req.body.group;
+    dataAcess.updateGroupInDB(id,group); 
+    res.redirect('/');
+});
+
 //-view a group
 app.get('/groups/:id', dataAcess.isLoggedIn, function(req, res) {
     var id = req.params.id;
@@ -217,6 +224,13 @@ app.post('/events', dataAcess.isLoggedIn, function(req, res) {
         }});
         res.redirect('/');
     })
+});
+
+app.put('/events/:id', function(req, res){
+    var id = req.params.id;
+    var event = req.body.event;
+    dataAcess.updateEventInDB(id,event); 
+    res.redirect('/');
 });
 
 //-view an event

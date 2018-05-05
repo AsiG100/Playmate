@@ -46,17 +46,13 @@
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
                     <div class="wrap-input100 validate-input" data-validate="Sport type is required">
                         <select class="input100" name="event[type]" size="1">
-							<option value="Football"> Football </option>
-							<option value="Basketball" <%=(event.type == 'Basketball')?'selected':''%> > Basketball </option>
-							<option value="Running" <%= (event.type == 'Running') ? 'selected' : ''%> > Running </option>
-							<option value="Swimming" <%=(event.type == 'Swimming')?'selected':''%> > Swimming </option>
-							<%if(event.type == 'TRX'){%>
-							    <option value="TRX" selected> TRX </option>
-							<% }else{ %>
-							    <option value="TRX"> TRX </option>
-							<% } %>
-							<option value="Tennis" <%=(event.type == 'Tennis')?'selected':''%>> Tennis </option>
-							<option value="Bowling" <%=(event.type == 'Bowling')?'selected':''%> > Bowling </option>
+							<option value="Football" <% if(event.sportType == 'Football'){ %> selected <% } %> > Football </option>
+							<option value="Basketball" <% if(event.sportType == 'Basketball'){ %> selected <% } %> > Basketball </option>
+							<option value="Running" <% if(event.sportType == 'Running'){ %> selected <% } %> > Running </option>
+							<option value="Swimming" <% if(event.sportType == 'Swimming'){ %> selected <% } %> > Swimming </option>
+							<option value="TRX" id='TRX' <% if(event.sportType == 'TRX'){ %> selected <% } %> > TRX </option>
+							<option value="Tennis" <% if(event.sportType == 'Tennis'){ %> selected <% } %> > Tennis </option>
+							<option value="Bowling" <% if(event.sportType == 'Bowling'){ %> selected <% } %> > Bowling </option>
 						</select>
                         <span class="focus-input100"></span>
                     </div>
@@ -64,13 +60,13 @@
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
                     <div class="wrap-input100 validate-input" data-validate="Location is required">
                         <select class="input100" value="<%= event.location %>" name="event[location]" size="1">
-							<option value="North"> North </option>
-							<option value="Haifa"> Haifa </option>
-							<option value="Center"> Center </option>
-							<option value="Tel Aviv"> Tel Aviv </option>
-							<option value="Jerusalem"> Jerusalem </option>
-							<option value="South"> South </option>
-							<option value="Beer Sheva"> Beer Sheva </option>
+							<option value="North" <% if(event.location == 'North'){ %> selected <% } %> > North </option>
+							<option value="Haifa" <% if(event.location == 'Haifa'){ %> selected <% } %> > Haifa </option>
+							<option value="Center" <% if(event.location == 'Center'){ %> selected <% } %> > Center </option>
+							<option value="Tel Aviv" <% if(event.location == 'Tel Aviv'){ %> selected <% } %> > Tel Aviv </option>
+							<option value="Jerusalem" <% if(event.location == 'Jerusalem'){ %> selected <% } %> > Jerusalem </option>
+							<option value="South" <% if(event.location == 'South'){ %> selected <% } %> > South </option>
+							<option value="Beer Sheva" <% if(event.location == 'Beer Sheva'){ %> selected <% } %> > Beer Sheva </option>
 						</select>
                         <span class="focus-input100"></span>
                     </div>
@@ -102,11 +98,11 @@
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
                         <select class="input100" value="<%= event.minParticipantLevel %>" name="event[minLevel]" size="1">
-							<option value="Noob"> Noob </option>
-							<option value="Rookie"> Rookie </option>
-							<option value="Intermediate"> Intermediate </option>
-							<option value="Advanced"> Advanced </option>
-							<option value="Master"> Master </option>
+							<option value="Noob" <% if(event.level == 'Noob'){ %> selected <% } %> > Noob </option>
+							<option value="Rookie" <% if(event.level == 'Rookie'){ %> selected <% } %> > Rookie </option>
+							<option value="Intermediate" <% if(event.level == 'Intermediate'){ %> selected <% } %> > Intermediate </option>
+							<option value="Advanced" <% if(event.level == 'Advanced'){ %> selected <% } %> > Advanced </option>
+							<option value="Master" <% if(event.level == 'Master'){ %> selected <% } %> > Master </option>
 						</select>
                         <span class="focus-input100"></span>
                     </div>
