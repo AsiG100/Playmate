@@ -1,5 +1,5 @@
 .home-main {
-    margin-top: 30px;
+    margin-top: 8%;
 }
 
 .home-main .card {
@@ -14,9 +14,9 @@
 	box-sizing: border-box;
 	height: 100%;
 	font-family: Poppins-Regular, sans-serif;
-    background: #43C6AC;
-    background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);
-    background: linear-gradient(to left, #F8FFAE, #43C6AC);
+    background: #ffffb3;
+    /*background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);*/
+    /*background: linear-gradient(to left, #F8FFAE, #43C6AC);*/
 }
 
 .searchArea {

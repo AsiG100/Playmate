@@ -1,5 +1,5 @@
 <header>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light navStyle">
 		<li class="list">
 			<a class="navbar-brand a-nav" href="/">Playmate</a>
 		</li>
@@ -18,15 +18,15 @@
 						<span class="usernameNav"><%= user.username %></span>
 					</li></a>
 				<% } %>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle dropbtn" onclick="myFunction()" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Create
-					</a>
-					<div class="dropdown-menu dropdownCreateOptions dropdown-content" aria-labelledby="navbarDropdown">
+				<div class="dropdown">
+					<button class="dropbtn" onclick="myFunction()">Create 
+      					<i class="fa fa-caret-down"></i>
+    				</button>
+					<div class="dropdown-menu dropdownCreateOptions dropdown-content" id="myDropdown">
 						<a class="dropdown-item" href="/events/add">Create event</a>
 						<a class="dropdown-item" href="/groups/add">Create group</a>
 					</div>
-				</li>
+				</div>
 			</ul>
 			<!--<div class="dropdown">-->
 			<!--	<button class="dropbtn createNavBtn">Create + -->
@@ -43,6 +43,3 @@
 	</nav>
 </header>
 
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="/css/bootstrap/js/bootstrap.min.js"></script>

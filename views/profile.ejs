@@ -11,10 +11,10 @@
         <link rel="stylesheet" href="../css/bootstrap/css/bootstrap-grid.min.css">
         <link rel="stylesheet" href="../css/bootstrap/css/bootstrap.min.css">
         <!--Glyphicons-->
-        <link rel="stylesheet" type="text/css" href="../css/util.css">
-        <link rel="stylesheet" type="text/css" href="../css/homePage.css">
-        <link rel="stylesheet" type="text/css" href="../css/header.css">
-		<link rel="stylesheet" type="text/css" href="../css/profilePage.css">
+        <link rel="stylesheet" type="text/css" href="/css/util.css">
+        <link rel="stylesheet" type="text/css" href="/css/homePage.css">
+        <link rel="stylesheet" type="text/css" href="/css/header.css">
+		<link rel="stylesheet" type="text/css" href="/css/profilePage.css">
         <!--============================================ FONTS ==========================================-->
         <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     </head>
@@ -31,6 +31,7 @@
 						<div class="details">
 						<h1><%= profile.name %></h1>
 						<h2>Level: Rookie </h2>
+						<h2>Age: <span id="age"></span> </h2>
 						<h3>Exp: <%= profile.gameProgress %></h3>
 						<button type="button" class="btn btn-light">Follow</button>
 						</div>
@@ -66,7 +67,11 @@
                 <div class="col-sm-12 col-md-3"></div>
             </div>
         </main>
-        
-        
+        <script src="/js/profile.js" ></script>
+        <script>
+        	var ageElement = document.querySelector('#age');
+        	var age = getAge('<%= profile.birthDate %>');
+        	ageElement.innerHTML = age;
+        </script>
     </body>
 </html>

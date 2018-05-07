@@ -33,9 +33,13 @@
 body, html {
 	height: 100%;
 	font-family: Poppins-Regular, sans-serif;
-	background: #43C6AC;
-  background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);
-  background: linear-gradient(to left, #F8FFAE, #43C6AC);
+	background: #ffffb3;
+  /*background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);*/
+  /*background: linear-gradient(to left, #F8FFAE, #43C6AC);*/
+}
+
+main {
+  margin-top: 8% !important;
 }
 
 /*---------------------------------------------*/
