@@ -33,7 +33,20 @@
 						<h2>Level: Rookie </h2>
 						<h2>Age: <span id="age"></span> </h2>
 						<h3>Exp: <%= profile.gameProgress %></h3>
-						<button type="button" class="btn btn-light">Follow</button>
+						<% if(!user._id.equals(profile._id)){ %>
+							<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
+								<form action="/friends/add" method="POST">
+									<input type="hidden" name="friend" value="<%= profile._id %>" >
+									<input type="hidden" name="user" value="<%= user._id %>" >
+									<button type="submit" class="btn btn-light">Follow</button>
+								</form>
+							<% }else{ %>
+								<form action="/friends/remove" method="POST">
+									<input type="hidden" name="friend" value="<%= profile._id %>" >
+									<input type="hidden" name="user" value="<%= user._id %>" >
+									<button type="submit" class="btn btn-light">Unfollow</button>
+								</form>							
+						<% } } %>
 						</div>
 						<div class="row groupEventRow">
 							<div class="col">

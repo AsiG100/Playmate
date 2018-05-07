@@ -261,6 +261,21 @@ app.get('/profile/:id',dataAcess.isLoggedIn, function(req, res) {
     });
 });
 
+app.post('/friends/add', function(req, res) {
+    var user = req.body.user;
+    var friend = req.body.friend;
+    
+    dataAcess.addFavoriteFriendToDB(user, friend);
+    res.redirect('back');
+});
+
+app.post('/friends/remove', function(req, res) {
+    var user = req.body.user;
+    var friend = req.body.friend;
+    
+    dataAcess.removeFavoriteFriendFromDB(user, friend);
+    res.redirect('back');
+});
 
 //-----------------------------------------------------
 app.listen(process.env.PORT, process.env.IP, function() {

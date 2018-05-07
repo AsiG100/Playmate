@@ -303,6 +303,46 @@ function getFavoritesFromFB(user){
         }});
 }
 
+function addFavoriteFriendToDB(user, friend){
+    User.findById(user, function(err, user){
+        if(err)
+        {
+            console.log(err);
+        }else{
+            User.findById(friend, function(err, friend) {
+                if(err){
+                    console.log(err);
+                }else
+                {
+                    user.favoriteUsers.push(friend);
+                    user.save();
+                    console.log('a friend added to the DB');
+                }
+            });
+        }
+    });
+}
+
+function removeFavoriteFriendFromDB(user, friend){
+    User.findById(user, function(err, user){
+        if(err)
+        {
+            console.log(err);
+        }else{
+            User.findById(friend, function(err, friend) {
+                if(err){
+                    console.log(err);
+                }else
+                {
+                    var index = user.favoriteUsers.indexOf(friend._id);
+                    user.favoriteUsers.splice(index, 1);
+                    user.save();
+                    console.log('a friend added to the DB');
+                }
+            });
+        }
+    });
+}
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {
                 saveUserToDB: saveUserToDB,
@@ -320,7 +360,9 @@ var funcs = {
                 updateGroupInDB: updateGroupInDB,
                 deleteEventFromDB: deleteEventFromDB,
                 deleteGroupFromDB: deleteGroupFromDB,
-                getFavoritesFromFB: getFavoritesFromFB
+                getFavoritesFromFB: getFavoritesFromFB,
+                addFavoriteFriendToDB: addFavoriteFriendToDB,
+                removeFavoriteFriendFromDB: removeFavoriteFriendFromDB
              }
 
 //EXPORT---------------------------------------
