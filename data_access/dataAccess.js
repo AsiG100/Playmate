@@ -239,6 +239,31 @@ function updateGroupInDB(groupID,updatedData){
     });
 }
 
+
+function updateUserInDB(userID,updatedData, cb){
+    User.findById(userID, function(err, user){
+       if(err){
+           console.log(err);
+       }else{
+            user.username = updatedData.username;
+            user.email  = updatedData.email;
+            user.birthDate = updatedData.dateOfBirth;
+            user.address.city = updatedData.city;
+            user.address.street = updatedData.street;
+            user.address.streetNum = updatedData.number;
+            user.save(function(err){
+             if(err){
+                 console.log(err);
+             }else{
+                 console.log('user updated');
+                 cb();
+             }
+         });
+       }
+    });
+}
+
+
 //DELETES//////////////////////////////////////////////////////////
 
 function deleteEventFromDB(eventID){
@@ -358,6 +383,7 @@ var funcs = {
                 getUserContentAndRender: getUserContentAndRender,
                 updateEventInDB: updateEventInDB,
                 updateGroupInDB: updateGroupInDB,
+                updateUserInDB: updateUserInDB,
                 deleteEventFromDB: deleteEventFromDB,
                 deleteGroupFromDB: deleteGroupFromDB,
                 getFavoritesFromFB: getFavoritesFromFB,

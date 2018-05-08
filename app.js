@@ -38,18 +38,18 @@ app.use(function(req, res, next) {
 
 //AUTH ROUTES/////////////////////////////////////////////////
 
-app.get('/register', function(req, res) {
+app.get('/signup', function(req, res) {
     res.render("signUp");
 });
 
-app.post('/register', function(req, res) {
+app.post('/signup', function(req, res) {
     var details = req.body.user;
     console.log(details);
     var newUser = new User({username: details.username});
     User.register(newUser, details.password, function(err, user) {
         if (err) {
             console.log(err);
-            res.redirect("register");
+            res.redirect("/signup");
         }
         else {
             dataAcess.saveUserToDB(user, details);
@@ -76,6 +76,22 @@ app.post('/upload', function(req, res){
          console.log(req.file);
          uploadedImage = req.file;
      });
+});
+
+app.get('/signup/:id/edit', function(req, res) {
+   var id = req.params.id;
+   dataAcess.getUserFromDB({_id:id}, function(user){
+         res.render('editUser',{user:user});
+    });
+});
+
+app.put('/signup/:id', function(req, res) {
+    var id = req.params.id;
+    var details = req.body.user;
+    console.log('waiting for the update');
+    dataAcess.updateUserInDB(id, details, function(){
+        res.redirect('/');        
+    });
 });
 
 app.post('/login',
@@ -276,6 +292,8 @@ app.post('/friends/remove', function(req, res) {
     dataAcess.removeFavoriteFriendFromDB(user, friend);
     res.redirect('back');
 });
+
+
 
 //-----------------------------------------------------
 app.listen(process.env.PORT, process.env.IP, function() {

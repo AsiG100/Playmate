@@ -1,90 +1,108 @@
-<!doctype html>
 <html>
-    <head>
-        <title>Playmate - Profile</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="../css/images/icons/Playmate logo.ico"/>
-        <!--Bootstrap-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="../css/bootstrap/css/bootstrap-grid.min.css">
-        <link rel="stylesheet" href="../css/bootstrap/css/bootstrap.min.css">
-        <!--Glyphicons-->
-        <link rel="stylesheet" type="text/css" href="/css/util.css">
+<head>
+	<title>Playmate - Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/header.css">
+    <link rel="icon" type="image/png" href="../css/images/icons/Playmate logo.ico"/>
+	<link rel="stylesheet" type="text/css" href="css/profilePage.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- ======= Not sure if we need ======== -->
+	    <link rel="stylesheet" type="text/css" href="/css/util.css">
         <link rel="stylesheet" type="text/css" href="/css/homePage.css">
         <link rel="stylesheet" type="text/css" href="/css/header.css">
 		<link rel="stylesheet" type="text/css" href="/css/profilePage.css">
-        <!--============================================ FONTS ==========================================-->
-        <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
-    </head>
-    <body class="home-body">
-        <header>
-            <% include partials/header %>
-        </header>
-         <main class="container home-main">
-            <div class="row">
-                <div class="col-sm-12 col-md-3"></div>
-                <div class="col-sm-12 col-md-6">
-					<div class="profileBox">
-						<img src="<%= profile.image %>" class="boxImg" alt="Profile Picture">
-						<div class="details">
-						<h1><%= profile.name %></h1>
-						<h2>Level: Rookie </h2>
-						<h2>Age: <span id="age"></span> </h2>
-						<h3>Exp: <%= profile.gameProgress %></h3>
-						<% if(!user._id.equals(profile._id)){ %>
-							<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
-								<form action="/friends/add" method="POST">
-									<input type="hidden" name="friend" value="<%= profile._id %>" >
-									<input type="hidden" name="user" value="<%= user._id %>" >
-									<button type="submit" class="btn btn-light">Follow</button>
-								</form>
-							<% }else{ %>
-								<form action="/friends/remove" method="POST">
-									<input type="hidden" name="friend" value="<%= profile._id %>" >
-									<input type="hidden" name="user" value="<%= user._id %>" >
-									<button type="submit" class="btn btn-light">Unfollow</button>
-								</form>							
-						<% } } %>
-						</div>
-						<div class="row groupEventRow">
-							<div class="col">
-								<h3>Groups</h3>
-								<% if(groups === []){ %>
-									<div class="card">
-									<p>No groups</p>
-									</div>
-								<% }else{ groups.forEach(function(group){ %>
-									<a href="/groups/<%= group._id %>"><div class="card">
-									<p><%= group.name %></p>
-									</div></a>
-								<% });} %>
-							</div>
-							<div class="col">
-								<h3>Events</h3>
-								<% if(events === []){ %>
-									<div class="card">
-									<p>No events</p>
-									</div>
-								<% }else{ events.forEach(function(event){ %>
-									<a href="/events/<%= event._id %>"><div class="card">
-									<p><%= event.name %></p>
-									</div></a>
-								<% }); }%>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-                <div class="col-sm-12 col-md-3"></div>
-            </div>
-        </main>
-        <script src="/js/profile.js" ></script>
+	<!-- ======= Show/Hide Groups and Events Script ============= -->
+	<script>
+		$(document).ready(function(){
+		$("#event").hide();
+		$("#group").hide();
+		
+		$("#group-show").click(function(){
+			$("#event").hide();
+			$("#group").toggle();
+		});
+		$("#event-show").click(function(){
+			$("#group").hide();
+			$("#event").toggle();
+		});
+		});
+	</script>
+	
+	<!-- ================== Age Script =================== -->
+	<script src="/js/profile.js" ></script>
         <script>
         	var ageElement = document.querySelector('#age');
         	var age = getAge('<%= profile.birthDate %>');
         	ageElement.innerHTML = age;
-        </script>
-    </body>
-</html>
+		</script>
+		
+</head>
+<body>
+		<header>
+            <% include partials/header %>
+        </header>
+		<main class="profile-body">
+		<div class="user-profile">
+				<img src="<%= profile.image %>" class="avatar" alt="Profile Picture" />
+				<div class="username"><%= profile.name %></div>
+			<div class="bio">
+				<p>Level: Noob </p>
+				<p>Age: 12 <span id="age"></span> </p>
+				<p>Exp: <%= profile.gameProgress %> </p>
+				<% if(!user._id.equals(profile._id)){ %>
+					<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
+						<form action="/friends/add" method="POST">
+							<input type="hidden" name="friend" value="<%= profile._id %>" >
+							<input type="hidden" name="user" value="<%= user._id %>" >
+							<button type="submit" class="follow">Follow</button>
+						</form>
+					<% }else{ %>
+						<form action="/friends/remove" method="POST">
+							<input type="hidden" name="friend" value="<%= profile._id %>" >
+							<input type="hidden" name="user" value="<%= user._id %>" >
+							<button type="submit" class="follow">Edit Profile</button>
+						</form>
+				<% } } %>
+			</div>
+			<ul class="data">
+				<li>
+				  <button class="button" id="group-show">Groups</button>
+				</li>
+				<li>
+				  <button class="button" id="event-show">Events</button>
+				</li>
+			</ul>
+			<div id="group" class="bottom-part">
+				<div class="bottom-part-container">
+					<% if(groups === []){ %>
+						<div class="bottom-card">
+							<p>No Groups</p>
+						</div>
+					<% }else{ groups.forEach(function(group){ %>
+						<a href="/groups/<%= group._id %>"><div class="bottom-card">
+						<p><%= group.name %></p>
+					</div></a>
+					<% });}  %>
+				</div>
+			</div>
+			<div id="event" class="bottom-part">
+				<div class="bottom-part-container">
+					<% if(events === []){ %>
+						<div class="bottom-card">
+							<p>No Events</p>
+						</div>
+					<% }else{ events.forEach(function(event){ %>
+						<a href="/events/<%= event._id %>"><div class="bottom-card">
+							<p><%= event.name %></p>
+						</div></a>
+					<% }); }%>
+				</div>
+			</div>
+		</div>
+		</main>
+  </body>
+  </html>

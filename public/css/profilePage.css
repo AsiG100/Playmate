@@ -1,54 +1,163 @@
-.profileBox{
-	width: 450px;
-	background: rgba(0,0,0,0.5);
-	padding:40px;
+@import url(https://fonts.googleapis.com/css?family=Raleway|Varela+Round|Coda);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+.profile-body {
+  background: #fffcdd;
+  padding: 2.23em;
+}
+
+.title-pen {
+  color: #333;
+  font-family: "Coda", sans-serif;
+  text-align: center;
+}
+.title-pen span {
+  color: #55acee;
+}
+
+.user-profile {
+  margin: auto;
+	width: 35em; 
+  height: auto;
+  background: #fff;
+  border-radius: .3em;
+}
+
+
+
+.user-profile  .username {
+  margin: auto;
+  margin-top: -2.80em;
+  margin-left: 4.4em;
+  margin-bottom: 8px;
+  color: #658585;
+  font-size: 2em;
+  font-family: "Coda", sans-serif;
+  font-weight: bold;
+}
+.user-profile  .bio {
+  margin: auto;
+  display: inline-block;
+  margin-left: 7.4em;
+  color: #4eb6b6; 
+  font-size: 1.2em;
+  font-family: "varela round", sans-serif;
+}
+
+.user-profile .bio > p {
+	line-height: 20px;
+}
+
+.user-profile > .description {
+  margin: auto;
+  margin-top: 1.35em;
+  margin-right: 4.43em;
+  width: 25.5em;
+  color: #c0c5c5; 
+  font-size: .87em;
+  font-family: "varela round", sans-serif;
+}
+.user-profile > img.avatar {
+	padding: .7em;
+  margin-left: .3em;
+  margin-top: .3em;
+  height: 8em;
+  width: 8em;
+  border-radius: 18em;
+}
+
+.user-profile ul.data {
+	margin: 2em auto;
+	height: 5.70em;
+  background: #4eb6b6;
+  text-align: center;
+  
+}
+.user-profile li {
+	margin: 0 auto;
+  padding: 1em; 
+  width: 38%;
+  display: table-cell;
+  text-align: center;
+}
+
+.user-profile span {
+	font-family: "varela round", sans-serif;
+	color: #e3eeee;
+  white-space: nowrap;
+  font-size: 1.27em;
+  font-weight: bold;
+}
+.user-profile span:hover {
+  color: #daebea;
+}
+
+.button{
+	border-radius: 25px;
+	border: 2px solid;
 	text-align: center;
-	margin: auto;
-	margin-top: 5%;
-	color: white;
-	font-family: 'Century Gothic',sans-serif;
+	display: inline-block;
+	font-size: 16px;
+	color: #4eb6b6;
+	background-color: white;
+	font-weight: bold;
+	padding: 15px 32px;
+	transition: 0.3s;
 }
 
-.profileBox h1{
-	font-size: 40px;
-	font-weight: 100;
-	letter-spacing: 4px;
+.button:hover{
+	color:white;
+	background-color: #4eb6b6;
 }
 
-.profileBox h2{
-	font-size: 30px;
-	font-weight: 100;
-	letter-spacing: 3px;
+.follow {
+	border-radius: 25px;
+	border: 1px solid;
+	text-align: center;
+	display: inline-block;
+	font-size: 11px;
+	color: #4eb6b6;
+	background-color: white;
+	font-weight: bold;
+	padding: 5px 20px;
+	transition: 0.3s;
+	margin-right: 8px;
+}
+
+.follow:hover{
+	color:white;
+	background-color: #4eb6b6;
+}
 	
+.bottom-part{
+	margin-bottom: 10px;
+	width: 35em; 
+	height: auto;
+	background: #fff;
+	border-radius: .3em;
+	margin-top: -28px;
+	padding-bottom: 20px;
+}
+.bottom-part-container{
+	margin-top: 48px;
 }
 
-.profileBox h3{
-	font-size: 20px;
-	font-weight: 100;
-	letter-spacing: 2px;
-	margin-top:5px;
-}
-
-.profileBox p{
-	font-size: 12px;
-	color: black;
+.bottom-card{
 	text-align: center;
-	margin-top:10%;
+	padding-top: 8px;
+	border: 2px solid #4eb6b6;
+	width: 50%;
+	margin: auto;
+	margin-top: 20px;
+	border-radius: 10px;
+	color: #4eb6b6;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
 }
 
-.boxImg{
-	border-radius: 50%;
-	width: 200px;
-	height: 200px;
-	border: solid #f8f9fa;
+.bottom-card:hover{
+	color:white;
+	background-color: #4eb6b6;
 }
 
-.details{
-	margin-top:5px;
-}
-
-.groupEventRow{
-	margin-top:15px;
-	background: rgba(0,0,0,0.6);
-	border: solid #f8f9fa;
-}
