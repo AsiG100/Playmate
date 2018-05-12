@@ -225,17 +225,20 @@ function getFriendContent(userId, res, cb){
 
 function getFriendsContent(friends, res, cb){
     var itemsProcessed = 0;
-    
-    friends.forEach(function(friend){
-        console.log('getting friend');
-       getFriendContent(friend, res, function(){
-           itemsProcessed++;
-           if(itemsProcessed === friends.length) {
-                console.log('cb...');
-              cb();
-            }  
-       });
-    });
+    if(friends.length>0){
+        friends.forEach(function(friend){
+            console.log('getting friend');
+           getFriendContent(friend, res, function(){
+               itemsProcessed++;
+               if(itemsProcessed === friends.length) {
+                    console.log('cb...');
+                  cb();
+                }  
+           });
+        });
+    }else{
+        cb();
+    }
 }
 
 //UPDATING////////////////////////////////////////////////  
