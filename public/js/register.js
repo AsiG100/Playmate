@@ -7,8 +7,10 @@ function preview_image(event) {
     }
     
     reader.readAsDataURL(event.target.files[0]);
-    document.querySelector('#imageUpload').submit();
+    document.querySelector('#imageUpload').submit()
 }
+
+
 
 // $(document).on("click", "#upload", function() {
 // 	var file_data = $("#avatar").prop("files")[0];   // Getting the properties of file from file field

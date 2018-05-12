@@ -35,15 +35,22 @@
     <main>
         <div class="container-login100">
             <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                <form action="/upload" method="POST" enctype="multipart/form-data" id="imageUpload">
+                <form action="/imageUpdate/<%= user._id %>" method="POST" enctype="multipart/form-data" id="imageUpload">
                     <div class="col-sm-12 col-md-6 center">
-                                <p class="txt1 m-t-20">Profile Image</p>
-                                <div class="wrap-input100 validate-input resizeImgInput" data-validate="Profile Image is required">
-                                    <input type="file" name="avatar" id="avatar" accept="css/images/*" onchange="preview_image(event)">
-                                    <button id="upload" value="Upload" />
-                                    <img src="<%= user.image %>" id="output_image"/>
-                                </div>
-                            </div>
+                        <p class="txt1 m-t-20">Profile Image</p>
+                        <div class="wrap-input100 validate-input resizeImgInput" data-validate="Profile Image is required">
+                            <input type="file" name="avatar" id="avatar" accept="css/images/*" onchange="preview_image(event)">
+                            <button id="upload" value="Upload" />
+                            <% if(image == undefined){ %>
+                                <img id="output_image"/>
+                            <% }else{ %>
+                                <% if(image.includes('/images/')){%>
+                                    <img src="<%= image %>" id="output_image"/>
+                                <% }else{ %>
+                                    <img src="/images/<%= image %>" id="output_image"/>
+                            <% } } %>
+                        </div>
+                    </div>
                 </form>
                 <form action="/signup/<%= user._id %>?_method=PUT" method="POST" id="detailsUpload" class="login100-form validate-form flex-sb flex-w">
                             <p class="txt1 m-t-20">Username</p>

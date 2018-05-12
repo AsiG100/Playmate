@@ -2,6 +2,7 @@ var express = require("express"),
     app = express(),
     request = require("request"),
     ejs     = require("ejs"),
+    flash   = require("connect-flash"),
     imageConvert = require("image-convert"),
     methodOverride = require("method-override"),
     bodyParser = require('body-parser'),
@@ -19,6 +20,7 @@ app.set('views', "./views");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname+'/public'));
 app.use(methodOverride('_method'));
+
 //PASSPORT CONFIG/////////////////////////////
 app.use(require("express-session")({
     secret: "something",
@@ -34,12 +36,11 @@ app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
     next();
 });
-
-
+app.use(flash());
 //AUTH ROUTES/////////////////////////////////////////////////
 
 app.get('/signup', function(req, res) {
-    res.render("signUp");
+    res.render("signUp",{image: undefined});
 });
 
 app.post('/signup', function(req, res) {
@@ -67,30 +68,58 @@ app.post('/signup', function(req, res) {
     });
 
 var uploadedImage;
-app.post('/upload', function(req, res){
+app.post('/imageUpload', function(req, res){
     upload(req, res, function(err) {
-         if (err) {
-              console.log("Something went wrong!");
+         if(err)
+         {
+              console.log(err);
+         }else
+         {
+            console.log("File uploaded sucessfully!.");
+            uploadedImage = req.file;
+            res.render('signUp',{image: uploadedImage.filename});
          }
-         console.log("File uploaded sucessfully!.");
-         console.log(req.file);
-         uploadedImage = req.file;
+     });
+});
+
+app.post('/imageUpdate/:id', function(req, res){
+    upload(req, res, function(err) {
+         if(err)
+         {
+              console.log(err);
+         }else
+         {
+            var id = req.params.id;
+            dataAcess.getUserFromDB({_id:id}, function(user) {
+                console.log("File uploaded sucessfully!.");
+                uploadedImage = req.file;
+                console.log(uploadedImage)
+                res.render('editUser',{user: user, image: uploadedImage.filename});                
+            })
+
+         }
      });
 });
 
 app.get('/signup/:id/edit', function(req, res) {
    var id = req.params.id;
    dataAcess.getUserFromDB({_id:id}, function(user){
-         res.render('editUser',{user:user});
+         res.render('editUser',{user:user, image: user.image || undefined});
     });
 });
 
 app.put('/signup/:id', function(req, res) {
     var id = req.params.id;
     var details = req.body.user;
+    console.log('saving image...');
+    if(uploadedImage){
+        dataAcess.getUserFromDB({_id:id}, function(user) {
+            dataAcess.saveImageToDB(user, uploadedImage);
+        })
+      }    
     console.log('waiting for the update');
     dataAcess.updateUserInDB(id, details, function(){
-        res.redirect('/');        
+        res.redirect('/profile/'+id);        
     });
 });
 
@@ -102,6 +131,7 @@ app.post('/login',
     }),
     function(req, res) {
         console.log("redirecting home...");
+        req.flash('success','You are logged in!');
         res.redirect('/');
 
     });
@@ -158,6 +188,7 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('Successful authentication, redirect home.');
+    req.flash('success', 'You are logged in!');
     res.redirect('/');
   });
 
@@ -165,8 +196,12 @@ app.get('/auth/facebook/callback',
 
 
 app.get('/', dataAcess.isLoggedIn, function(req, res) {
-        dataAcess.getUserContentAndRender(req.user, res, function(){
-            res.render('index');
+        dataAcess.getMyContent(req.user, res, function(){
+            dataAcess.getUserFromDB(req.user, function(user) {
+               dataAcess.getFriendsContent(user.favoriteUsers, res, function(){
+                    res.render('index'); 
+                });
+            });
         });
         dataAcess.getFavoritesFromFB(req.user);
 });
@@ -272,7 +307,7 @@ app.delete('/events/:id', dataAcess.isLoggedIn, function(req, res){
 
 app.get('/profile/:id',dataAcess.isLoggedIn, function(req, res) {
     var id = req.params.id;
-    dataAcess.getUserContentAndRender(id, res, function(user){
+    dataAcess.getMyContent(id, res, function(user){
         res.render('profile',{profile:user});
     });
 });

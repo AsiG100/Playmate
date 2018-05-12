@@ -55,8 +55,8 @@ function getUserFromDB(user, cb)
 
 function saveImageToDB(user, uploadedImage)
 {
-    console.log(uploadedImage);
     user.image = "/images/"+uploadedImage.filename
+    user.save();
     console.log('saved image');
 }
 
@@ -152,16 +152,28 @@ function associateEventToUser(event, user){
 
 function isLoggedIn( req, res, next){
      if(req.isAuthenticated()){
-         res.locals.user = req.user; 
+         res.locals.user = req.user;
+         addErrHandeling(req, res);
          return next();
     }
     else{
         console.log("redirecting to login...");
-        res.render('login');
+        res.render('login');    
     }
 }
 
-function getUserContentAndRender(userId, res, cb){
+function addErrHandeling(req, res){
+    var err = res.locals.errorMessage = req.flash('error');
+    console.log(err);
+    var success = res.locals.successMessage = req.flash('success');
+    console.log(success);
+}
+
+function sortByDate(a, b){
+      return b.dateOfCreation - a.dateOfCreation;  
+}
+
+function getMyContent(userId, res, cb){
         User.findById(userId).populate("groups").exec(function(err, user){
             if(err){
                 console.log(err);
@@ -170,9 +182,7 @@ function getUserContentAndRender(userId, res, cb){
                 console.log('sent user groups');
                 res.locals.groups = user.groups;
                 //sort by time of creation
-                res.locals.groups.sort(function(a,b){
-                  return b.dateOfCreation - a.dateOfCreation;  
-                });
+                res.locals.groups.sort(sortByDate);
                 User.findById(user).populate('events').exec(function(err, user){
                    if(err){
                        console.log(err);
@@ -180,14 +190,52 @@ function getUserContentAndRender(userId, res, cb){
                        console.log('sent user events');
                        res.locals.events = user.events;
                        //sort by time of creation
-                       res.locals.events.sort(function(a,b){
-                          return b.dateOfCreation - a.dateOfCreation;  
-                       });
+                       res.locals.events.sort(sortByDate);
                        cb(user);
                    }
                 });
             }
         });
+}
+
+function getFriendContent(userId, res, cb){
+        User.findById(userId).populate("groups").exec(function(err, user){
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log('sent a friend groups');
+                res.locals.groups = res.locals.groups.concat(user.groups);
+                //sort by time of creation
+                res.locals.groups.sort(sortByDate);
+                User.findById(user).populate('events').exec(function(err, user){
+                   if(err){
+                       console.log(err);
+                   } else{
+                       console.log('sent a friend events');
+                       res.locals.events = res.locals.events.concat(user.events);
+                       //sort by time of creation
+                       res.locals.events.sort(sortByDate);
+                       cb();
+                   }
+                });
+            }
+        });
+}
+
+function getFriendsContent(friends, res, cb){
+    var itemsProcessed = 0;
+    
+    friends.forEach(function(friend){
+        console.log('getting friend');
+       getFriendContent(friend, res, function(){
+           itemsProcessed++;
+           if(itemsProcessed === friends.length) {
+                console.log('cb...');
+              cb();
+            }  
+       });
+    });
 }
 
 //UPDATING////////////////////////////////////////////////  
@@ -381,7 +429,8 @@ var funcs = {
                 saveEventToDB: saveEventToDB,
                 getEventFromDB: getEventFromDB,
                 associateEventToUser: associateEventToUser,
-                getUserContentAndRender: getUserContentAndRender,
+                getMyContent: getMyContent,
+                getFriendsContent: getFriendsContent,
                 updateEventInDB: updateEventInDB,
                 updateGroupInDB: updateGroupInDB,
                 updateUserInDB: updateUserInDB,
