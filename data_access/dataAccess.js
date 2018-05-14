@@ -6,8 +6,8 @@ var mongoose = require("mongoose"),
     fs       = require("fs"),
     upload   = require("./imgUpload");
     
-//mongoose.connect("mongodb://localhost/playmate");
-mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
+mongoose.connect("mongodb://localhost/playmate");
+//mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
 
 //MODELS----------------------------
 var models  = require("./schemas");
@@ -55,7 +55,13 @@ function getUserFromDB(user, cb)
 
 function saveImageToDB(user, uploadedImage)
 {
-    user.image = "/images/"+uploadedImage.filename
+    if(uploadedImage){
+        user.image = "/images/"+uploadedImage.filename;
+        }
+        else
+        {
+        user.image = "/images/blank-profile.png";
+    }
     user.save();
     console.log('saved image');
 }

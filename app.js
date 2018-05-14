@@ -1,3 +1,4 @@
+
 var express = require("express"),
     app = express(),
     request = require("request"),
@@ -54,9 +55,7 @@ app.post('/signup', function(req, res) {
         }
         else {
             dataAcess.saveUserToDB(user, details);
-            if(uploadedImage){
-                dataAcess.saveImageToDB(user, uploadedImage);
-            }
+            dataAcess.saveImageToDB(user, uploadedImage);
             req.login(user, function(err) {
                 if (err) {
                 console.log(err);
@@ -161,6 +160,16 @@ passport.use(new facebookStrategy({
             if(user)
             {
                 console.log("Auth done");
+                User.findById(user._id, function(err, user) {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        user.facebook.token = accessToken;
+                        user.save(function(){
+                            console.log('saved new token');
+                        });
+                    }
+                });
                 done(null, user);
             }else{
                 var newUser = new User();

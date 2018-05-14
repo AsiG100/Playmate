@@ -1,49 +1,137 @@
-<!doctype html>
+<!Doctype html>
 <html>
     <head>
-        <title>Playmate - Home</title>
+        <title>View Group</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
-        <!--Bootstrap-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/bootstrap/css/bootstrap-grid.min.css">
-        <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
-        <!--Glyphicons-->
-        <link rel="stylesheet" type="text/css" href="/css/util.css">
-        <link rel="stylesheet" type="text/css" href="/css/homePage.css">
+		<link rel="stylesheet" type="text/css" href="css/viewGroup.css">
         <link rel="stylesheet" type="text/css" href="/css/header.css">
+		<!--============================================ Bootstrap Jquery ==========================================-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!--============================================ FONTS ==========================================-->
         <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+		<!--============================================ Scripts ==========================================-->
+		<script>
+		$(document).ready(function(){
+		$("#details").hide();
+		$("#map").hide();
+		$("#events").hide();
+		
+		
+		$("#map-show").click(function(){
+			$("#details").hide();
+			$("#events").hide();
+			$("#map").toggle();
+		});
+		$("#details-show").click(function(){
+			$("#map").hide();
+			$("#events").hide();
+			$("#details").toggle();
+		});
+		$("#events-show").click(function(){
+			$("#map").hide();
+			$("#details").hide();
+			$("#events").toggle();
+		});
+		
+		});
+	</script>
+	
     </head>
-    <body class="home-body">
-        <header>
-            <% include partials/header %>
-        </header>
-        <main class="container home-main">
-            <div class="row">
-                <div class="col-sm-12 col-md-3"></div>
-                <div class="col-sm-12 col-md-6">
-                    <div id="map"></div>
-                    <script>
-                        function initMap() {
-                            var uluru = { lat: -25.363, lng: 131.044 };
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 4,
-                                center: uluru
-                            });
-                            var marker = new google.maps.Marker({
-                                position: uluru,
-                                map: map
-                            });
-                        }
-                    </script>
-                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9i6uRrNyvxAtRoEzx8TcnXsjwY_M3c_I&callback=initMap">
-                    </script>
-                </div>
-                <div class="col-sm-12 col-md-3"></div>
-            </div>
-        </main>
+    <body class="profile-body">
+		<% include partials/header %>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="side-box">
+						<h2> Friends </h2>
+						<div class="friend-card">
+							<img class="avatar" src="images/monkey.jpg" alt="profile picture"/>
+							<div class="username">Mr. Monkey</div>
+						</div>
+						<div class="friend-card">
+							<img class="avatar" src="images/monkey.jpg" alt="profile picture"/>
+							<div class="username">Kofiko Levi</div>
+						</div>
+						<div class="friend-card">
+							<img class="avatar" src="images/monkey.jpg" alt="profile picture"/>
+							<div class="username">King Kong</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-7">
+					<div class="user-profile">
+							<div class="username">Group Name</div>
+						<div class="bio">
+							<p>Sport Type: Running</p>
+							<p>Location: Tel Aviv</p>
+							<p>Min level: Noob</p>
+							<button type="submit" class="join">Join Group</button>
+						</div>
+						<ul class="data">
+							<li>
+							  <button class="button" id="events-show">Events</button>
+							</li>
+							<li>
+							  <button class="button" id="map-show">Map</button>
+							</li>
+							<li>
+							  <button class="button" id="details-show">Details</button>
+							</li>
+						</ul>
+						
+						<div id="events" class="bottom-part">
+							<div class="bottom-part-container">
+								<div class="bottom-card">
+									<p>Event #1</p>
+								</div>
+								
+								<div class="bottom-card">
+									<p>Event #2</p>
+								</div>
+								
+								<div class="bottom-card">
+									<p>Event #3</p>
+								</div>
+							</div>
+						</div>
+						
+						<div id="map" class="bottom-part">
+							<div class="bottom-part-container">
+								
+								<script>
+									function initMap() {
+										var uluru = { lat: -25.363, lng: 131.044 };
+										var map = new google.maps.Map(document.getElementById('map'), {
+											zoom: 4,
+											center: uluru
+										});
+										var marker = new google.maps.Marker({
+											position: uluru,
+											map: map
+										});
+									}
+								</script>
+								<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9i6uRrNyvxAtRoEzx8TcnXsjwY_M3c_I&callback=initMap">
+								</script>
+								
+							</div>
+						</div>
+					
+						<div id="details" class="bottom-part">
+							<div class="bottom-part-container">
+								<p>Time of event: 12:00</p>
+								<p>Minimum level to participate: Noob</p>
+								<p>Ages eligible to participate: 18 - 60</p>
+								<p>Minimum number of participants: 2</p>
+								<p>Maximum number of participants 10</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </body>
 </html>
