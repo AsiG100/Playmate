@@ -15,10 +15,7 @@ var User    = models.user;
 var Group   = models.group;
 var Event   = models.event;
 
-//SETTINGS--------------------------
-
-
-//FUNCTIONS-------------------------
+//GETS AND SAVES/////////////////////////////////
 function saveUserToDB(user, userDetails)
 {
     user.email = userDetails.email;
@@ -134,7 +131,7 @@ function saveEventToDB(event, cb){
 }
 
 function getEventFromDB(id, cb){
-    Event.findById(id, function(err, event) {
+    Event.findById(id).populate('participants').exec(function(err, event) {
        if(err){
            console.log(err);
        }else{
@@ -154,25 +151,6 @@ function associateEventToUser(event, user){
                 console.log('associating event succeeded');
             }
         })
-}
-
-function isLoggedIn( req, res, next){
-     if(req.isAuthenticated()){
-         res.locals.user = req.user;
-         addErrHandeling(req, res);
-         return next();
-    }
-    else{
-        console.log("redirecting to login...");
-        res.render('login');    
-    }
-}
-
-function addErrHandeling(req, res){
-    var err = res.locals.errorMessage = req.flash('error');
-    console.log(err);
-    var success = res.locals.successMessage = req.flash('success');
-    console.log(success);
 }
 
 function sortByDate(a, b){
@@ -376,7 +354,6 @@ function deleteGroupFromDB(groupID){
     });
 }
 
-//after some other user will login with facebook
 function getFavoritesFromFB(user){
     request('https://graph.facebook.com/v2.12/me?access_token='+user.facebook.token+'&fields=friends', function (err, res, body) {
         if(err){
@@ -429,7 +406,6 @@ function removeFavoriteFriendFromDB(user, friend){
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {
                 saveUserToDB: saveUserToDB,
-                isLoggedIn: isLoggedIn,
                 saveGroupToDB: saveGroupToDB,
                 getGroupFromDB: getGroupFromDB,
                 saveImageToDB: saveImageToDB,

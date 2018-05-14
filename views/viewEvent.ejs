@@ -1,11 +1,11 @@
 <!Doctype html>
 <html>
     <head>
-        <title>View Event</title>
+        <title><%= event.name %></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
-		<link rel="stylesheet" type="text/css" href="css/viewEvent.css">
+		<link rel="stylesheet" type="text/css" href="/css/viewEvent.css">
 		<link rel="stylesheet" type="text/css" href="/css/header.css">
 		<!--============================================ Bootstrap Jquery ==========================================-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -38,28 +38,19 @@
 				<div class="col-sm-3">
 					<div class="side-box">
 						<h2> Friends </h2>
-						<div class="friend-card">
-							<img class="avatar" src="images/monkey.jpg" alt="profile picture"/>
-							<div class="username">Mr. Monkey</div>
-						</div>
-						<div class="friend-card">
-							<img class="avatar" src="images/monkey.jpg" alt="profile picture"/>
-							<div class="username">Kofiko Levi</div>
-						</div>
-						<div class="friend-card">
-							<img class="avatar" src="images/monkey.jpg" alt="profile picture"/>
-							<div class="username">King Kong</div>
-						</div>
+						<% event.participants.forEach(function(profile){ %>
+							<% include partials/profileViewCard %> 
+						<% }); %>
 					</div>
 				</div>
 				<div class="col-sm-7">
 					<div class="user-profile">
-							<div class="username">Event Name</div>
+							<div class="username"><%= event.name %></div>
 						<div class="bio">
-							<p>Event Date: 13/05/2018</p>
-							<p>Sport Type: Running</p>
-							<p>Location: Tel Aviv</p>
-							<p>Min level: Noob</p>
+							<p>Event Date: <%= event.dateOfEvent %></p>
+							<p>Sport Type: <%= event.sportType %></p>
+							<p>Location: <%= event.location %></p>
+							<p>Min level: <%= event.level %> </p>
 							<button type="submit" class="join">Join Event</button>
 						</div>
 						<ul class="data">
@@ -94,11 +85,11 @@
 					
 						<div id="details" class="bottom-part">
 							<div class="bottom-part-container">
-								<p>Time of event: 12:00</p>
-								<p>Minimum level to participate: Noob</p>
-								<p>Ages eligible to participate: 18 - 60</p>
-								<p>Minimum number of participants: 2</p>
-								<p>Maximum number of participants 10</p>
+								<p>Time of event: <%= event.timeOfActivity %></p>
+								<p>Minimum experience: <%= event.gameLevel %></p>
+								<p>Ages eligible to participate: <%= event.agesRange %></p>
+								<p>Minimum number of participants: <%= event.minNumOfParticipants %></p>
+								<p>Maximum number of participants: <%= event.maxNumOfParticipants %></p>
 							</div>
 						</div>
 					</div>

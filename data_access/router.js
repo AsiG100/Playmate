@@ -1,9 +1,11 @@
 let express = require("express"),
     router  = express.Router(),
-    User    = require("schemas.js").user,
-    dataAcess = require("dataAcess.js");
+    User    = require("./schemas.js").user,
+    middlewares = require("./middlewares.js"),
+    dataAcess = require("./dataAccess.js");
 
-router.get('/', dataAcess.isLoggedIn, function(req, res) {
+//INDEX//////////////////////////
+router.get('/', middlewares.isLoggedIn, function(req, res) {
         dataAcess.getMyContent(req.user, res, function(){
             dataAcess.getUserFromDB(req.user, function(user) {
                dataAcess.getFriendsContent(user.favoriteUsers, res, function(){
@@ -14,11 +16,13 @@ router.get('/', dataAcess.isLoggedIn, function(req, res) {
         dataAcess.getFavoritesFromFB(req.user);
 });
 
-router.get('/groups/add', dataAcess.isLoggedIn, function(req, res) {
+//GROUPS////////////////////////
+
+router.get('/groups/add', middlewares.isLoggedIn, function(req, res) {
     res.render('addGroup');
 });
 
-router.post('/groups',dataAcess.isLoggedIn, function(req, res){
+router.post('/groups',middlewares.isLoggedIn, function(req, res){
     var groupDetails = req.body.group;
     dataAcess.saveGroupToDB(groupDetails, function(group){
         User.findById(req.user._id, function(err, user){
@@ -44,15 +48,14 @@ router.put('/groups/:id', function(req, res){
     res.redirect('/');
 });
 
-//-view a group
-router.get('/groups/:id', dataAcess.isLoggedIn, function(req, res) {
+router.get('/groups/:id', middlewares.isLoggedIn, function(req, res) {
     var id = req.params.id;
     dataAcess.getUserFromDB({_id:id}, function(user){
          res.render('viewGroup',{user:user});
     });
 });
 
-router.get('/groups/:id/edit',dataAcess.isLoggedIn ,function(req, res) {
+router.get('/groups/:id/edit',middlewares.isLoggedIn ,function(req, res) {
     var id = req.params.id;
     dataAcess.getGroupFromDB(id, function(group){
             res.render('editGroup',{group:group});    
@@ -65,11 +68,12 @@ router.delete('/groups/:id', function(req, res){
     res.redirect('/');
 });
 
-router.get('/events/add',dataAcess.isLoggedIn, function(req, res) {
+//EVENTS////////////////////////////
+router.get('/events/add',middlewares.isLoggedIn, function(req, res) {
     res.render('addEvent');
 });
 
-router.post('/events', dataAcess.isLoggedIn, function(req, res) {
+router.post('/events', middlewares.isLoggedIn, function(req, res) {
     var eventDetails = req.body.event;
     dataAcess.saveEventToDB(eventDetails, function(event){
          User.findById(req.user._id, function(err, user){
@@ -93,27 +97,30 @@ router.put('/events/:id', function(req, res){
 });
 
 //-view an event
-router.get('/events/:id', dataAcess.isLoggedIn, function(req, res) {
+router.get('/events/:id', middlewares.isLoggedIn, function(req, res) {
     var id = req.params.id;
-    dataAcess.getUserFromDB({_id:id}, function(user){
-         res.render('viewEvent',{user:user});
+    dataAcess.getEventFromDB(id, function(event){
+         console.log(event.participants);
+         res.render('viewEvent',{event: event});
     });
 });
 
-router.get('/events/:id/edit',dataAcess.isLoggedIn ,function(req, res) {
+router.get('/events/:id/edit',middlewares.isLoggedIn ,function(req, res) {
     var id = req.params.id;
     dataAcess.getEventFromDB(id, function(event){
             res.render('editEvent',{event:event});    
     });
 });
 
-router.delete('/events/:id', dataAcess.isLoggedIn, function(req, res){
+router.delete('/events/:id', middlewares.isLoggedIn, function(req, res){
     var id = req.params.id;
     dataAcess.deleteEventFromDB(id);
     res.redirect('/');
 });
 
-router.get('/profile/:id',dataAcess.isLoggedIn, function(req, res) {
+//PROFILE/////////////////////////
+
+router.get('/profile/:id',middlewares.isLoggedIn, function(req, res) {
     var id = req.params.id;
     dataAcess.getMyContent(id, res, function(user){
         res.render('profile',{profile:user});
@@ -135,3 +142,7 @@ router.post('/friends/remove', function(req, res) {
     dataAcess.removeFavoriteFriendFromDB(user, friend);
     res.redirect('back');
 });
+
+/////////////////////////////
+
+module.exports = router;
