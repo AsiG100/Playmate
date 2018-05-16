@@ -1,11 +1,11 @@
 <!Doctype html>
 <html>
     <head>
-        <title>View Group</title>
+        <title><%= group.name %></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
-		<link rel="stylesheet" type="text/css" href="css/viewGroup.css">
+		<link rel="stylesheet" type="text/css" href="/css/viewGroup.css">
         <link rel="stylesheet" type="text/css" href="/css/header.css">
 		<!--============================================ Bootstrap Jquery ==========================================-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -47,28 +47,34 @@
 				<div class="col-sm-3">
 					<div class="side-box">
 						<h2> Friends </h2>
-						<div class="friend-card">
-							<img class="avatar" src="images/monkey.jpg" alt="profile picture"/>
-							<div class="username">Mr. Monkey</div>
-						</div>
-						<div class="friend-card">
-							<img class="avatar" src="images/monkey.jpg" alt="profile picture"/>
-							<div class="username">Kofiko Levi</div>
-						</div>
-						<div class="friend-card">
-							<img class="avatar" src="images/monkey.jpg" alt="profile picture"/>
-							<div class="username">King Kong</div>
-						</div>
+							<% group.participants.forEach(function(profile){ %>
+								<% include partials/profileViewCard %> 
+							<% }); %>
 					</div>
 				</div>
 				<div class="col-sm-7">
 					<div class="user-profile">
-							<div class="username">Group Name</div>
+							<div class="username"><%= group.name %></div>
 						<div class="bio">
-							<p>Sport Type: Running</p>
-							<p>Location: Tel Aviv</p>
-							<p>Min level: Noob</p>
-							<button type="submit" class="join">Join Group</button>
+							<p>Sport Type: <%= group.type %></p>
+							<p>Location: <%= group.location %></p>
+							<p>Min level: <%= group.level %></p>
+						<% if(!user._id.equals(group.admin[0]._id)){ %>
+							<% if(user.groups.indexOf(group._id)==-1){ %>
+								<form action="/group/toggle" method="POST">
+									<input type="hidden" name="group" value="<%= group._id %>" >
+									<input type="hidden" name="user" value="<%= user._id %>" >
+									<input type="hidden" name="isAdded" value="0" >
+									<button type="submit" class="join">Join group</button>
+								</form>
+							<% }else{ %>
+								<form action="/group/toggle" method="POST">
+									<input type="hidden" name="group" value="<%= group._id %>" >
+									<input type="hidden" name="user" value="<%= user._id %>" >
+									<input type="hidden" name="isAdded" value="1" >
+									<button type="submit" class="join">Leave group</button>
+								</form>
+						<% } } %>
 						</div>
 						<ul class="data">
 							<li>
@@ -85,15 +91,12 @@
 						<div id="events" class="bottom-part">
 							<div class="bottom-part-container">
 								<div class="bottom-card">
-									<p>Event #1</p>
-								</div>
-								
-								<div class="bottom-card">
-									<p>Event #2</p>
-								</div>
-								
-								<div class="bottom-card">
-									<p>Event #3</p>
+									<% if(group.events.length == 0){ %>
+										<p>No events yet</p>
+									<% }else{ %>
+									<% group.events.forEach(function(event){ %>
+										<p><%= event.name %></p>
+									<% });} %> 
 								</div>
 							</div>
 						</div>
@@ -122,11 +125,12 @@
 					
 						<div id="details" class="bottom-part">
 							<div class="bottom-part-container">
-								<p>Time of event: 12:00</p>
-								<p>Minimum level to participate: Noob</p>
-								<p>Ages eligible to participate: 18 - 60</p>
-								<p>Minimum number of participants: 2</p>
-								<p>Maximum number of participants 10</p>
+								<!--<p>Group schedule: </p>-->
+								<!--<p>Time of event:</p>-->
+								<p>Admin: <%= group.admin[0].username %></p>
+								<p>Minimum level to participate: <%= group.level %></p>
+								<p>Minimum number of participants: <%= group.minParticipants %></p>
+								<p>Maximum number of participants: <%= group.maxParticipants %></p>
 							</div>
 						</div>
 					</div>

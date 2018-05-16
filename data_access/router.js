@@ -50,8 +50,8 @@ router.put('/groups/:id', function(req, res){
 
 router.get('/groups/:id', middlewares.isLoggedIn, function(req, res) {
     var id = req.params.id;
-    dataAcess.getUserFromDB({_id:id}, function(user){
-         res.render('viewGroup',{user:user});
+    dataAcess.getGroupFromDB(id, function(group){
+         res.render('viewGroup',{group:group});
     });
 });
 
@@ -127,20 +127,48 @@ router.get('/profile/:id',middlewares.isLoggedIn, function(req, res) {
     });
 });
 
-router.post('/friends/add', function(req, res) {
-    var user = req.body.user;
-    var friend = req.body.friend;
-    
-    dataAcess.addFavoriteFriendToDB(user, friend);
-    res.redirect('back');
-});
+//OBJECT ASSOCIATIONS///////////////
 
-router.post('/friends/remove', function(req, res) {
-    var user = req.body.user;
-    var friend = req.body.friend;
-    
+router.post('/friends/toggle', function(req, res) {
+    var user = req.body.user,
+        friend = req.body.friend,
+        isAdded = req.body.isAdded;
+        
+    if(isAdded == 0){
+        dataAcess.addFavoriteFriendToDB(user, friend);
+        res.redirect('back');        
+    }else{
     dataAcess.removeFavoriteFriendFromDB(user, friend);
     res.redirect('back');
+    }
+});
+
+router.post('/event/toggle', function(req, res) {
+    var user = req.body.user,
+        event = req.body.event,
+        isAdded = req.body.isAdded;
+        
+    if(isAdded == 0){
+        dataAcess.addEventToUserDB(user, event);
+        res.redirect('back');        
+    }else{
+    dataAcess.removeEventFromUserDB(user, event);
+    res.redirect('back');
+    }
+});
+
+router.post('/group/toggle', function(req, res) {
+    var user = req.body.user,
+        group = req.body.group,
+        isAdded = req.body.isAdded;
+        
+    if(isAdded == 0){
+        dataAcess.addGroupToUserDB(user, group);
+        res.redirect('back');        
+    }else{
+    dataAcess.removeGroupFromUserDB(user, group);
+    res.redirect('back');
+    }
 });
 
 /////////////////////////////

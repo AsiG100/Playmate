@@ -199,7 +199,7 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('Successful authentication, redirect home.');
-    req.flash('success', 'You are logged in!');
+    // req.flash('success', 'You are logged in!');
     res.redirect('/');
   });
 ////////////////

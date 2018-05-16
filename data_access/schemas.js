@@ -7,8 +7,10 @@ var groupSchema = new mongoose.Schema({
         dateOfCreation: Date,
         name: String,
         type: String,
-        dayOfActivity: String,
-        timeOfActivity: String,
+        daysAndTime: [{
+            day: String,
+            Time: String
+        }],
         location: String,
         minParticipants: Number,
         maxParticipants: Number,

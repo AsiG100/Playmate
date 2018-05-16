@@ -51,7 +51,22 @@
 							<p>Sport Type: <%= event.sportType %></p>
 							<p>Location: <%= event.location %></p>
 							<p>Min level: <%= event.level %> </p>
-							<button type="submit" class="join">Join Event</button>
+						<% if(!user._id.equals(event.admin[0]._id)){ %>
+							<% if(user.events.indexOf(event._id)==-1){ %>
+								<form action="/event/toggle" method="POST">
+									<input type="hidden" name="event" value="<%= event._id %>" >
+									<input type="hidden" name="user" value="<%= user._id %>" >
+									<input type="hidden" name="isAdded" value="0" >
+									<button type="submit" class="join">Join event</button>
+								</form>
+							<% }else{ %>
+								<form action="/event/toggle" method="POST">
+									<input type="hidden" name="event" value="<%= event._id %>" >
+									<input type="hidden" name="user" value="<%= user._id %>" >
+									<input type="hidden" name="isAdded" value="1" >
+									<button type="submit" class="join">Leave event</button>
+								</form>
+						<% } } %>
 						</div>
 						<ul class="data">
 							<li>

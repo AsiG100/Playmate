@@ -85,7 +85,10 @@ function saveGroupToDB(group, cb){
 }
 
 function getGroupFromDB(id, cb){
-    Group.findById(id, function(err, group) {
+    Group.findById(id)
+    .populate('participants')
+    .populate('events')
+    .populate('admin').exec(function(err, group){
        if(err){
            console.log(err);
        }else{
@@ -354,6 +357,8 @@ function deleteGroupFromDB(groupID){
     });
 }
 
+//ASSOCIATIONS///////////////////////////////////////
+
 function getFavoritesFromFB(user){
     request('https://graph.facebook.com/v2.12/me?access_token='+user.facebook.token+'&fields=friends', function (err, res, body) {
         if(err){
@@ -397,12 +402,106 @@ function removeFavoriteFriendFromDB(user, friend){
                     var index = user.favoriteUsers.indexOf(friend._id);
                     user.favoriteUsers.splice(index, 1);
                     user.save();
-                    console.log('a friend added to the DB');
+                    console.log('a friend removed from the DB');
                 }
             });
         }
     });
 }
+
+function addEventToUserDB(user, event){
+    User.findById(user, function(err, user){
+        if(err)
+        {
+            console.log(err);
+        }else{
+            user.events.push(event);
+            Event.findById(event, function(err, event) {
+               if(err){
+                   console.log(err);
+               }else{
+                event.participants.push(user._id); 
+                event.save();
+                user.save(function(){
+                    console.log('event added to user');
+                });            
+           }});
+        }
+    });   
+}
+
+function removeEventFromUserDB(user, event){
+    User.findById(user, function(err, user){
+        if(err)
+        {
+            console.log(err);
+        }else{
+            var index = user.events.indexOf(event._id);
+            if(index != -1){
+                user.events.splice(index, 1);
+                Event.findById(event, function(err, event){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        var index = event.participants.indexOf(event._id);
+                        event.participants.splice(index, 1);
+                        event.save();
+                        user.save(function(){
+                        console.log('event removed from user');
+                        }
+                    );
+                }});
+        }}
+    }); 
+}
+
+function addGroupToUserDB(user, group){
+    User.findById(user, function(err, user){
+        if(err)
+        {
+            console.log(err);
+        }else{
+            user.groups.push(group);
+         Group.findById(group, function(err, group) {
+               if(err){
+                   console.log(err);
+               }else{
+                group.participants.push(user._id); 
+                group.save();
+                user.save(function(){
+                console.log('group added to user');
+                });            
+           }});
+        }
+    });   
+}
+
+
+function removeGroupFromUserDB(user, group){
+    User.findById(user, function(err, user){
+        if(err)
+        {
+            console.log(err);
+        }else{
+            var index = user.groups.indexOf(group._id);
+            if(index!=-1){
+                user.groups.splice(index, 1);
+                Group.findById(group, function(err, group){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        var index = group.participants.indexOf(group._id);
+                        group.participants.splice(index, 1);
+                        group.save();
+                        user.save(function(){
+                        console.log('group removed from user');
+                        }
+                    );
+            }});
+        }}
+    }); 
+}
+
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {
                 saveUserToDB: saveUserToDB,
@@ -423,7 +522,11 @@ var funcs = {
                 deleteGroupFromDB: deleteGroupFromDB,
                 getFavoritesFromFB: getFavoritesFromFB,
                 addFavoriteFriendToDB: addFavoriteFriendToDB,
-                removeFavoriteFriendFromDB: removeFavoriteFriendFromDB
+                removeFavoriteFriendFromDB: removeFavoriteFriendFromDB,
+                addGroupToUserDB: addGroupToUserDB,
+                removeGroupFromUserDB: removeGroupFromUserDB,
+                addEventToUserDB: addEventToUserDB,
+                removeEventFromUserDB: removeGroupFromUserDB
              }
 
 //EXPORT---------------------------------------
