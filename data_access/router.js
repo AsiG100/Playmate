@@ -2,6 +2,7 @@ let express = require("express"),
     router  = express.Router(),
     User    = require("./schemas.js").user,
     middlewares = require("./middlewares.js"),
+    googleApi = require("../googleCalendar/googleAPI.js"),
     dataAcess = require("./dataAccess.js");
 
 //INDEX//////////////////////////
@@ -169,6 +170,25 @@ router.post('/group/toggle', function(req, res) {
     dataAcess.removeGroupFromUserDB(user, group);
     res.redirect('back');
     }
+});
+
+//GOOGLE CALENDAR
+
+router.post('/syncToCalendar', function(req, res) {
+    var event = req.body.event,
+         userID = req.body.user;
+         
+    googleApi.syncEventToCalendar(event, userID,function(url){
+        console.log(url);    
+        res.redirect(url)
+    });
+});
+
+router.get('/googleCallback', function(req, res) {
+    var code = req.params.code;
+    console.log(code);
+    
+    googleApi.getAccessToken(code);
 });
 
 /////////////////////////////

@@ -48,6 +48,9 @@ var userSchema = new mongoose.Schema({
             id: String,
             token: String,
         },
+        calendar: {
+            credentials: Object
+        },
         name: String,
         birthDate: String,
         email: String,

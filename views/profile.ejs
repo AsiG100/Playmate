@@ -47,17 +47,15 @@
 				<p>Exp: <%= profile.gameProgress %> </p>
 				<% if(!user._id.equals(profile._id)){ %>
 					<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
-						<form action="/friends/toggle" method="POST">
+						<form action="/friends/add" method="POST">
 							<input type="hidden" name="friend" value="<%= profile._id %>" >
 							<input type="hidden" name="user" value="<%= user._id %>" >
-							<input type="hidden" name="isAdded" value="0" >
 							<button type="submit" class="follow">Follow</button>
 						</form>
 					<% }else{ %>
-						<form action="/friends/toggle" method="POST">
+						<form action="/friends/remove" method="POST">
 							<input type="hidden" name="friend" value="<%= profile._id %>" >
 							<input type="hidden" name="user" value="<%= user._id %>" >
-							<input type="hidden" name="isAdded" value="1" >
 							<button type="submit" class="follow">Unfollow</button>
 						</form>
 				<% } } %>

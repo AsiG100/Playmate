@@ -134,7 +134,10 @@ function saveEventToDB(event, cb){
 }
 
 function getEventFromDB(id, cb){
-    Event.findById(id).populate('participants').exec(function(err, event) {
+    Event.findById(id)
+    .populate('participants')
+    .populate('admin')
+    .exec(function(err, event) {
        if(err){
            console.log(err);
        }else{
