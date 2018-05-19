@@ -14,18 +14,21 @@ const client_secret = '{"web":{'
                                 +'"javascript_origins":["https://playmate-zmirnoff.c9users.io"]'
                              +'}'
                         +'}';
+const EventModel = require("../data_access/schemas.js").event;
+
 let TOKEN_PATH;
 let oAuth2Client;
 let user;
-let event;
+let syncedEvent;
 
 function syncEventToCalendar(event, userID, cb){
-    event = event;
+    syncedEvent = event;
     dataAccess.getUserFromDB({_id: userID}, function(userContent){
         user = userContent;
-        if(user.calendar != null){
-            TOKEN_PATH = user.calendar.credentials;
-        }
+        // if(user.calendar != null){
+        //     TOKEN_PATH = user.calendar.credentials;
+        // }
+        
             // Load client secrets from a local file.
         try {
             console.log('need authorization');
@@ -49,22 +52,22 @@ function authorize(credentials, callback) {
   const client_secret = credentials.web.client_secret,
         client_id = credentials.web.client_id,
         redirect_uris = credentials.web.redirect_uris;
-  let token = {};
+   
    oAuth2Client = new google.auth.OAuth2(
       client_id, client_secret, redirect_uris[0]);
 
   // Check if we have previously stored a token.
-  if(TOKEN_PATH != undefined){
-    console.log('there is a token');
-    token = TOKEN_PATH;
-  }else{
+  if(TOKEN_PATH == undefined){
       console.log('no token');
     var url = getAuthURL(oAuth2Client);
     return url;
   }
-  
-  oAuth2Client.setCredentials(JSON.parse(token));
-  callback(oAuth2Client);
+
+  console.log('there is a token');
+  oAuth2Client.setCredentials(JSON.parse(TOKEN_PATH));
+  callback(oAuth2Client, function(){
+    console.log('event synced');
+  });
 }
 
 /**
@@ -90,90 +93,61 @@ function getAccessToken(code, callback) {
       // Store the token to disk for later program executions
       try {
         TOKEN_PATH = JSON.stringify(token);
-        console.log('Token stored to', TOKEN_PATH);
+        // user.calendar.credentials = TOKEN_PATH;
+        // user.save(function(){
+        //   console.log('saved creds to user');
+        // });
+      
+        
       } catch (err) {
         console.error(err);
       }
+      
       callback(oAuth2Client);
     });
 }
 
-/**
- * Lists the next 10 events on the user's primary calendar.
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
-function listEvents(auth) {
-  const calendar = google.calendar({version: 'v3', auth});
-  calendar.events.list({
-    calendarId: 'primary',
-    timeMin: (new Date()).toISOString(),
-    maxResults: 10,
-    singleEvents: true,
-    orderBy: 'startTime',
-  }, (err, {data}) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    const events = data.items;
-    if (events.length) {
-      console.log('Upcoming 10 events:');
-      events.map((event, i) => {
-        const start = event.start.dateTime || event.start.date;
-        console.log(`${start} - ${event.summary}`);
+function insertEvent(auth, cb){
+
+const calendar = google.calendar({version: 'v3', auth});
+EventModel.findById(syncedEvent, function(err, syncedEvent){
+    if(err){
+      console.log(err);
+    }else{
+      console.log(syncedEvent.name+' '+syncedEvent.location+' '+syncedEvent.dateOfEvent);
+      var Event = {
+        'summary': syncedEvent.name,
+        'location': syncedEvent.location,
+        'start': {
+          'dateTime': syncedEvent.dateOfEvent+'T'+syncedEvent.timeOfActivity.startTime+':00',
+          'timeZone': 'Asia/Jerusalem'
+        },
+        'end': {
+          'dateTime': syncedEvent.dateOfEvent+'T'+syncedEvent.timeOfActivity.endTime+':00',
+          'timeZone': 'Asia/Jerusalem'
+        }
+      };
+      
+      
+      calendar.events.insert({
+        auth: auth,
+        calendarId: 'primary',
+        resource: Event,
+      }, function(err, Event) {
+        if (err) {
+          console.log('There was an error contacting the Calendar service: ' + err);
+          return;
+        }
+        console.log('Event created: %s', Event.htmlLink);
+        cb();
       });
-    } else {
-      console.log('No upcoming events found.');
     }
-  });
-}
-
-function insertEvent(auth){
-    // Refer to the Node.js quickstart on how to setup the environment:
-// https://developers.google.com/calendar/quickstart/node
-// Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
-// stored credentials.
-console.log(auth);
- const calendar = google.calendar({version: 'v3', auth});
-var event = {
-  'summary': 'Google I/O 2015',
-  'location': '800 Howard St., San Francisco, CA 94103',
-  'description': 'A chance to hear more about Google\'s developer products.',
-  'start': {
-    'dateTime': '2018-05-17T09:00:00-07:00',
-    'timeZone': 'America/Los_Angeles',
-  },
-  'end': {
-    'dateTime': '2018-05-18T17:00:00-08:00',
-    'timeZone': 'America/Los_Angeles',
-  },
-  'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=2'
-  ],
-  'attendees': [
-    {'email': 'lpage@example.com'},
-    {'email': 'sbrin@example.com'},
-  ],
-  'reminders': {
-    'useDefault': false,
-    'overrides': [
-      {'method': 'email', 'minutes': 24 * 60},
-      {'method': 'popup', 'minutes': 10},
-    ],
-  },
-};
-
-calendar.events.insert({
-  auth: auth,
-  calendarId: 'primary',
-  resource: event,
-}, function(err, event) {
-  if (err) {
-    console.log('There was an error contacting the Calendar service: ' + err);
-    return;
-  }
-  console.log('Event created: %s', event.htmlLink);
 });
+
 }
 
 module.exports = {
     syncEventToCalendar: syncEventToCalendar,
-    getAccessToken: getAccessToken
+    getAccessToken: getAccessToken,
+    insertEvent: insertEvent
 };

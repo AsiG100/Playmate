@@ -3,18 +3,26 @@ let express = require("express"),
     User    = require("./schemas.js").user,
     middlewares = require("./middlewares.js"),
     googleApi = require("../googleCalendar/googleAPI.js"),
-    dataAcess = require("./dataAccess.js");
+    dataAcess = require("./dataAccess.js"),
+    logic     = require("../logic/logic.js");
 
 //INDEX//////////////////////////
 router.get('/', middlewares.isLoggedIn, function(req, res) {
-        dataAcess.getMyContent(req.user, res, function(){
-            dataAcess.getUserFromDB(req.user, function(user) {
-               dataAcess.getFriendsContent(user.favoriteUsers, res, function(){
-                    res.render('index'); 
-                });
-            });
+        // dataAcess.getMyContent(req.user, res, function(){
+        //     dataAcess.getUserFromDB(req.user, function(user) {
+        //       dataAcess.getFriendsContent(user.favoriteUsers, res, function(){
+        //             res.render('index'); 
+        //         });
+        //     });
+        // });
+        // dataAcess.getFavoritesFromFB(req.user);
+        var userID = req.user._id;
+        
+        logic.addSuggestedContentToFeed(userID, res, function(){
+           logic.addYourContentToFeed(userID, res, function(){
+              res.render('index'); 
+           });
         });
-        dataAcess.getFavoritesFromFB(req.user);
 });
 
 //GROUPS////////////////////////
@@ -101,7 +109,6 @@ router.put('/events/:id', function(req, res){
 router.get('/events/:id', middlewares.isLoggedIn, function(req, res) {
     var id = req.params.id;
     dataAcess.getEventFromDB(id, function(event){
-         console.log(event.participants);
          res.render('viewEvent',{event: event});
     });
 });
@@ -172,23 +179,33 @@ router.post('/group/toggle', function(req, res) {
     }
 });
 
-//GOOGLE CALENDAR
+//GOOGLE CALENDAR///////////////////////////
+
+var syncedEvent;
+var userID;
 
 router.post('/syncToCalendar', function(req, res) {
-    var event = req.body.event,
-         userID = req.body.user;
+    syncedEvent = req.body.event;
+    userID = req.body.user;
          
-    googleApi.syncEventToCalendar(event, userID,function(url){
-        console.log(url);    
-        res.redirect(url)
-    });
+    googleApi.syncEventToCalendar(syncedEvent, userID, function(url){
+        if(url == undefined){
+            req.flash('success', 'The event is synced');
+            res.redirect('back');
+        }else{
+            res.redirect(url);
+        }
+        });
 });
 
 router.get('/googleCallback', function(req, res) {
-    var code = req.params.code;
-    console.log(code);
-    
-    googleApi.getAccessToken(code);
+    var code = req.query.code;
+    googleApi.getAccessToken(code,function(auth){
+        googleApi.syncEventToCalendar(syncedEvent, userID, function(){
+            req.flash('success', 'The event is synced');
+            res.redirect('back');
+        });  
+    });
 });
 
 /////////////////////////////

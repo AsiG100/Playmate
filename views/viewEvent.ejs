@@ -34,12 +34,13 @@
     <body class="profile-body">
 		<% include partials/header %>
 		<div class="container">
+			<% include partials/errorHandeling %>
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="side-box">
 						<h2> Friends </h2>
 						<% event.participants.forEach(function(profile){ %>
-							<% include partials/profileViewCard %> 
+							<li><% include partials/profileViewCard %></li> 
 						<% }); %>
 					</div>
 				</div>
@@ -92,22 +93,21 @@
 										});
 									}
 								</script>
-								<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9i6uRrNyvxAtRoEzx8TcnXsjwY_M3c_I&callback=initMap">
-								</script>
-								
+								<script src="https://maps.googleapis.com/maps/api/js?
+    							key=AIzaSyBU_bnBk2hij8xfyxUqxMsTDIoegx48EDs&libraries=places&callback=initAutocomplete" async defer></script>
 							</div>
 						</div>
 					
 						<div id="details" class="bottom-part">
 							<div class="bottom-part-container">
 								<p>Admin: <%= event.admin.username %></p>
-								<p>Time of event: <%= event.timeOfActivity %></p>
+								<p>From: <%= event.timeOfActivity.startTime %> To: <%= event.timeOfActivity.endTime %></p>
 								<p>Minimum experience: <%= event.gameLevel %></p>
 								<p>Ages eligible to participate: <%= event.agesRange %></p>
 								<p>Minimum number of participants: <%= event.minNumOfParticipants %></p>
 								<p>Maximum number of participants: <%= event.maxNumOfParticipants %></p>
 								<form action="/syncToCalendar" method="POST">
-									<input type="hidden" name="event" value="<%= event %>" >
+									<input type="hidden" name="event" value="<%= event._id %>" >
 									<input type="hidden" name="user" value="<%= user._id %>" >
 									<button type="submit" class="join">Sync to Google calendar</button>
 								</form>

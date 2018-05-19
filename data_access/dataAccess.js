@@ -118,7 +118,10 @@ function saveEventToDB(event, cb){
          minNumOfParticipants: event.minNumOfParticipants,
          dateOfCreation: Date.now(),
          dateOfEvent: event.date,
-         timeOfActivity: event.time,
+         timeOfActivity:{
+             startTime: event.startTime,
+             endTime: event.endTime,
+         },
          sportType: event.type,
          level: event.minLevel, // From beginner to expert
          gameLevel: 0,//The individual score
@@ -229,6 +232,22 @@ function getFriendsContent(friends, res, cb){
     }else{
         cb();
     }
+}
+//--------------------------------------------------
+
+function getUserContent(userId, cb){
+        User.findById(userId)
+        .populate("groups")
+        .populate("events")
+        .exec(function(err, user){
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log('sent groups and events');
+                cb(user.groups, user.events);
+            }
+        });
 }
 
 //UPDATING////////////////////////////////////////////////  
@@ -518,6 +537,7 @@ var funcs = {
                 associateEventToUser: associateEventToUser,
                 getMyContent: getMyContent,
                 getFriendsContent: getFriendsContent,
+                getUserContent: getUserContent,
                 updateEventInDB: updateEventInDB,
                 updateGroupInDB: updateGroupInDB,
                 updateUserInDB: updateUserInDB,

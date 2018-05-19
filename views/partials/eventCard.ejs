@@ -22,7 +22,9 @@
         <a href="/events/<%= events[event]._id %>" class="btn btn-primary">Go to event</a>
     </div>
     <div class="card-footer text-muted">
-        At:
-        <%= events[event].timeOfActivity %>
+        From 
+        <%= events[event].timeOfActivity.startTime %>
+        to 
+        <%= events[event].timeOfActivity.endTime %>
     </div>
 </div>

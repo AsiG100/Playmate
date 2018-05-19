@@ -28,7 +28,10 @@ var eventSchema = new mongoose.Schema({
          minNumOfParticipants: Number,
          dateOfCreation: Date,
          dateOfEvent: String,
-         timeOfActivity: String,
+         timeOfActivity: {
+             startTime: String,
+             endTime: String
+         },
          sportType: String,
          level: String, // From beginner to expert
          gameLevel: Number,//The individual score

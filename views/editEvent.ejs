@@ -59,8 +59,12 @@
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Time Of Event</p>
-                    <div class="wrap-input100 validate-input" data-validate="Time Of Event is required">
-                        <input class="input100" type="time" value="<%= event.timeOfActivity %>" name="event[time]">
+                    <div class="wrap-input100 validate-input col-md-6" data-validate="Time Of Event is required">
+                        <input class="input100" type="time" value="<%= event.timeOfActivity.startTime %>" name="event[startTime]">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input col-md-6" data-validate="Time Of Event is required">
+                        <input class="input100" type="time" value="<%= event.timeOfActivity.endTime %>" name="event[endTime]">
                         <span class="focus-input100"></span>
                     </div>
                     

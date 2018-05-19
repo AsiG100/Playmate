@@ -1,0 +1,64 @@
+const dataAccess = require("../data_access/dataAccess.js");
+
+function addSuggestedContentToFeed(userID, res, cb){
+    var friendsEvents = [],
+        friendsGroups = [];
+        res.locals.friendsEvents = [];
+        res.locals.friendsGroups = [];
+
+    dataAccess.getUserFromDB({_id: userID}, function(user){
+       var friendsAmount = user.favoriteUsers.length;
+       if(user.favoriteUsers.length > 0){
+                user.favoriteUsers.forEach(function(friendID){
+                dataAccess.getUserContent(friendID, function(groups, events){
+                  groups.forEach(function(group){
+                     if(group.participants.indexOf(user._id) == -1)
+                     {
+                        console.log('add: %s',group);
+                        friendsGroups.push(group);    
+                        res.locals.friendsGroups = friendsGroups;
+                        res.locals.friendsGroups.sort(sortByDate);
+                    
+                     } 
+                  });
+                  events.forEach(function(event){
+                     if(event.participants.indexOf(user._id) == -1)
+                     {
+                        console.log('add: %s',event);
+                        friendsEvents.push(event);  
+                        res.locals.friendsEvents = friendsEvents;
+                        res.locals.friendsEvents.sort(sortByDate);
+                     } 
+                  });
+              });
+           });
+       }else{
+            res.locals.friendsEvents = [];
+            res.locals.friendsGroups = [];
+       }
+       
+       cb();
+    });
+}
+
+function addYourContentToFeed(userID, res, cb){
+      dataAccess.getUserContent(userID, function(groups, events){
+        res.locals.events = events;
+        res.locals.events.sort(sortByDate);
+        res.locals.groups = groups;
+        res.locals.groups.sort(sortByDate);
+        
+        cb();
+       });
+    }    
+
+function sortByDate(a, b){
+      return b.dateOfCreation - a.dateOfCreation;  
+}
+
+
+module.exports = {
+    addSuggestedContentToFeed: addSuggestedContentToFeed,
+    addYourContentToFeed: addYourContentToFeed
+}
+
