@@ -15,20 +15,19 @@ function addSuggestedContentToFeed(userID, res, cb){
                      if(group.participants.indexOf(user._id) == -1)
                      {
                         console.log('add: %s',group);
-                        friendsGroups.push(group);    
-                        res.locals.friendsGroups = friendsGroups;
+                        res.locals.friendsGroups = res.locals.friendsGroups.concat(group);
                         res.locals.friendsGroups.sort(sortByDate);
                     
                      } 
                   });
                   events.forEach(function(event){
-                     if(event.participants.indexOf(user._id) == -1)
+                     if(isEventPassed(event.dateOfEvent) && event.participants.indexOf(user._id) == -1)
                      {
                         console.log('add: %s',event);
                         friendsEvents.push(event);  
-                        res.locals.friendsEvents = friendsEvents;
+                        res.locals.friendsEvents = res.locals.friendsEvents.concat(event);
                         res.locals.friendsEvents.sort(sortByDate);
-                     } 
+                     }
                   });
               });
            });
@@ -56,6 +55,12 @@ function sortByDate(a, b){
       return b.dateOfCreation - a.dateOfCreation;  
 }
 
+function isEventPassed(date){
+    var now = Date.now(),
+        due = Date.parse(date) + 86400000;
+        
+        return due > now;
+}
 
 module.exports = {
     addSuggestedContentToFeed: addSuggestedContentToFeed,

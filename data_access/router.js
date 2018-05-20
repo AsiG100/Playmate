@@ -41,8 +41,6 @@ router.post('/groups',middlewares.isLoggedIn, function(req, res){
         }else{
             console.log("found user");
             dataAcess.associateGroupToUser(group, user);
-            group.admin = user._id;
-            group.save();
         }
     });
     res.redirect("/");  
@@ -91,8 +89,6 @@ router.post('/events', middlewares.isLoggedIn, function(req, res) {
             console.log(err);
         }else{
             dataAcess.associateEventToUser(event, user);
-            event.admin = user._id;
-            event.save();
         }});
         res.redirect('/');
     })
@@ -160,8 +156,8 @@ router.post('/event/toggle', function(req, res) {
         dataAcess.addEventToUserDB(user, event);
         res.redirect('back');        
     }else{
-    dataAcess.removeEventFromUserDB(user, event);
-    res.redirect('back');
+        dataAcess.removeEventFromUserDB(user, event);
+        res.redirect('back');            
     }
 });
 

@@ -1,0 +1,30 @@
+<div class="card text-center cardEvent">
+    <div class="card-header">
+        <%=friendsEvents[event].agesRange %> -
+            <%= friendsEvents[event].level %>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            <%= friendsEvents[event].name %>
+        </h5>
+        <p class="card-text">The event is in
+            <%= friendsEvents[event].location %> on
+                <%= events[event].dateOfEvent %>
+        </p>
+        <p class="card-text">Min number of participants is
+            <%=friendsEvents[event].minNumOfParticipants%> and max number of participants is
+                <%= friendsEvents[event].maxNumOfParticipants%>
+        </p>
+        <form action="/events/<%= friendsEvents[event]._id %>?_method=DELETE" method="POST" class="dis-inline">
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+        <a href="/events/<%= friendsEvents[event]._id %>/edit" class="btn btn-warning">Edit</a>
+        <a href="/events/<%= friendsEvents[event]._id %>" class="btn btn-primary">Go to event</a>
+    </div>
+    <div class="card-footer text-muted">
+        From 
+        <%= friendsEvents[event].timeOfActivity.startTime %>
+        to 
+        <%= friendsEvents[event].timeOfActivity.endTime %>
+    </div>
+</div>

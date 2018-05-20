@@ -47,7 +47,7 @@
                             <% include partials/eventCard %>
                             <% event++; %>
                         <% } } } %>
-                <% if(friendsEvents.length > 0 || friendsGroups > 0){ %>
+                <% if(friendsEvents.length > 0 || friendsGroups.length > 0){ %>
                     <h2>Suggested events and groups</h2>
                     <!--//////////////// SUGGESTED CARDS /////////////////////////////-->
                     <% if(friendsGroups.length == 0 && friendsEvents.length == 0){ %>
@@ -64,16 +64,16 @@
                     <% var group=0,event=0; %>
                     <%while((group+event)<(friendsGroups.length+friendsEvents.length)){%>
                         <%if(group>=friendsGroups.length){%>
-                            <% include partials/eventCard %>
+                            <% include partials/friendEventCard %>
                             <% event++;%>
                         <% }else if(event>=friendsEvents.length){ %>
-                            <% include partials/groupCard %>
+                            <% include partials/friendGroupCard %>
                             <% group++; %>
                         <% }else if(friendsGroups[group].dateOfCreation > friendsEvents[event].dateOfCreation){%>
-                            <% include partials/groupCard %>
+                            <% include partials/friendGroupCard %>
                             <% group++;%>
                         <% }else{ %>
-                            <% include partials/eventCard %>
+                            <% include partials/friendEventCard %>
                             <% event++; %>
                         <% } } } }%>
         </main>

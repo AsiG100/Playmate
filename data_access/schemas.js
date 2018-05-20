@@ -16,7 +16,6 @@ var groupSchema = new mongoose.Schema({
         maxParticipants: Number,
         level: String,
         events: [{type: mongoose.Schema.Types.ObjectId, ref: "Event"}],
-        admin: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}],
         participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}]
 });
 var groupModel  = mongoose.model("Group", groupSchema);
@@ -36,7 +35,6 @@ var eventSchema = new mongoose.Schema({
          level: String, // From beginner to expert
          gameLevel: Number,//The individual score
          agesRange: String, // Ages of the participates
-         admin: {type:mongoose.Schema.Types.ObjectId, ref:"User"},
          participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}]
 });
 var eventModel = mongoose.model("Event", eventSchema);

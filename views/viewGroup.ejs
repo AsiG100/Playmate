@@ -7,6 +7,7 @@
         <link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
 		<link rel="stylesheet" type="text/css" href="/css/viewGroup.css">
         <link rel="stylesheet" type="text/css" href="/css/header.css">
+        <link rel="stylesheet" type="text/css" href="/css/util.css">
 		<!--============================================ Bootstrap Jquery ==========================================-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -48,7 +49,7 @@
 					<div class="side-box">
 						<h2> Friends </h2>
 							<% group.participants.forEach(function(profile){ %>
-								<li><% include partials/profileViewCard %></li> 
+								<% include partials/profileViewCard %>
 							<% }); %>
 					</div>
 				</div>
@@ -59,7 +60,7 @@
 							<p>Sport Type: <%= group.type %></p>
 							<p>Location: <%= group.location %></p>
 							<p>Min level: <%= group.level %></p>
-						<% if(!user._id.equals(group.admin[0]._id)){ %>
+						<% if(!user._id.equals(group.participants[0]._id)){ %>
 							<% if(user.groups.indexOf(group._id)==-1){ %>
 								<form action="/group/toggle" method="POST">
 									<input type="hidden" name="group" value="<%= group._id %>" >
@@ -74,7 +75,12 @@
 									<input type="hidden" name="isAdded" value="1" >
 									<button type="submit" class="join">Leave group</button>
 								</form>
-						<% } } %>
+						<% } }else{ %>
+						     	<form action="/groups/<%= group._id %>?_method=DELETE" method="POST" class="dis-inline">
+						            <input type="submit" class="join" value="Delete">
+					            </form>
+						        <a href="/groups/<%= group._id %>/edit" class="join">Edit</a>
+						<% } %>
 						</div>
 						<ul class="data">
 							<li>
@@ -127,7 +133,7 @@
 							<div class="bottom-part-container">
 								<!--<p>Group schedule: </p>-->
 								<!--<p>Time of event:</p>-->
-								<p>Admin: <%= group.admin[0].username %></p>
+								<p>Admin: <%= group.participants[0].username %></p>
 								<p>Minimum level to participate: <%= group.level %></p>
 								<p>Minimum number of participants: <%= group.minParticipants %></p>
 								<p>Maximum number of participants: <%= group.maxParticipants %></p>

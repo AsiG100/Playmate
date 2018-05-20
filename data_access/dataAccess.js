@@ -88,7 +88,7 @@ function getGroupFromDB(id, cb){
     Group.findById(id)
     .populate('participants')
     .populate('events')
-    .populate('admin').exec(function(err, group){
+    .exec(function(err, group){
        if(err){
            console.log(err);
        }else{
@@ -139,7 +139,6 @@ function saveEventToDB(event, cb){
 function getEventFromDB(id, cb){
     Event.findById(id)
     .populate('participants')
-    .populate('admin')
     .exec(function(err, event) {
        if(err){
            console.log(err);
@@ -161,79 +160,6 @@ function associateEventToUser(event, user){
             }
         })
 }
-
-function sortByDate(a, b){
-      return b.dateOfCreation - a.dateOfCreation;  
-}
-
-function getMyContent(userId, res, cb){
-        User.findById(userId).populate("groups").exec(function(err, user){
-            if(err){
-                console.log(err);
-            }
-            else{
-                console.log('sent user groups');
-                res.locals.groups = user.groups;
-                //sort by time of creation
-                res.locals.groups.sort(sortByDate);
-                User.findById(user).populate('events').exec(function(err, user){
-                   if(err){
-                       console.log(err);
-                   } else{
-                       console.log('sent user events');
-                       res.locals.events = user.events;
-                       //sort by time of creation
-                       res.locals.events.sort(sortByDate);
-                       cb(user);
-                   }
-                });
-            }
-        });
-}
-
-function getFriendContent(userId, res, cb){
-        User.findById(userId).populate("groups").exec(function(err, user){
-            if(err){
-                console.log(err);
-            }
-            else{
-                console.log('sent a friend groups');
-                res.locals.groups = res.locals.groups.concat(user.groups);
-                //sort by time of creation
-                res.locals.groups.sort(sortByDate);
-                User.findById(user).populate('events').exec(function(err, user){
-                   if(err){
-                       console.log(err);
-                   } else{
-                       console.log('sent a friend events');
-                       res.locals.events = res.locals.events.concat(user.events);
-                       //sort by time of creation
-                       res.locals.events.sort(sortByDate);
-                       cb();
-                   }
-                });
-            }
-        });
-}
-
-function getFriendsContent(friends, res, cb){
-    var itemsProcessed = 0;
-    if(friends.length>0){
-        friends.forEach(function(friend){
-            console.log('getting friend');
-           getFriendContent(friend, res, function(){
-               itemsProcessed++;
-               if(itemsProcessed === friends.length) {
-                    console.log('cb...');
-                  cb();
-                }  
-           });
-        });
-    }else{
-        cb();
-    }
-}
-//--------------------------------------------------
 
 function getUserContent(userId, cb){
         User.findById(userId)
@@ -453,27 +379,29 @@ function addEventToUserDB(user, event){
 }
 
 function removeEventFromUserDB(user, event){
+   console.log('removing');
     User.findById(user, function(err, user){
         if(err)
         {
             console.log(err);
         }else{
-            var index = user.events.indexOf(event._id);
-            if(index != -1){
-                user.events.splice(index, 1);
-                Event.findById(event, function(err, event){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        var index = event.participants.indexOf(event._id);
-                        event.participants.splice(index, 1);
-                        event.save();
-                        user.save(function(){
-                        console.log('event removed from user');
-                        }
-                    );
-                }});
-        }}
+            var index = user.events.indexOf(event);
+            user.events.splice(index, 1);
+            user.save();
+            
+            Event.findById(event, function(err, event){
+                if(err){
+                    console.log(err);
+                }else{
+                    var index = event.participants.indexOf(user._id);
+                    event.participants.splice(index, 1);
+                    event.save();
+                    user.save(function(){
+                        console.log('event removed from user DB');
+                    });
+                    
+            }});
+        }
     }); 
 }
 
@@ -505,22 +433,21 @@ function removeGroupFromUserDB(user, group){
         {
             console.log(err);
         }else{
-            var index = user.groups.indexOf(group._id);
-            if(index!=-1){
-                user.groups.splice(index, 1);
-                Group.findById(group, function(err, group){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        var index = group.participants.indexOf(group._id);
-                        group.participants.splice(index, 1);
-                        group.save();
-                        user.save(function(){
-                        console.log('group removed from user');
-                        }
-                    );
+            var index = user.groups.indexOf(group);
+            user.groups.splice(index, 1);
+            Group.findById(group, function(err, group){
+                if(err){
+                    console.log(err);
+                }else{
+                    var index = group.participants.indexOf(group._id);
+                    group.participants.splice(index, 1);
+                    group.save();
+                    user.save(function(){
+                    console.log('group removed from user');
+                    }
+                );
             }});
-        }}
+        }
     }); 
 }
 
@@ -535,8 +462,6 @@ var funcs = {
                 saveEventToDB: saveEventToDB,
                 getEventFromDB: getEventFromDB,
                 associateEventToUser: associateEventToUser,
-                getMyContent: getMyContent,
-                getFriendsContent: getFriendsContent,
                 getUserContent: getUserContent,
                 updateEventInDB: updateEventInDB,
                 updateGroupInDB: updateGroupInDB,
@@ -549,7 +474,7 @@ var funcs = {
                 addGroupToUserDB: addGroupToUserDB,
                 removeGroupFromUserDB: removeGroupFromUserDB,
                 addEventToUserDB: addEventToUserDB,
-                removeEventFromUserDB: removeGroupFromUserDB
+                removeEventFromUserDB: removeEventFromUserDB
              }
 
 //EXPORT---------------------------------------

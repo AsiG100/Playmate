@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
 		<link rel="stylesheet" type="text/css" href="/css/viewEvent.css">
+		<link rel="stylesheet" type="text/css" href="/css/util.css">
 		<link rel="stylesheet" type="text/css" href="/css/header.css">
 		<!--============================================ Bootstrap Jquery ==========================================-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -40,7 +41,7 @@
 					<div class="side-box">
 						<h2> Friends </h2>
 						<% event.participants.forEach(function(profile){ %>
-							<li><% include partials/profileViewCard %></li> 
+							<% include partials/profileViewCard %> 
 						<% }); %>
 					</div>
 				</div>
@@ -52,7 +53,7 @@
 							<p>Sport Type: <%= event.sportType %></p>
 							<p>Location: <%= event.location %></p>
 							<p>Min level: <%= event.level %> </p>
-						<% if(!user._id.equals(event.admin._id)){ %>
+						<% if(!user._id.equals(event.participants[0]._id)){ %>
 							<% if(user.events.indexOf(event._id)==-1){ %>
 								<form action="/event/toggle" method="POST">
 									<input type="hidden" name="event" value="<%= event._id %>" >
@@ -67,7 +68,12 @@
 									<input type="hidden" name="isAdded" value="1" >
 									<button type="submit" class="join">Leave event</button>
 								</form>
-						<% } } %>
+						<% } } else{%>
+						     	<form action="/groups/<%= event._id %>?_method=DELETE" method="POST" class="dis-inline">
+						            <input type="submit" class="join" value="Delete">
+					            </form>
+						        <a href="/groups/<%= event._id %>/edit" class="join">Edit</a>
+						<% } %>						
 						</div>
 						<ul class="data">
 							<li>
@@ -100,7 +106,7 @@
 					
 						<div id="details" class="bottom-part">
 							<div class="bottom-part-container">
-								<p>Admin: <%= event.admin.username %></p>
+								<p>Admin: <%= event.participants[0].username %></p>
 								<p>From: <%= event.timeOfActivity.startTime %> To: <%= event.timeOfActivity.endTime %></p>
 								<p>Minimum experience: <%= event.gameLevel %></p>
 								<p>Ages eligible to participate: <%= event.agesRange %></p>
