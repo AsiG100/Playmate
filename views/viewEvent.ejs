@@ -51,7 +51,6 @@
 						<div class="bio">
 							<p>Event Date: <%= event.dateOfEvent %></p>
 							<p>Sport Type: <%= event.sportType %></p>
-							<p>Location: <%= event.location %></p>
 							<p>Min level: <%= event.level %> </p>
 						<% if(!user._id.equals(event.participants[0]._id)){ %>
 							<% if(user.events.indexOf(event._id)==-1){ %>
@@ -69,6 +68,14 @@
 									<button type="submit" class="join">Leave event</button>
 								</form>
 						<% } } else{%>
+								<% if(event.participants.length > 1){ %>
+									<form action="/event/toggle" method="POST" class="dis-inline">
+										<input type="hidden" name="group" value="<%= group._id %>" >
+										<input type="hidden" name="user" value="<%= user._id %>" >
+										<input type="hidden" name="isAdded" value="1" >
+										<button type="submit" class="join">Leave event</button>
+									</form>						
+						     	<% } %>				
 						     	<form action="/groups/<%= event._id %>?_method=DELETE" method="POST" class="dis-inline">
 						            <input type="submit" class="join" value="Delete">
 					            </form>
@@ -84,23 +91,15 @@
 							</li>
 						</ul>
 						<div id="map" class="bottom-part">
-							<div class="bottom-part-container">
+							<div class="bottom-part-container w-full">
 								
-								<script>
-									function initMap() {
-										var uluru = { lat: -25.363, lng: 131.044 };
-										var map = new google.maps.Map(document.getElementById('map'), {
-											zoom: 4,
-											center: uluru
-										});
-										var marker = new google.maps.Marker({
-											position: uluru,
-											map: map
-										});
-									}
-								</script>
-								<script src="https://maps.googleapis.com/maps/api/js?
-    							key=AIzaSyBU_bnBk2hij8xfyxUqxMsTDIoegx48EDs&libraries=places&callback=initAutocomplete" async defer></script>
+								<iframe
+									width="100%"
+									height="450"
+									frameborder="0" style="border:0"
+									src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBU_bnBk2hij8xfyxUqxMsTDIoegx48EDs
+								    &q=<%= event.location.replace(' ','+') %>" allowfullscreen>
+								</iframe>
 							</div>
 						</div>
 					

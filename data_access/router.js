@@ -43,6 +43,7 @@ router.post('/groups',middlewares.isLoggedIn, function(req, res){
             dataAcess.associateGroupToUser(group, user);
         }
     });
+    req.flash('success','The group,'+group.name+' is added');
     res.redirect("/");  
     });
     
@@ -52,6 +53,7 @@ router.put('/groups/:id', function(req, res){
     var id = req.params.id;
     var group = req.body.group;
     dataAcess.updateGroupInDB(id,group); 
+    req.flash('success','The group,'+group.name+' is updated');
     res.redirect('/');
 });
 
@@ -72,6 +74,7 @@ router.get('/groups/:id/edit',middlewares.isLoggedIn ,function(req, res) {
 router.delete('/groups/:id', function(req, res){
     var id = req.params.id;
     dataAcess.deleteGroupFromDB(id);
+    req.flash('success','The group is deleted');
     res.redirect('/');
 });
 
@@ -90,6 +93,7 @@ router.post('/events', middlewares.isLoggedIn, function(req, res) {
         }else{
             dataAcess.associateEventToUser(event, user);
         }});
+        req.flash('success','The event,'+event.name+' is added');
         res.redirect('/');
     })
 });
@@ -97,7 +101,8 @@ router.post('/events', middlewares.isLoggedIn, function(req, res) {
 router.put('/events/:id', function(req, res){
     var id = req.params.id;
     var event = req.body.event;
-    dataAcess.updateEventInDB(id,event); 
+    dataAcess.updateEventInDB(id,event);
+    req.flash('success','The event,'+event.name+' is updated');
     res.redirect('/');
 });
 
@@ -119,6 +124,7 @@ router.get('/events/:id/edit',middlewares.isLoggedIn ,function(req, res) {
 router.delete('/events/:id', middlewares.isLoggedIn, function(req, res){
     var id = req.params.id;
     dataAcess.deleteEventFromDB(id);
+    req.flash('success','The event is deleted');
     res.redirect('/');
 });
 

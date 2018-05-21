@@ -72,5 +72,16 @@ var userSchema = new mongoose.Schema({
     userSchema.plugin(passportLocalMongoose);
 var userModel = mongoose.model('User', userSchema);
 
+var searchTrackSchema = mongoose.Schema({
+        user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
+        sportType: {type: mongoose.Schema.Types.ObjectId, ref: "Type"},
+});
+var searchTrackModel = mongoose.model('Track', searchTrackSchema);
+
 ///EXPORTS/////////////////////////////////////////////////
-module.exports = {'user' : userModel, 'sportType': sportTypeModel, 'event': eventModel, 'group': groupModel};
+module.exports = {'user' : userModel, 
+                  'sportType': sportTypeModel,
+                  'event': eventModel,
+                  'group': groupModel,
+                  'track': searchTrackModel
+                  };

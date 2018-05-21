@@ -101,6 +101,7 @@ function getGroupFromDB(id, cb){
 function associateGroupToUser(group, user){
         user.groups.push(group._id);
         group.participants.push(user._id);
+        group.save();
         user.save(function(err){
             if(err){
                 console.log('associating group failed');
@@ -152,6 +153,7 @@ function getEventFromDB(id, cb){
 function associateEventToUser(event, user){
         user.events.push(event._id);
         event.participants.push(user._id);
+        event.save();
         user.save(function(err){
             if(err){
                 console.log('associating event failed');

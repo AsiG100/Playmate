@@ -1,13 +1,10 @@
 const dataAccess = require("../data_access/dataAccess.js");
 
 function addSuggestedContentToFeed(userID, res, cb){
-    var friendsEvents = [],
-        friendsGroups = [];
-        res.locals.friendsEvents = [];
-        res.locals.friendsGroups = [];
+       res.locals.friendsEvents = [];
+       res.locals.friendsGroups = [];
 
     dataAccess.getUserFromDB({_id: userID}, function(user){
-       var friendsAmount = user.favoriteUsers.length;
        if(user.favoriteUsers.length > 0){
                 user.favoriteUsers.forEach(function(friendID){
                 dataAccess.getUserContent(friendID, function(groups, events){
@@ -24,7 +21,6 @@ function addSuggestedContentToFeed(userID, res, cb){
                      if(isEventPassed(event.dateOfEvent) && event.participants.indexOf(user._id) == -1)
                      {
                         console.log('add: %s',event);
-                        friendsEvents.push(event);  
                         res.locals.friendsEvents = res.locals.friendsEvents.concat(event);
                         res.locals.friendsEvents.sort(sortByDate);
                      }
@@ -41,11 +37,24 @@ function addSuggestedContentToFeed(userID, res, cb){
 }
 
 function addYourContentToFeed(userID, res, cb){
+        res.locals.events = [];
+        res.locals.groups = [];
+     
       dataAccess.getUserContent(userID, function(groups, events){
-        res.locals.events = events;
-        res.locals.events.sort(sortByDate);
-        res.locals.groups = groups;
-        res.locals.groups.sort(sortByDate);
+        groups.forEach(function(group){
+                console.log('add: %s',group);
+                res.locals.groups = res.locals.groups.concat(group);
+                res.locals.groups.sort(sortByDate);
+          });
+          events.forEach(function(event){
+             if(isEventPassed(event.dateOfEvent))
+             {
+                console.log('add: %s',event);
+                events.push(event);  
+                res.locals.events = res.locals.events.concat(event);
+                res.locals.events.sort(sortByDate);
+             }
+          });
         
         cb();
        });
