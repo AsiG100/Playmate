@@ -104,14 +104,13 @@
 						
 						<div id="events" class="bottom-part">
 							<div class="bottom-part-container">
-								<div class="bottom-card">
-									<% if(group.events.length == 0){ %>
-										<p>No events yet</p>
-									<% }else{ %>
+					            <a href="/groups/<%= group._id %>/events/add" class="join">Add an event</a>
+								<% if(group.events.length == 0){ %>
+									<div class="bottom-card"><p>No events yet </p></div>
+								<% }else{ %>
 									<% group.events.forEach(function(event){ %>
-										<p><%= event.name %></p>
-									<% });} %> 
-								</div>
+									<a href="/events/<%= event._id %>"><div class="bottom-card"><p><%= event.name %></p></div></a>
+								<% });} %> 
 							</div>
 						</div>
 						

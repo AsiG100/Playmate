@@ -1,5 +1,9 @@
-const dataAccess = require("../data_access/dataAccess.js");
+const dataAccess = require("../data_access/dataAccess.js"),
+      sportTypes = require("../data_access/schemas.js").sportTypes,
+      request    = require("request");
 
+
+//SMART FEED/////////////////////////////////////
 function addSuggestedContentToFeed(userID, res, cb){
        res.locals.friendsEvents = [];
        res.locals.friendsGroups = [];
@@ -71,8 +75,83 @@ function isEventPassed(date){
         return due > now;
 }
 
+//SMART GROUP CREATION/////////////////////
+/*
+    This service tracks the users searches and fit a group that suits for the participants
+    based on their interests and people they follow
+*/
+
+function getAllRelevantTracksForType(type, cb){
+    //gets the releant tracks decided upon the distance between the users and the sport type
+    var relevants = [];
+    var hasGroup = false;
+    dataAccess.getAllTracksForType(type, function(tracks){
+       tracks.forEach(function(track){
+            track.groups.forEach(function(group){
+                if(group.sportType == type){
+                    hasGroup = true;
+                }
+            });
+            
+            if(hasGroup == false){
+                relevants.push(track);
+            }
+       });
+      cb(relevants); 
+    });
+}
+
+function getFriendsInRelevantTracks(userID, type){
+    var group = [];
+    var userSent;
+    
+    dataAccess.getUserFromDB({_id: userID}, function(user){
+        userSent = user;        
+    });
+    
+    getAllRelevantTracksForType(type, function(relevants){
+       relevants.forEach(function(relevant){
+            if(userSent.favoriteUsers.indexOf(relevant.user) != -1){
+                group.push(relevant);
+            }
+       });
+       return group;
+    });
+}
+
+function hasSearched(userID, type){
+    getAllRelevantTracksForType(type, function(relevants){
+        relevants.forEach(function(relevant){
+           if(relevant.user == userID){
+               return true;
+           } 
+        });
+        
+        return false;
+    });
+}
+
+function getOffersOfCreationToUser(userID){
+    //get user and offer him users to create a group for a type
+    var recommandations = [];
+    
+    sportTypes.forEach(function(type){
+        if(hasSearched(userID, type)){
+            var group = getFriendsInRelevantTracks(userID, type);
+            recommandations.push({
+                type: type,
+                group: group
+            });
+        }
+    });
+    
+    return recommandations;
+}
+
+///////////////////////////////////////////
 module.exports = {
     addSuggestedContentToFeed: addSuggestedContentToFeed,
-    addYourContentToFeed: addYourContentToFeed
+    addYourContentToFeed: addYourContentToFeed,
+    getOffersOfCreationToUser: getOffersOfCreationToUser
 }
 

@@ -14,6 +14,8 @@ var models  = require("./schemas");
 var User    = models.user;
 var Group   = models.group;
 var Event   = models.event;
+var Track   = models.track;
+
 
 //GETS AND SAVES/////////////////////////////////
 function saveUserToDB(user, userDetails)
@@ -127,12 +129,12 @@ function saveEventToDB(event, cb){
          level: event.minLevel, // From beginner to expert
          gameLevel: 0,//The individual score
          agesRange: "0 - 99", // Ages of the participates
-    }, function(err, event){
+    }, function(err, savedEvent){
       if(err){
-          console.log('failed creating event');
+          console.log(err);
       }else{
           console.log('event created');
-          cb(event);
+          cb(savedEvent);
       }
     })
 }
@@ -161,6 +163,19 @@ function associateEventToUser(event, user){
                 console.log('associating event succeeded');
             }
         })
+}
+
+function associateEventToGroup(event, groupID){
+        Group.findById(groupID, function(err, group) {
+            if(err){
+                console.log(err);
+            }else{
+                group.events.push(event._id);
+                group.save(function(){
+                console.log('associated event to group');
+                });
+            }
+            });            
 }
 
 function getUserContent(userId, cb){
@@ -453,6 +468,42 @@ function removeGroupFromUserDB(user, group){
     }); 
 }
 
+//TRACK SEARCHES///////////////////////////
+
+function addTrackSearch(userID, sportType){
+    //add the user's search to the DB
+        User.findById(userID)
+        .populate('favoriteUsers')
+        .populate('groups')
+        .exec(function(err, user){
+           if(err){
+               console.log(err);
+           }else{
+                Track.create({
+                    user: user,
+                    sportType: sportType,
+                    favoriteUsers: user.favoriteUsers,
+                    groups: user.groups
+                }, function(err, track){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log('track added');
+                    }
+                });               
+           }
+        });
+}
+
+function getAllTracksForType(type, cb){
+    Track.find({sportType: type}, function(err, tracks){
+       if(err){
+           console.log(err);
+       }else{
+            cb(tracks);
+       }
+    });
+}
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {
                 saveUserToDB: saveUserToDB,
@@ -464,6 +515,7 @@ var funcs = {
                 saveEventToDB: saveEventToDB,
                 getEventFromDB: getEventFromDB,
                 associateEventToUser: associateEventToUser,
+                associateEventToGroup: associateEventToGroup,
                 getUserContent: getUserContent,
                 updateEventInDB: updateEventInDB,
                 updateGroupInDB: updateGroupInDB,
@@ -476,7 +528,8 @@ var funcs = {
                 addGroupToUserDB: addGroupToUserDB,
                 removeGroupFromUserDB: removeGroupFromUserDB,
                 addEventToUserDB: addEventToUserDB,
-                removeEventFromUserDB: removeEventFromUserDB
+                removeEventFromUserDB: removeEventFromUserDB,
+                addTrackSearch: addTrackSearch
              }
 
 //EXPORT---------------------------------------

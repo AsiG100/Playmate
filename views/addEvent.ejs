@@ -100,6 +100,9 @@
                         <span class="focus-input100"></span>
                     </div>
 					
+					<%if(groupID != undefined){ %>
+					    <input type="hidden" name="event[groupID]" value="<%= groupID %>" >
+					<% } %>
                     <div class="col-md-12 m-t-17">
                         <button type="submit" class="login100-form-btn">
 							Create event

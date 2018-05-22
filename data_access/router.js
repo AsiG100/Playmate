@@ -78,9 +78,14 @@ router.delete('/groups/:id', function(req, res){
     res.redirect('/');
 });
 
+router.get('/groups/:id/events/add', middlewares.isLoggedIn, function(req, res) {
+    var id = req.params.id;
+    res.render('addEvent',{groupID: id});
+});
+
 //EVENTS////////////////////////////
 router.get('/events/add',middlewares.isLoggedIn, function(req, res) {
-    res.render('addEvent');
+    res.render('addEvent',{groupID: undefined});
 });
 
 router.post('/events', middlewares.isLoggedIn, function(req, res) {
@@ -92,6 +97,10 @@ router.post('/events', middlewares.isLoggedIn, function(req, res) {
             console.log(err);
         }else{
             dataAcess.associateEventToUser(event, user);
+            if(eventDetails.groupID != undefined){
+                console.log(eventDetails.groupID)
+                dataAcess.associateEventToGroup(event, eventDetails.groupID);
+            }
         }});
         req.flash('success','The event,'+event.name+' is added');
         res.redirect('/');

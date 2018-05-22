@@ -15,10 +15,6 @@
             <%=groups[group].minParticipants%> and max number of participants is
                 <%= groups[group].maxParticipants%>
         </p>
-        <form action="/groups/<%= groups[group]._id %>?_method=DELETE" method="POST" class="dis-inline">
-            <input type="submit" class="btn btn-danger" value="Delete">
-        </form>
-        <a href="/groups/<%= groups[group]._id %>/edit" class="btn btn-warning">Edit</a>
         <a href="/groups/<%= groups[group]._id %>" class="btn btn-primary">Go to group</a>
     </div>
     <div class="card-footer text-muted">

@@ -2,11 +2,20 @@ var mongoose = require("mongoose"),
     passportLocalMongoose = require("passport-local-mongoose");
 
 //SCHEMAS AND MODELS/////////////////////////////////////
+const sportTypes =  [
+                        'TRX',
+                        'Football',
+                        'Basketball',
+                        'Running',
+                        'Swimming',
+                        'Tennis',
+                        'Bowling'
+                    ] 
 
 var groupSchema = new mongoose.Schema({
         dateOfCreation: Date,
         name: String,
-        type: String,
+        sportType: String,
         daysAndTime: [{
             day: String,
             Time: String
@@ -39,11 +48,6 @@ var eventSchema = new mongoose.Schema({
 });
 var eventModel = mongoose.model("Event", eventSchema);
 
-var sportTypeSchema = new mongoose.Schema({
-        name: String     
-});
-var sportTypeModel = mongoose.model('Type', sportTypeSchema);
-
 var userSchema = new mongoose.Schema({
         facebook: {
             id: String,
@@ -61,7 +65,7 @@ var userSchema = new mongoose.Schema({
                     street: String,
                     streetNum: Number
                 },
-        sportTypes: [{type: mongoose.Schema.Types.ObjectId, ref: "Type"}], //Sport types the user interested in
+        sportTypes: [String], //Sport types the user interested in
         events: [{type: mongoose.Schema.Types.ObjectId, ref: "Event"}], //Events the user participates in
         groups: [{type: mongoose.Schema.Types.ObjectId, ref: "Group"}], //Groups the user participates in
         gameProgress: Number, //The score of each user
@@ -75,13 +79,15 @@ var userModel = mongoose.model('User', userSchema);
 var searchTrackSchema = mongoose.Schema({
         user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
         sportType: {type: mongoose.Schema.Types.ObjectId, ref: "Type"},
+        favoriteUsers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+        groups: [{type: mongoose.Schema.Types.ObjectId, ref: "Group"}]
 });
 var searchTrackModel = mongoose.model('Track', searchTrackSchema);
 
 ///EXPORTS/////////////////////////////////////////////////
 module.exports = {'user' : userModel, 
-                  'sportType': sportTypeModel,
                   'event': eventModel,
                   'group': groupModel,
-                  'track': searchTrackModel
+                  'track': searchTrackModel,
+                  sportTypes: sportTypes
                   };
