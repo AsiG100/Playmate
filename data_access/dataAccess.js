@@ -6,8 +6,8 @@ var mongoose = require("mongoose"),
     fs       = require("fs"),
     upload   = require("./imgUpload");
     
-mongoose.connect("mongodb://localhost/playmate");
-//mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
+//mongoose.connect("mongodb://localhost/playmate");
+mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
 
 //MODELS----------------------------
 var models  = require("./schemas");
