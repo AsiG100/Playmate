@@ -11,7 +11,7 @@ function addSuggestedContentToFeed(userID, res, cb){
     dataAccess.getUserFromDB({_id: userID}, function(user){
        if(user.favoriteUsers.length > 0){
                 user.favoriteUsers.forEach(function(friendID){
-                dataAccess.getUserContent(friendID, function(groups, events){
+                dataAccess.getUserContent(friendID, function(user, groups, events){
                   groups.forEach(function(group){
                      if(group.participants.indexOf(user._id) == -1)
                      {
@@ -44,7 +44,7 @@ function addYourContentToFeed(userID, res, cb){
         res.locals.events = [];
         res.locals.groups = [];
      
-      dataAccess.getUserContent(userID, function(groups, events){
+      dataAccess.getUserContent(userID, function(user, groups, events){
         groups.forEach(function(group){
                 console.log('add: %s',group);
                 res.locals.groups = res.locals.groups.concat(group);

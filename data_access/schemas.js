@@ -24,6 +24,7 @@ var groupSchema = new mongoose.Schema({
         minParticipants: Number,
         maxParticipants: Number,
         level: String,
+        group: {type: mongoose.Schema.Types.ObjectId, ref: "Group"},
         events: [{type: mongoose.Schema.Types.ObjectId, ref: "Event"}],
         participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}]
 });

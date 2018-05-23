@@ -128,7 +128,7 @@ function saveEventToDB(event, cb){
          sportType: event.type,
          level: event.minLevel, // From beginner to expert
          gameLevel: 0,//The individual score
-         agesRange: "0 - 99", // Ages of the participates
+         group: event.groupID
     }, function(err, savedEvent){
       if(err){
           console.log(err);
@@ -188,7 +188,7 @@ function getUserContent(userId, cb){
             }
             else{
                 console.log('sent groups and events');
-                cb(user.groups, user.events);
+                cb(user, user.groups, user.events);
             }
         });
 }
@@ -271,7 +271,9 @@ function updateUserInDB(userID,updatedData, cb){
 //DELETES//////////////////////////////////////////////////////////
 
 function deleteEventFromDB(eventID){
-    Event.findById(eventID).populate("participants").exec (function(err, event) {
+    Event.findById(eventID)
+    .populate("participants")
+    .exec (function(err, event) {
         if(err){
             console.log(err);
         }else{
@@ -285,6 +287,7 @@ function deleteEventFromDB(eventID){
                 }
             });
             
+            
             event.remove(function(err){
                 if(err){
                     console.log(err);
@@ -297,10 +300,13 @@ function deleteEventFromDB(eventID){
 }
 
 function deleteGroupFromDB(groupID){
-    Group.findById(groupID).populate("participants").exec(function(err, group) {
+    Group.findById(groupID)
+    .populate("participants")
+    .exec(function(err, group) {
         if(err){
             console.log(err);
         }else{
+            console.log(group);
             group.participants.forEach(function(user){
                var index = user.groups.indexOf(groupID);
                console.log('the index is: ',index);

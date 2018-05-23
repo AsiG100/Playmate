@@ -15,15 +15,14 @@
 						<span class="usernameNav"><%= user.username %></span>
 					</li></a>
 				<% } %>
-				<li class="dropdown">
-					<button class="dropbtn" onclick="myFunction()">Create 
-      					<i class="fa fa-caret-down"></i>
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="z-index: 6;">Create 
     				</button>
-					<div class="dropdown-menu dropdownCreateOptions dropdown-content" id="myDropdown">
-						<a class="dropdown-item" href="/events/add">Create event</a>
-						<a class="dropdown-item" href="/groups/add">Create group</a>
-					</div>
-				</li>
+					<ul class="dropdown-menu">
+						<li><a href="https://playmate-zmirnoff.c9users.io/events/add">Create event</a></li>
+						<li><a href="https://playmate-zmirnoff.c9users.io/groups/add">Create group</a></li>
+					</ul>
+				</div>
 			</ul>
 		</div>
 	</nav>

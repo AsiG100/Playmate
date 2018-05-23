@@ -141,8 +141,8 @@ router.delete('/events/:id', middlewares.isLoggedIn, function(req, res){
 
 router.get('/profile/:id',middlewares.isLoggedIn, function(req, res) {
     var id = req.params.id;
-    dataAcess.getMyContent(id, res, function(user){
-        res.render('profile',{profile:user});
+    dataAcess.getUserContent(id, function(user, groups, events){
+        res.render('profile',{profile:user, groups:groups, events: events});
     });
 });
 

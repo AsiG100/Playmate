@@ -76,7 +76,7 @@
 										<button type="submit" class="join">Leave event</button>
 									</form>						
 						     	<% } %>				
-						     	<form action="/groups/<%= event._id %>?_method=DELETE" method="POST" class="dis-inline">
+						     	<form action="/events/<%= event._id %>?_method=DELETE" method="POST" class="dis-inline">
 						            <input type="submit" class="join" value="Delete">
 					            </form>
 						        <a href="/groups/<%= event._id %>/edit" class="join">Edit</a>
