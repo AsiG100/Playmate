@@ -1,42 +1,78 @@
-<div class="container-fluid searchArea dis-inline">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="input-group" id="adv-search">
-                <input type="text" class="form-control" placeholder="Search for events/groups" />
-                <div class="input-group-btn">
-                    <div class="btn-group dis-inline" role="group">
-                        <div class="dropdown dropdown-lg">
-                            <button type="button" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" role="menu" aria-haspopup="true" aria-expanded="false">
-                                <form class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label for="filter">Filter by</label>
-                                        <select class="form-control">
-                                            <option value="0" selected>All Snippets</option>
-                                            <option value="1">Featured</option>
-                                            <option value="2">Most popular</option>
-                                            <option value="3">Top rated</option>
-                                            <option value="4">Most commented</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contain">Author</label>
-                                        <input class="form-control" type="text" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contain">Contains the words</label>
-                                        <input class="form-control" type="text" />
-                                    </div>
-                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                </form>
-                            </div>
-                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+		<link rel="stylesheet" type="text/css" href="/css/search.css">
+
+	<div class="row">
+		<div class="col-sm-7 col-centered">
+			<div class="search-window">
+				<form class="search-container" action="/results" method="POST">
+					<input type="text" id="search-bar" name="search[name]" placeholder="What would you like to search for?">
+					<button type="submit" id="search" class="search-button" name="">Search</button>
+					<button type="button" id="filters-button" class="filters-button" name="">Filter Options +</button>
+						<div class="filters-window" id="filters-options">
+							<div class="row">
+								<div class="col-sm-6">
+									<p>Sport type:</p>
+									<select class="selectpicker filter-button-design" name="search[type]">
+										<option selected value> -- Select an option -- </option>
+										<option>Football</option>
+										<option>BasketBall</option>
+										<option>Running</option>
+										<option>Swimming</option>
+										<option>TRX</option>
+										<option>Tennis</option>
+										<option>Bowling</option>
+									</select>
+									<p>Location:</p>
+									<select class="selectpicker filter-button-design" name="search[location]">
+										<option selected value> -- Select an option -- </option>
+										<option>North</option>
+										<option>Haifa</option>
+										<option>Center</option>
+										<option>Tel Aviv</option>
+										<option>Jerusalem</option>
+										<option>South</option>
+										<option>Beer Sheva</option>
+									</select>
+								</div>
+								<div class="col-sm-6">
+									<p>Level:</p>
+									<select class="selectpicker filter-button-design" name="search[level]">
+										<option selected value> -- Select an option -- </option>
+										<option>Noob</option>
+										<option>Rookie</option>
+										<option>Intermediate</option>
+										<option>Advanced</option>
+										<option>Master</option>
+									</select>
+									<p>Group/Event:</p>
+									<select class="selectpicker filter-button-design" name="search[contentType]">
+										<option selected>Group</option>
+										<option>Event</option>
+										<option>User Profile</option>
+									</select>
+								</div>
+							</div>
+						</div> 
+				</form>
+			</div>
+		</div>
+	</div>
+			<script>
+	<!-- Filters button -->
+	$(document).ready(function(){
+		$("#filters-options").hide();
+		
+		$("#filters-button").click(function(){
+			$("#filters-options").toggle();
+		});
+	});
+	
+	<!-- Results section -->
+	
+	$(document).ready(function(){
+		$("#results").hide();
+		
+		$("#search").click(function(){
+			$("#results").show();
+		});
+	});
+	</script>

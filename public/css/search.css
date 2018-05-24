@@ -1,0 +1,228 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway|Varela+Round|Coda);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+/*============Search Bar====================*/
+.search-body{
+	background-color: #def2ff8c;
+}
+
+.search-container{
+  display: block;
+  margin: auto;
+  text-align:center;
+  font-family: "varela round", sans-serif;
+  padding-bottom: 31px;
+  padding-top: 10px;
+}
+
+input#search-bar{
+  width: 90%;
+  height: 45px;
+  padding: 0 20px;
+  font-size: 1rem;
+  border: 1px solid #4eb6b6;
+  outline: none;
+  &:focus{
+    border: 1px solid #008ABF;
+    transition: 0.35s ease;
+    color: #008ABF;
+    &::-webkit-input-placeholder{
+      transition: opacity 0.45s ease; 
+  	  opacity: 0;
+     }
+    &::-moz-placeholder {
+      transition: opacity 0.45s ease; 
+  	  opacity: 0;
+     }
+    &:-ms-placeholder {
+     transition: opacity 0.45s ease; 
+  	 opacity: 0;
+     }    
+   }
+ }
+ input#search-bar::placeholder{
+	 color: #4eb6b6;
+	 font-weight: bold;
+	 opacity: 0.7;
+ }
+
+
+/*==========================================*/
+
+.col-centered{
+	float: none;
+	margin: 0 auto;
+	height: auto;
+}
+
+.search-window{
+	width: auto; 
+	margin: 0 auto;
+	height: auto;
+	background: #fff;
+	margin-left:30px;
+	padding-bottom: 10px;
+	margin-top: 20px;
+}
+
+.filters-button {
+	border-radius: 25px;
+	border: 1px solid;
+	text-align: center;
+	display: inline-block;
+	font-size: 11px;
+	color: #4eb6b6;
+	background-color: white;
+	font-weight: bold;
+	padding: 5px 13px;
+	margin-top: 15px;
+	margin-left: 15px;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.filters-button:hover{
+	color:white;
+	background-color: #4eb6b6;
+}
+
+.search-button{
+	border-radius: 25px;
+	border: 1px solid;
+	text-align: center;
+	display: inline-block;
+	font-size: 11px;
+	color: #4eb6b6;
+	background-color: white;
+	font-weight: bold;
+	padding: 5px 13px;
+	margin-top: 15px;
+	margin-left: 15px;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.search-button:hover{
+	color:white;
+	background-color: #4eb6b6;
+}
+
+.filters-window {
+	height: auto;
+	padding-top: 10px;
+	display: block;
+	color: #4eb6b6; 	
+	font-size: 15px;
+	font-weight: bold;
+	font-family: "varela round", sans-serif;
+	text-align: left;
+	margin-top: 5px;
+}
+
+.filters-window p {
+	margin-bottom: 7px;
+	margin-left: 45px;
+}
+
+.filter-button-design{
+	font-family: "varela round", sans-serif;
+	color: #4eb6b6;
+	border: 1px solid #4eb6b6;
+	border-radius: 15px;
+	padding: 3px 10px;
+	text-align: center;
+	margin-bottom: 15px;
+	margin-left: 35px;
+	cursor: pointer;
+}
+.filters-window .text-box{
+	margin-left: 35px;
+}
+
+.text-box > p{
+	margin-left: 11px;
+}
+
+input[type=text]{
+	border-color: #4eb6b6;
+	color: #4eb6b6;
+	width: 77%;
+	padding-top: 0px;
+	border-radius: 15px;
+}
+
+input[type=text]::placeholder{
+	color: #4eb6b6;
+}
+
+input[type=text]:focus{
+	color: #4eb6b6;
+	transition-duration: 0.5s;
+	box-shadow: 0 4px 8px 0 rgb(236, 247, 255), 0 6px 20px 0 rgb(236, 247, 255);
+}
+
+.bottom-part-seperator{
+	height: 70px;
+	text-align: center;
+	margin: auto;
+	display: block;
+	color: #fff; 	
+	font-size: 18px;
+	font-family: "varela round", sans-serif;
+	background-color: #4eb6b6;
+	margin-left: 29px;
+	margin-right: 0px;
+	border-radius: 5px;
+}
+
+.bottom-part{
+	width: auto; 
+	height: auto;
+	background: #fff;
+	margin-left:30px;
+	padding-bottom: 10px;
+}
+
+.bottom-part > p{
+	margin: auto;
+	margin-bottom: 8px;
+	padding-top: 8px;
+	color: #658585;
+	font-size: 2em;
+	font-family: "Coda", sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+
+.bottom-card{
+	text-align: center;
+	border: 1px solid #4eb6b6;
+	width: 90%;
+	height: auto;
+	margin: auto;
+	margin-top: 20px;
+	border-radius: 10px;
+	color: #4eb6b6;
+	font-family: "Coda", sans-serif;
+	
+}
+
+.bottom-card > h3{
+	font-size: 20px;
+	font-weight: bold;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.bottom-card-info{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.profile-pic {
+	border-radius: 50%;
+	height: 200px;
+	width: 220px;
+	margin-top: -12px;
+}

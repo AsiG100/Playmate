@@ -219,6 +219,29 @@ router.get('/googleCallback', function(req, res) {
     });
 });
 
+//RESULTS/////////////////////////////////////////
+
+router.post('/results', function(req, res) {
+   var search = req.body.search;
+//   dataAcess.addTrackSearch(req.user._id, search.type);
+    if(search.name != undefined){
+        dataAcess.getContentByName(search.name, search.type, function(content){
+            res.locals.content = content;
+            res.locals.contentType = search.type;
+            res.redirect('/results');
+        })
+    }
+//   dataAcess.getRelevantContent(search, function(content){
+//       res.locals.content = content;
+//       res.redirect('/results');
+//   });
+});
+
+router.get('/results', middlewares.isLoggedIn, function(req, res) {
+   res.render('results'); 
+});
+
+
 /////////////////////////////
 
 module.exports = router;

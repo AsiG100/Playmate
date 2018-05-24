@@ -1,11 +1,10 @@
 function getAge(dateString) {
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
+    var today = Date.now();
+    var birthDate = Date.parse(dateString);
+    var oneYear = 1000 * 60 * 60 * 24 * 365;
+    console.log(today,' ',birthDate);
+    var age = (today - birthDate)/oneYear;
+    console.log(age);
     return age;
 }
 

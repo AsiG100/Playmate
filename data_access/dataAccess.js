@@ -6,8 +6,8 @@ var mongoose = require("mongoose"),
     fs       = require("fs"),
     upload   = require("./imgUpload");
     
-//mongoose.connect("mongodb://localhost/playmate");
-mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
+mongoose.connect("mongodb://localhost/playmate");
+// mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
 
 //MODELS----------------------------
 var models  = require("./schemas");
@@ -166,6 +166,17 @@ function associateEventToUser(event, user){
 }
 
 function associateEventToGroup(event, groupID){
+        Event.findById(event._id, function(err, event) {
+            if(err){
+                console.log(err);
+            }else{
+                event.group = groupID;
+                event.save(function(){
+                    console.log('saved group in event');
+                });
+            }
+        });
+        
         Group.findById(groupID, function(err, group) {
             if(err){
                 console.log(err);
@@ -191,6 +202,79 @@ function getUserContent(userId, cb){
                 cb(user, user.groups, user.events);
             }
         });
+}
+
+function getContentByName(name, contentType, cb){
+    if(contentType == 'Event'){
+        Event.find({name: name}, function(err, events){
+           if(err){
+               console.log(err);
+           } 
+           else{
+               console.log(events);
+               cb(events);
+           }
+        });
+    }
+    else if(contentType == 'Group'){
+        Group.find({name: name}, function(err, groups){
+           if(err){
+               console.log(err);
+           } 
+           else{
+               console.log(groups);
+               cb(groups);
+           }
+        });
+    }
+    else{
+        User.find({username: name}, function(err, users){
+           if(err){
+               console.log(err);
+           } 
+           else{
+               console.log(users);
+                cb(users);
+           }
+        });
+     }          
+}
+
+function getRelevantContent(search, cb){
+    var content = [];
+    if(search.contentType == 'Event' || search.contentType == 'Group' ){
+        if(search.contentType == 'Event'){
+            Event.find(function(err, events){
+               if(err){
+                   console.log(err);
+               } 
+               else{
+                   content = events;
+               }
+            });
+        }
+        else if(search.contentType == 'Group'){
+            Group.find(function(err, groups){
+               if(err){
+                   console.log(err);
+               } 
+               else{
+                   content = groups;
+               }
+            });
+        }
+        
+    }
+        else{
+            User.find(function(err, users){
+               if(err){
+                   console.log(err);
+               } 
+               else{
+                   content = users;
+               }
+            });
+         }    
 }
 
 //UPDATING////////////////////////////////////////////////  
@@ -287,7 +371,19 @@ function deleteEventFromDB(eventID){
                 }
             });
             
-            
+            if(event.group != undefined){
+                Group.findById(event.group, function(err, group){
+                    if(err){
+                        console.log(err);
+                    }else{
+                           var index = group.events.indexOf(eventID);
+                           var removed = group.events.splice(index, 1);
+                           group.save();
+                           console.log('event removed from group: ',removed);                   
+                    }
+                    });
+            }
+                        
             event.remove(function(err){
                 if(err){
                     console.log(err);
@@ -523,6 +619,7 @@ var funcs = {
                 associateEventToUser: associateEventToUser,
                 associateEventToGroup: associateEventToGroup,
                 getUserContent: getUserContent,
+                getContentByName: getContentByName,
                 updateEventInDB: updateEventInDB,
                 updateGroupInDB: updateGroupInDB,
                 updateUserInDB: updateUserInDB,

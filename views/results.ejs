@@ -1,0 +1,43 @@
+<!Doctype html>
+<html>
+<head>
+	<title>Search</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<% include partials/defaultLinks&Scripts %>
+	<link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
+	<link rel="stylesheet" type="text/css" href="/css/search.css">
+	<link rel="stylesheet" type="text/css" href="/css/header.css">
+	<!--============================================ Bootstrap Jquery ==========================================-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
+	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<!--============================================ FONTS ==========================================-->
+	<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">	
+	<!--============================================ Scripts ==========================================-->
+
+</head>
+
+
+<body class="search-body">
+		<% include partials/header %>
+		<% include partials/searchBar %>
+		<div class="col-sm-7 col-centered">
+			<div class="bottom-part-seperator">
+			</div>
+		</div>
+		<div class="col-sm-7 col-centered" id="results"> <!-- =======Show this part only after search======= -->
+			<div class="bottom-part">
+				<p>Search Results</p>
+					<% if(contentType == 'Group'){ %>
+						<% include partials/resultGroup %>
+					<% }else if(contentType == 'Event'){ %>		
+						<% include partials/resultEvent %>
+					<% }else{ %>
+						<% include partials/resultUser %>
+					<% } %>
+			</div>
+		</div>
+	
+</body>
+</html>

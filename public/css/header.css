@@ -1,9 +1,9 @@
 .navStyle {
-  background-color: #ff6600;
+  background-color: #143775;
   -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
   -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
-  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
-  overflow: hidden;
+  box-shadow: 0px 2px 10px 0px rgba(1, 79, 82, 0.58);
+  overflow: visible;
   position: relative;
   top: 0;
   width: 100%;
