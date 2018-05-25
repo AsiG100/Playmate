@@ -1,30 +1,32 @@
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light navStyle">
 		<li class="list">
-			<a class="navbar-brand a-nav" href="/">Playmate</a>
+			<a class="siteBrand" href="/">Playmate</a>
 		</li>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<%if(user != undefined){%>
-					<a href='/profile/<%= user._id %>'>
-					<li>
-						<img src="<%= user.image %>" alt="profile image" width="50" height="50"/>
-						<span class="usernameNav"><%= user.username %></span>
-					</li></a>
-				<% } %>
-				<div class="dropdown">
-					<button class="dropdown-toggle" type="button" data-toggle="dropdown" style="z-index: 6;">Create 
-    				</button>
-					<ul class="dropdown-menu">
-						<li><a href="https://playmate-zmirnoff.c9users.io/events/add">Create event</a></li>
-						<li class="divider"></li>
-						<li><a href="https://playmate-zmirnoff.c9users.io/groups/add">Create group</a></li>
-					</ul>
-				</div>
-			</ul>
+			<div class="dropdown">
+				<button class="dropdown-toggle createBtn" type="button" data-toggle="dropdown" style="z-index: 6;">Create 
+    			</button>
+				<ul class="dropdown-menu">
+					<li><a href="https://playmate-zmirnoff.c9users.io/events/add">Create event</a></li>
+					<li class="divider"></li>
+					<li><a href="https://playmate-zmirnoff.c9users.io/groups/add">Create group</a></li>
+				</ul>
+			</div>
+			<div class="profile">
+				<ul class="nav navbar-nav navbar-right">
+					<%if(user != undefined){%>
+						<a href='/profile/<%= user._id %>'>
+						<li>
+							<img src="<%= user.image %>" alt="profile image" width="50" height="50"/>
+							<span class="usernameNav"><%= user.username %></span>
+						</li></a>
+					<% } %>
+				</ul>
+			</div>
 		</div>
 	</nav>
 </header>

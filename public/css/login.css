@@ -1,4 +1,15 @@
-.logo {
-    height: 50px;
-    width: 50px;
+.titleHeader {
+    background-color: #143775;
+    color: white;
+    width: 100%;
+}
+
+.siteTitle {
+    font-size: 45px;
+    font-family: 'Courgette', cursive;
+}
+
+.subtitle {
+    color:white;
+    font-size: 28px;
 }

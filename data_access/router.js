@@ -221,14 +221,14 @@ router.get('/googleCallback', function(req, res) {
 
 //RESULTS/////////////////////////////////////////
 
-router.post('/results', function(req, res) {
+router.post('/results', middlewares.isLoggedIn ,function(req, res) {
    var search = req.body.search;
 //   dataAcess.addTrackSearch(req.user._id, search.type);
     if(search.name != undefined){
-        dataAcess.getContentByName(search.name, search.type, function(content){
+        dataAcess.getContentByName(search.name, search.contentType, function(content){
             res.locals.content = content;
-            res.locals.contentType = search.type;
-            res.redirect('/results');
+            res.locals.contentType = search.contentType;
+            res.render('results');
         })
     }
 //   dataAcess.getRelevantContent(search, function(content){

@@ -1,15 +1,15 @@
-<div class="bottom-card">
-	<label><h3> Group Name </h3></label>
-	<div class="row bottom-card-info">
-		<div class="col-sm-6">
-			<p>Sport Type:</p>
-			<p>Level:</p>
-			<p>Ages:</p>
-			<p>Date:</p>
-			<p>Time:</p>
-		</div>
-		<div class="col-sm-6">
-			
+<a href="/groups/<%= group._id %>" class="text-no-dec"><div class="bottom-card">
+	<div class="bottom-card">
+		<label><h3> Group: <%= group.name %> </h3></label>
+		<div class="row bottom-card-info">
+			<div class="col-sm-6">
+				<p>Sport Type: <%=group.type %></p>
+				<p>Level: <%= group.level %></p>
+				<p>Participants required: <%=group.minParticipants%> - <%= group.maxParticipants%></p>
+			</div>
+			<div class="col-sm-6">
+				
+			</div>
 		</div>
 	</div>
-</div>
+</a>

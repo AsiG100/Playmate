@@ -1,13 +1,12 @@
-<a href="/events/<%= events[event]._id %>" class="text-no-dec"><div class="bottom-card">
-	<label><h3> Event: <%= events[event].name %> </h3></label>
+<a href="/events/<%= event._id %>" class="text-no-dec"><div class="bottom-card">
+	<label><h3> Event: <%= event.name %> </h3></label>
 	<div class="row bottom-card-info">
 		<div class="col-sm-6">
-			<p>Sport Type:</p>
-			<p>Level: <%= events[event].level %></p>
-			<p>Ages:</p>
-			<p>Participants required: <%=events[event].minNumOfParticipants%> - <%= events[event].maxNumOfParticipants%></p>
-			<p>Date: <%= events[event].dateOfEvent %></p>
-			<p>Time: <%= events[event].timeOfActivity.startTime %> - <%= events[event].timeOfActivity.endTime %></p>
+			<p>Sport Type: event.sportType</p>
+			<p>Level: <%= event.level %></p>
+			<p>Participants required: <%=event.minNumOfParticipants%> - <%= event.maxNumOfParticipants%></p>
+			<p>Date: <%= event.dateOfEvent %></p>
+			<p>Time: <%= event.timeOfActivity.startTime %> - <%= event.timeOfActivity.endTime %></p>
 		</div>
 		<div class="col-sm-6">
 			

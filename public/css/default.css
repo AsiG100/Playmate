@@ -187,12 +187,13 @@ iframe {
 
 
 .wrap-login100 {
-  width: 70%;
   background: #fff;
   border-radius: 10px;
   position: relative;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
-
 
 /*==================================================================
 [ Form ]*/
