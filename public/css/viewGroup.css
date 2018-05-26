@@ -88,6 +88,10 @@
   color: #daebea;
 }
 
+ul.data {
+	padding-left: 0;
+}
+
 .button{
 	border-radius: 25px;
 	border: 2px solid;

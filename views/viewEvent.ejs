@@ -16,28 +16,35 @@
         <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 		<!--============================================ Scripts ==========================================-->
 		<script>
-		$(document).ready(function(){
-		$("#details").hide();
-		$("#map").hide();
-		
-		$("#map-show").click(function(){
-			$("#details").hide();
-			$("#map").toggle();
-		});
-		$("#details-show").click(function(){
-			$("#map").hide();
-			$("#details").toggle();
-		});
-		});
-	</script>
-	
+			$(document).ready(function(){
+				$("#details").hide();
+				$("#map").hide();
+				$("#chat").hide();
+			
+				$("#map-show").click(function(){
+					$("#details").hide();
+					$("#chat").hide();
+					$("#map").toggle();
+				});
+				$("#details-show").click(function(){
+					$("#map").hide();
+					$("#chat").hide();
+					$("#details").toggle();
+				});
+				$("#chat-show").click(function(){
+					$("#map").hide();
+					$("#details").hide();
+					$("#chat").toggle();
+				});
+			});
+		</script>
     </head>
     <body class="profile-body">
 		<% include partials/header %>
 		<div class="container">
 			<% include partials/errorHandeling %>
 			<div class="row">
-				<div class="col-sm-3">
+				<div class="col-sm-12 col-md-3">
 					<div class="side-box">
 						<h2> Friends </h2>
 						<% event.participants.forEach(function(profile){ %>
@@ -45,7 +52,7 @@
 						<% }); %>
 					</div>
 				</div>
-				<div class="col-sm-7">
+				<div class="col-sm-12 col-md-8">
 					<div class="user-profile">
 							<div class="username"><%= event.name %></div>
 						<div class="bio">
@@ -83,12 +90,21 @@
 						<% } %>						
 						</div>
 						<ul class="data">
-							<li>
-							  <button class="button" id="map-show">Map</button>
-							</li>
-							<li>
-							  <button class="button" id="details-show">Details</button>
-							</li>
+							<div class="row">
+								<div class="col-sm-12 col-md-8">
+									<li>
+									  <button class="button" id="map-show">Map</button>
+									</li>
+									<li>
+									  <button class="button" id="details-show">Details</button>
+									</li>
+								</div>
+								<div class="col-sm-12 col-md-4">
+									<li>
+									  <button class="button" id="chat-show">chat</button>
+									</li>
+								</div>
+							</div>
 						</ul>
 						<div id="map" class="bottom-part">
 							<div class="bottom-part-container w-full">
@@ -117,8 +133,17 @@
 								</form>
 							</div>
 						</div>
+						
+						<div id="chat" class="bottom-part">
+							<div class="bottom-part-container">
+								<iframe width="540" height="500" scrolling="yes">
+									
+								</iframe>
+							</div>
+						</div>
 					</div>
 				</div>
+				<div col-sm-12 col-md-1></div>
 			</div>
 		</div>
     </body>

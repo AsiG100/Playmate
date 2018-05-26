@@ -599,6 +599,33 @@ function getAllTracksForSearch(search, cb){
        }
     });
 }
+
+//MESSAGES////////////////////////////////////
+
+function addMessageToGroup(groupID, message, cb){
+    Group.findById(groupID, function(err, group) {
+       if(err){
+           console.log(err);
+       } else{
+           group.messages.push(message);
+           console.log('message added');
+           cb();
+       }
+    });
+}
+
+function addMessageToEvent(eventID, message, cb){
+    Event.findById(eventID, function(err, event) {
+       if(err){
+           console.log(err);
+       } else{
+           event.messages.push(message);
+           console.log('message added');
+           cb();
+       }
+    });
+}
+
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {
                 saveUserToDB: saveUserToDB,
@@ -626,7 +653,9 @@ var funcs = {
                 removeGroupFromUserDB: removeGroupFromUserDB,
                 addEventToUserDB: addEventToUserDB,
                 removeEventFromUserDB: removeEventFromUserDB,
-                addTrackSearch: addTrackSearch
+                addTrackSearch: addTrackSearch,
+                addMessageToGroup: addMessageToGroup,
+                addMessageToEvent: addMessageToEvent
              }
 
 //EXPORT---------------------------------------

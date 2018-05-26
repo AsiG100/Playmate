@@ -256,6 +256,41 @@ router.get('/results', middlewares.isLoggedIn, function(req, res) {
    res.render('results',{content: undefined, contentType: undefined}); 
 });
 
+//MESSAGES///////////////////////////
+
+router.post('/groups/:id/messages/add', function(req, res) {
+   var image = req.user.image, 
+       name = req.user.username,
+       content = req.body.content,
+       groupID = req.params.id;
+       
+       dataAcess.addMessageToGroup(groupID, 
+       {
+           image: image,
+           name: name,
+           content: content
+           
+       }, function(){
+           res.redirect('back');
+       });
+});
+
+router.post('/events/:id/messages/add', function(req, res) {
+   var image = req.user.image, 
+       name = req.user.username,
+       content = req.body.content,
+       eventID = req.params.id;
+       
+       dataAcess.addMessageToEvent(eventID, 
+       {
+           image: image,
+           name: name,
+           content: content
+           
+       }, function(){
+           res.redirect('back');
+       });
+});
 
 /////////////////////////////
 

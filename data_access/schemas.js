@@ -24,7 +24,9 @@ var groupSchema = new mongoose.Schema({
         level: String,
         group: {type: mongoose.Schema.Types.ObjectId, ref: "Group"},
         events: [{type: mongoose.Schema.Types.ObjectId, ref: "Event"}],
-        participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}]
+        participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}],
+        messages: [{type: mongoose.Schema.Types.ObjectId, ref:"Message"}]
+        
 });
 var groupModel  = mongoose.model("Group", groupSchema);
 
@@ -43,7 +45,8 @@ var eventSchema = new mongoose.Schema({
          level: String, // From beginner to expert
          gameLevel: Number,//The individual score
          group: {type: mongoose.Schema.Types.ObjectId, ref: "Group"},
-         participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}]
+         participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}],
+         messages: [{type: mongoose.Schema.Types.ObjectId, ref:"Message"}]
 });
 var eventModel = mongoose.model("Event", eventSchema);
 
@@ -76,10 +79,18 @@ var searchTrackSchema = mongoose.Schema({
 });
 var searchTrackModel = mongoose.model('Track', searchTrackSchema);
 
+var messageSchema = mongoose.Schema({
+   image: String,
+   name: String,
+   content: String
+});
+var messageModel = mongoose.model('Message', messageSchema);
+
 ///EXPORTS/////////////////////////////////////////////////
 module.exports = {'user' : userModel, 
                   'event': eventModel,
                   'group': groupModel,
                   'track': searchTrackModel,
+                  'Message': messageModel,
                   sportTypes: sportTypes
                   };
