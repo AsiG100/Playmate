@@ -6,7 +6,7 @@ function isLoggedIn( req, res, next){
     }
     else{
         console.log("redirecting to login...");
-        res.render('login');    
+        res.redirect('/login');    
     }
 }
 

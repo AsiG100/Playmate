@@ -25,6 +25,10 @@ router.get('/', middlewares.isLoggedIn, function(req, res) {
         });
 });
 
+router.get('/login', function(req, res) {
+   res.render('login'); 
+});
+
 //GROUPS////////////////////////
 
 router.get('/groups/add', middlewares.isLoggedIn, function(req, res) {
@@ -223,22 +227,33 @@ router.get('/googleCallback', function(req, res) {
 
 router.post('/results', middlewares.isLoggedIn ,function(req, res) {
    var search = req.body.search;
-//   dataAcess.addTrackSearch(req.user._id, search.type);
-    if(search.name != undefined){
-        dataAcess.getContentByName(search.name, search.contentType, function(content){
-            res.locals.content = content;
-            res.locals.contentType = search.contentType;
-            res.render('results');
-        })
+    if(search.name.length > 0){
+        logic.showSearchedContentWithName(search, function(content){
+            if(search.contentType == 'Group' && content.length == 0){
+                  dataAcess.addTrackSearch(req.user._id, search);
+                  logic.getAllRelevantTracksForSearch(search, req.user._id, function(suggested){
+                        res.render('results',{content: suggested, contentType: 'Track'});
+                  });
+            }else{
+                res.render('results',{content: content, contentType: search.contentType});
+            }
+            });
+    }else{
+        logic.showSearchedContent(search, function(content){
+            if(search.contentType == 'Group' && content.length == 0){
+                  dataAcess.addTrackSearch(req.user._id, search);
+                  logic.getAllRelevantTracksForSearch(search, req.user._id, function(suggested){
+                        res.render('results',{content: suggested, contentType: 'Track'});                  
+                      });
+                  }else{                
+                        res.render('results',{content: content, contentType: search.contentType});
+              }
+          });
     }
-//   dataAcess.getRelevantContent(search, function(content){
-//       res.locals.content = content;
-//       res.redirect('/results');
-//   });
 });
 
 router.get('/results', middlewares.isLoggedIn, function(req, res) {
-   res.render('results'); 
+   res.render('results',{content: undefined, contentType: undefined}); 
 });
 
 

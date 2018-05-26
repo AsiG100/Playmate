@@ -16,10 +16,8 @@ var groupSchema = new mongoose.Schema({
         dateOfCreation: Date,
         name: String,
         sportType: String,
-        daysAndTime: [{
-            day: String,
-            Time: String
-        }],
+        days: [String],
+        time: String,
         location: String,
         minParticipants: Number,
         maxParticipants: Number,
@@ -72,9 +70,9 @@ var userModel = mongoose.model('User', userSchema);
 
 var searchTrackSchema = mongoose.Schema({
         user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
-        sportType: {type: mongoose.Schema.Types.ObjectId, ref: "Type"},
-        favoriteUsers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
-        groups: [{type: mongoose.Schema.Types.ObjectId, ref: "Group"}]
+        sportType: String,
+        district: String,
+        level: String
 });
 var searchTrackModel = mongoose.model('Track', searchTrackSchema);
 

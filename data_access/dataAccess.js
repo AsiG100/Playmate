@@ -69,9 +69,9 @@ function saveGroupToDB(group, cb){
     Group.create({
         dateOfCreation: Date.now(),
         name: group.name,
-        type: group.type,
-        dayOfActivity: group.day,
-        timeOfActivity: group.time,
+        sportType: group.type,
+        days: group.days,
+        time: group.time,
         location: group.location,
         minParticipants: group.minParticipants,
         maxParticipants: group.maxParticipants,
@@ -241,7 +241,6 @@ function getContentByName(name, contentType, cb){
 }
 
 function getRelevantContent(search, cb){
-    var content = [];
     if(search.contentType == 'Event' || search.contentType == 'Group' ){
         if(search.contentType == 'Event'){
             Event.find(function(err, events){
@@ -249,7 +248,7 @@ function getRelevantContent(search, cb){
                    console.log(err);
                } 
                else{
-                   content = events;
+                   cb(events);
                }
             });
         }
@@ -259,7 +258,7 @@ function getRelevantContent(search, cb){
                    console.log(err);
                } 
                else{
-                   content = groups;
+                   cb(groups);
                }
             });
         }
@@ -271,7 +270,7 @@ function getRelevantContent(search, cb){
                    console.log(err);
                } 
                else{
-                   content = users;
+                   cb(users);
                }
             });
          }    
@@ -572,20 +571,13 @@ function removeGroupFromUserDB(user, group){
 
 //TRACK SEARCHES///////////////////////////
 
-function addTrackSearch(userID, sportType){
+function addTrackSearch(userID, search){
     //add the user's search to the DB
-        User.findById(userID)
-        .populate('favoriteUsers')
-        .populate('groups')
-        .exec(function(err, user){
-           if(err){
-               console.log(err);
-           }else{
                 Track.create({
-                    user: user,
-                    sportType: sportType,
-                    favoriteUsers: user.favoriteUsers,
-                    groups: user.groups
+                    user: userID,
+                    sportType: search.sportType,
+                    district: search.district,
+                    level: search.level
                 }, function(err, track){
                     if(err){
                         console.log(err);
@@ -594,14 +586,15 @@ function addTrackSearch(userID, sportType){
                     }
                 });               
            }
-        });
-}
 
-function getAllTracksForType(type, cb){
-    Track.find({sportType: type}, function(err, tracks){
+function getAllTracksForSearch(search, cb){
+    Track.find({sportType: search.sportType, district: search.district, level: search.level})
+    .populate('user')
+    .exec(function(err, tracks){
        if(err){
            console.log(err);
        }else{
+           console.log('Tracks retrieved');
             cb(tracks);
        }
     });
@@ -620,6 +613,7 @@ var funcs = {
                 associateEventToGroup: associateEventToGroup,
                 getUserContent: getUserContent,
                 getContentByName: getContentByName,
+                getRelevantContent: getRelevantContent,
                 updateEventInDB: updateEventInDB,
                 updateGroupInDB: updateGroupInDB,
                 updateUserInDB: updateUserInDB,

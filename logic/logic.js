@@ -81,77 +81,99 @@ function isEventPassed(date){
     based on their interests and people they follow
 */
 
-function getAllRelevantTracksForType(type, cb){
+function getAllRelevantTracksForSearch(search, userID, cb){
     //gets the releant tracks decided upon the distance between the users and the sport type
     var relevants = [];
-    var hasGroup = false;
-    dataAccess.getAllTracksForType(type, function(tracks){
+
+    dataAccess.getAllTracksForSearch(search, function(tracks){
        tracks.forEach(function(track){
-            track.groups.forEach(function(group){
-                if(group.sportType == type){
-                    hasGroup = true;
-                }
-            });
-            
-            if(hasGroup == false){
-                relevants.push(track);
-            }
+            relevants.push(track.user);
        });
+    //TODO   dataAccess.deleteSearchedTracks(tracks);
       cb(relevants); 
     });
 }
 
-function getFriendsInRelevantTracks(userID, type){
-    var group = [];
-    var userSent;
-    
-    dataAccess.getUserFromDB({_id: userID}, function(user){
-        userSent = user;        
-    });
-    
-    getAllRelevantTracksForType(type, function(relevants){
-       relevants.forEach(function(relevant){
-            if(userSent.favoriteUsers.indexOf(relevant.user) != -1){
-                group.push(relevant);
+
+//Search results retrieval////////////////////////////////////////
+function showSearchedContent(search, cb){
+    dataAccess.getRelevantContent(search, function(content){
+        var finalContent = content;
+        var runnable = finalContent.slice();
+
+            if(search.type.length > 0){
+               runnable.forEach(function(element){
+                    if(element.sportType != search.type){
+                        var index = finalContent.indexOf(element);
+                        finalContent.splice(index, 1);                    
+                    }        
+               });
             }
-       });
-       return group;
+            runnable = finalContent.slice();
+            if(search.district.length > 0){
+               runnable.forEach(function(element){
+                    if(element.district != search.district){
+                        var index = finalContent.indexOf(element);
+                        finalContent.splice(index, 1);                    
+                    }                                
+               });
+            }
+            runnable = finalContent.slice();
+            if(search.level.length > 0){
+              runnable.forEach(function(element){
+                    console.log(finalContent.length,element.name,element.level,search.level);        
+                    if(element.level != search.level){
+                        var index = finalContent.indexOf(element);
+                        finalContent.splice(index, 1);                    
+                    }                                
+              });
+            }
+        cb(finalContent);
     });
 }
 
-function hasSearched(userID, type){
-    getAllRelevantTracksForType(type, function(relevants){
-        relevants.forEach(function(relevant){
-           if(relevant.user == userID){
-               return true;
-           } 
+function showSearchedContentWithName(search, cb){
+        dataAccess.getContentByName(search.name, search.contentType, function(content){
+                
+        var finalContent = content;
+        var runnable = finalContent.slice();
+
+            if(search.type.length > 0){
+               runnable.forEach(function(element){
+                    if(element.sportType != search.type){
+                        var index = finalContent.indexOf(element);
+                        finalContent.splice(index, 1);                    
+                    }        
+               });
+            }
+            runnable = finalContent.slice();
+            if(search.district.length > 0){
+               runnable.forEach(function(element){
+                    if(element.district != search.district){
+                        var index = finalContent.indexOf(element);
+                        finalContent.splice(index, 1);                    
+                    }                                
+               });
+            }
+            runnable = finalContent.slice();
+            if(search.level.length > 0){
+              runnable.forEach(function(element){
+                    console.log(finalContent.length,element.name,element.level,search.level);        
+                    if(element.level != search.level){
+                        var index = finalContent.indexOf(element);
+                        finalContent.splice(index, 1);                    
+                    }                                
+              });
+            }
+        cb(finalContent);
         });
-        
-        return false;
-    });
 }
-
-function getOffersOfCreationToUser(userID){
-    //get user and offer him users to create a group for a type
-    var recommandations = [];
-    
-    sportTypes.forEach(function(type){
-        if(hasSearched(userID, type)){
-            var group = getFriendsInRelevantTracks(userID, type);
-            recommandations.push({
-                type: type,
-                group: group
-            });
-        }
-    });
-    
-    return recommandations;
-}
-
 ///////////////////////////////////////////
 module.exports = {
     addSuggestedContentToFeed: addSuggestedContentToFeed,
     addYourContentToFeed: addYourContentToFeed,
-    getOffersOfCreationToUser: getOffersOfCreationToUser
+    getAllRelevantTracksForSearch: getAllRelevantTracksForSearch,
+    showSearchedContent: showSearchedContent,
+    showSearchedContentWithName: showSearchedContentWithName
 }
 

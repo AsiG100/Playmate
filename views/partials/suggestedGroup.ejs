@@ -1,0 +1,6 @@
+<div class="bottom-card">
+	<label><h3> Would you like to create a <%= content[0].contentType %> group </h3></label>
+	<h2> with: <% content.forEach(function(track){ %>
+        ,<%= track.user.username %>	
+	<% }) %></h2>
+</div>
