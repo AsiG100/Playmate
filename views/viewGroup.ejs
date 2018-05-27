@@ -15,37 +15,36 @@
         <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
 		<!--============================================ Scripts ==========================================-->
-		
 		<script>
 			$(document).ready(function(){
 				$("#details").hide();
 				$("#map").hide();
 				$("#events").hide();
-				$("#chat").hide();
+				$("#posts").hide();
 			
 				$("#map-show").click(function(){
 					$("#details").hide();
 					$("#events").hide();
-					$("#chat").hide();
+					$("#posts").hide();
 					$("#map").toggle();
 				});
 				$("#details-show").click(function(){
 					$("#map").hide();
 					$("#events").hide();
-					$("#chat").hide();
+					$("#posts").hide();
 					$("#details").toggle();
 				});
 				$("#events-show").click(function(){
 					$("#map").hide();
 					$("#details").hide();
-					$("#chat").hide();
+					$("#posts").hide();
 					$("#events").toggle();
 				});
-				$("#chat-show").click(function(){
+				$("#posts-show").click(function(){
 					$("#map").hide();
 					$("#details").hide();
 					$("#events").hide();
-					$("#chat").toggle();
+					$("#posts").toggle();
 				});
 			});
 		</script>
@@ -110,7 +109,7 @@
 							  <button class="button" id="details-show">Details</button>
 							</li>
 							<li>
-							  <button class="button" id="chat-show">Chat</button>
+							  <button class="button" id="posts-show">Posts</button>
 							</li>
 						</ul>
 						
@@ -149,11 +148,29 @@
 							</div>
 						</div>
 						
-						<div id="chat" class="bottom-part">
-							<div class="bottom-part-container">
-								<iframe width="540" height="500" scrolling="yes">
-									
-								</iframe>
+						<div id="posts" class="bottom-part">
+							<div class="bottom-part-container w-full">
+								<div class="scroll col-sm-12">
+									<% var messages = group.messages.reverse(); %>
+									<% messages.forEach(function(message){ %>
+										<% if(message.name == user.username){ %>
+											<% include partials/myMessage %>
+										<% }else{ %>
+											<% include partials/message %>
+									<% } }) %>
+								</div>
+								<div class="container">
+										<div class="col-sm-12">
+											<div class="enterMessageBox" style="padding-bottom:0">
+									            <form accept-charset="UTF-8" action="/groups/<%=group._id%>/messages/add" method="POST">
+									                <textarea class="span4" id="new_message" name="content"
+									                placeholder="Type in your message" rows="3"></textarea>
+									                <h6 class="pull-right">320 characters remaining</h6>
+									                <button class="btn btn-info" type="submit">Post New Message</button>
+									            </form>
+									        </div>
+								        </div>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -209,3 +209,35 @@
 	font-weight: bold;
 	display: inline;
 }
+
+.enterMessageBox {
+	width: 540px;
+}
+
+.span4 {
+	width: 540px;
+	height: 100px;
+}
+
+.pull-right {
+	text-align: right;
+}
+
+.chat_list .list-group-item {
+    padding: 5px 4px;
+    min-height: 50px;
+}
+@media (max-width: 768px) {
+    .chat_list .list-group-item {
+        min-height: inherit;
+    }
+}
+.chat_list .list-group-item-text {
+    word-wrap: break-word;
+    display: flex;
+    overflow: auto;
+}
+.chat_list .pull-left {
+    width: 55px;
+    text-align: center;
+}

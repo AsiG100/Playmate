@@ -15,6 +15,7 @@ var User    = models.user;
 var Group   = models.group;
 var Event   = models.event;
 var Track   = models.track;
+var Message = models.Message;
 
 
 //GETS AND SAVES/////////////////////////////////
@@ -90,6 +91,7 @@ function getGroupFromDB(id, cb){
     Group.findById(id)
     .populate('participants')
     .populate('events')
+    .populate('messages')
     .exec(function(err, group){
        if(err){
            console.log(err);
@@ -142,6 +144,7 @@ function saveEventToDB(event, cb){
 function getEventFromDB(id, cb){
     Event.findById(id)
     .populate('participants')
+    .populate('messages')
     .exec(function(err, event) {
        if(err){
            console.log(err);
@@ -607,9 +610,21 @@ function addMessageToGroup(groupID, message, cb){
        if(err){
            console.log(err);
        } else{
-           group.messages.push(message);
-           console.log('message added');
-           cb();
+           Message.create({
+               image: message.image,
+               name: message.name,
+               content: message.content
+           }, function(err, message){
+                if(err){
+                    console.log(err);
+                } else{
+                   group.messages.push(message);
+                   group.save(function(){
+                      console.log('message added');
+                   });
+                   cb();                    
+                }              
+           });
        }
     });
 }
@@ -619,10 +634,23 @@ function addMessageToEvent(eventID, message, cb){
        if(err){
            console.log(err);
        } else{
-           event.messages.push(message);
-           console.log('message added');
-           cb();
+           Message.create({
+               image: message.image,
+               name: message.name,
+               content: message.content
+           }, function(err, message){
+                if(err){
+                    console.log(err);
+                } else{
+                   event.messages.push(message);
+                   event.save(function(){
+                      console.log('message added');
+                   });
+                   cb();                    
+                }              
+           });
        }
+        
     });
 }
 

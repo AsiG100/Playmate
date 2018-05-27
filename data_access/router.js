@@ -64,6 +64,7 @@ router.put('/groups/:id', function(req, res){
 router.get('/groups/:id', middlewares.isLoggedIn, function(req, res) {
     var id = req.params.id;
     dataAcess.getGroupFromDB(id, function(group){
+        console.log(group);
          res.render('viewGroup',{group:group});
     });
 });
@@ -263,7 +264,7 @@ router.post('/groups/:id/messages/add', function(req, res) {
        name = req.user.username,
        content = req.body.content,
        groupID = req.params.id;
-       
+       console.log(groupID);
        dataAcess.addMessageToGroup(groupID, 
        {
            image: image,
