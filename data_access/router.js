@@ -32,7 +32,21 @@ router.get('/login', function(req, res) {
 //GROUPS////////////////////////
 
 router.get('/groups/add', middlewares.isLoggedIn, function(req, res) {
-    res.render('addGroup');
+    res.render('addGroup', {members: undefined});
+});
+
+var suggestedMembers = undefined;
+router.post('/groups/add/suggested', middlewares.isLoggedIn, function(req, res) {
+    var members = [];    
+    var search = req.body.search;
+    
+    logic.getAllRelevantTracksForSearch(search, req.user._id, function(tracks){
+        tracks.forEach(function(track){
+            members.push(track.user);
+        });
+            suggestedMembers = members;
+            res.render('addGroup');        
+    });
 });
 
 router.post('/groups',middlewares.isLoggedIn, function(req, res){
@@ -45,6 +59,14 @@ router.post('/groups',middlewares.isLoggedIn, function(req, res){
         }else{
             console.log("found user");
             dataAcess.associateGroupToUser(group, user);
+            
+            if(suggestedMembers != undefined){
+                suggestedMembers.forEach(function(member){
+                    dataAcess.getUserFromDB(member, function(user){
+                        dataAcess.associateGroupToUser(group, user);
+                    });
+                });
+            }
         }
     });
     req.flash('success','The group,'+group.name+' is added');
@@ -231,9 +253,11 @@ router.post('/results', middlewares.isLoggedIn ,function(req, res) {
     if(search.name.length > 0){
         logic.showSearchedContentWithName(search, function(content){
             if(search.contentType == 'Group' && content.length == 0){
-                  dataAcess.addTrackSearch(req.user._id, search);
-                  logic.getAllRelevantTracksForSearch(search, req.user._id, function(suggested){
-                        res.render('results',{content: suggested, contentType: 'Track'});
+                  dataAcess.addTrackSearch(req.user._id, search, 
+                  function(){
+                      logic.getAllRelevantTracksForSearch(search, req.user._id, function(suggested){
+                            res.render('results',{content: suggested, contentType: 'Track'});
+                      });                      
                   });
             }else{
                 res.render('results',{content: content, contentType: search.contentType});
@@ -242,10 +266,13 @@ router.post('/results', middlewares.isLoggedIn ,function(req, res) {
     }else{
         logic.showSearchedContent(search, function(content){
             if(search.contentType == 'Group' && content.length == 0){
-                  dataAcess.addTrackSearch(req.user._id, search);
-                  logic.getAllRelevantTracksForSearch(search, req.user._id, function(suggested){
-                        res.render('results',{content: suggested, contentType: 'Track'});                  
-                      });
+                  dataAcess.addTrackSearch(req.user._id, search, 
+                  function(){
+                      logic.getAllRelevantTracksForSearch(search, req.user._id, function(suggested){
+                          console.log(suggested,suggested.length);
+                            res.render('results',{content: suggested, contentType: 'Track'});                  
+                          });                      
+                  });
                   }else{                
                         res.render('results',{content: content, contentType: search.contentType});
               }

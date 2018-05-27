@@ -31,11 +31,13 @@
 			<div class="bottom-part">
 				<% if(content !=undefined && contentType != undefined){ %>
 					<p>Search Results</p>
-						<% if(contentType == 'Track){ %>
+						<% if(contentType == 'Track'){ %>
 							<div class="bottom-card">
 								<label><h3> No results were found </h3></label>
 							</div>
-							<% include partials/suggestedGroup %>
+							<% if(content.length > 0){ %>
+								<% include partials/suggestedGroup %>
+							<% } %>
 						<% }else if(contentType == 'Group'){ %>
 							<% content.forEach(function(group){ %>
 								<% include partials/resultGroup %>

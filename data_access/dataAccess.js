@@ -77,12 +77,12 @@ function saveGroupToDB(group, cb){
         minParticipants: group.minParticipants,
         maxParticipants: group.maxParticipants,
         level: group.level,
-    }, function(err, group){
+    }, function(err, savedGroup){
       if(err){
           console.log('failed creating group');
       }else{
           console.log('group created');
-          cb(group);
+          cb(savedGroup);
       }
     })
 }
@@ -103,6 +103,7 @@ function getGroupFromDB(id, cb){
 }
 
 function associateGroupToUser(group, user){
+    console.log(group);
         user.groups.push(group._id);
         group.participants.push(user._id);
         group.save();
@@ -560,7 +561,7 @@ function removeGroupFromUserDB(user, group){
                 if(err){
                     console.log(err);
                 }else{
-                    var index = group.participants.indexOf(group._id);
+                    var index = group.participants.indexOf(user._id);
                     group.participants.splice(index, 1);
                     group.save();
                     user.save(function(){
@@ -574,11 +575,14 @@ function removeGroupFromUserDB(user, group){
 
 //TRACK SEARCHES///////////////////////////
 
-function addTrackSearch(userID, search){
+function addTrackSearch(userID, search, cb){
     //add the user's search to the DB
+        getSpecificSearch(userID, search, function(tracks){
+            console.log(tracks);
+            if(tracks.length == 0){
                 Track.create({
                     user: userID,
-                    sportType: search.sportType,
+                    sportType: search.type,
                     district: search.district,
                     level: search.level
                 }, function(err, track){
@@ -586,14 +590,32 @@ function addTrackSearch(userID, search){
                         console.log(err);
                     }else{
                         console.log('track added');
+                        cb();
                     }
-                });               
-           }
+                 });            
+            }
+            
+            cb();
+        });
+}
 
 function getAllTracksForSearch(search, cb){
-    Track.find({sportType: search.sportType, district: search.district, level: search.level})
+    console.log(search);
+    Track.find({sportType: search.type, district: search.district, level: search.level})
     .populate('user')
     .exec(function(err, tracks){
+       if(err){
+           console.log(err);
+       }else{
+           console.log('Tracks retrieved');
+            cb(tracks);
+       }
+    });
+}
+
+function getSpecificSearch(userID, search, cb){
+    Track.find({user: userID, sportType: search.type, district: search.district, level: search.level}
+    ,function(err, tracks){
        if(err){
            console.log(err);
        }else{
@@ -682,6 +704,7 @@ var funcs = {
                 addEventToUserDB: addEventToUserDB,
                 removeEventFromUserDB: removeEventFromUserDB,
                 addTrackSearch: addTrackSearch,
+                getAllTracksForSearch: getAllTracksForSearch,
                 addMessageToGroup: addMessageToGroup,
                 addMessageToEvent: addMessageToEvent
              }

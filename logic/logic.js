@@ -87,7 +87,9 @@ function getAllRelevantTracksForSearch(search, userID, cb){
 
     dataAccess.getAllTracksForSearch(search, function(tracks){
        tracks.forEach(function(track){
-            relevants.push(track.user);
+            if(!track.user._id.equals(userID)){
+                relevants.push(track);
+            }
        });
     //TODO   dataAccess.deleteSearchedTracks(tracks);
       cb(relevants); 
