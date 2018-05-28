@@ -148,7 +148,7 @@ var FACEBOOK_APP_ID = '282940592244352',
 passport.use(new facebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_SECRET,
-    callbackURL: 'https://playmate-zmirnoff.c9users.io/auth/facebook/callback',
+    callbackURL: 'https://playmate1.herokuapp.com/auth/facebook/callback',
     profileFields: ['emails','friends','birthday','name','picture']
   },
   function(accessToken, refreshToken, profile, done) {
