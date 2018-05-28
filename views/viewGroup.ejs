@@ -51,21 +51,21 @@
     </head>
     <body class="profile-body">
 		<% include partials/header %>
-		<div class="container">
+		<div class="container container-padding">
 			<div class="row">
 				<div class="col-sm-12 col-md-3">
 					<div class="side-box">
-						<h2> Friends </h2>
+						<h2> Members </h2>
 							<% group.participants.forEach(function(profile){ %>
 								<% include partials/profileViewCard %>
 							<% }); %>
 					</div>
 				</div>
-				<div class="col-sm-12 col-md-8">
+				<div class="col-sm-12 col-md-6">
 					<div class="user-profile">
 							<div class="username"><%= group.name %></div>
 						<div class="bio">
-							<p>Sport Type: <%= group.type %></p>
+							<p>Sport Type: <%= group.sportType %></p>
 							<p>Location: <%= group.location %></p>
 							<p>Min level: <%= group.level %></p>
 						<% if(!user._id.equals(group.participants[0]._id)){ %>

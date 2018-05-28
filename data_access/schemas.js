@@ -60,7 +60,7 @@ var userSchema = new mongoose.Schema({
         },
         birthDate: String,
         email: String,
-        address:String,
+        district:String,
         sportTypes: [String], //Sport types the user interested in
         events: [{type: mongoose.Schema.Types.ObjectId, ref: "Event"}], //Events the user participates in
         groups: [{type: mongoose.Schema.Types.ObjectId, ref: "Group"}], //Groups the user participates in

@@ -1,101 +1,100 @@
 <html>
-<head>
-	<title>Playmate - Profile</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
-    <link rel="stylesheet" type="text/css" href="/css/header.css">
-	<link rel="stylesheet" type="text/css" href="/css/profilePage.css">
-	<% include partials/defaultLinks&Scripts %>
-	<!-- ======= Show/Hide Groups and Events Script ============= -->
-	<script>
-		$(document).ready(function(){
-		$("#event").hide();
-		$("#group").hide();
-		
-		$("#group-show").click(function(){
+	<head>
+		<title>Playmate - Profile</title>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
+	    <link rel="stylesheet" type="text/css" href="/css/header.css">
+		<link rel="stylesheet" type="text/css" href="/css/profilePage.css">
+		<% include partials/defaultLinks&Scripts %>
+		<!-- ======= Show/Hide Groups and Events Script ============= -->
+		<script>
+			$(document).ready(function(){
 			$("#event").hide();
-			$("#group").toggle();
-		});
-		$("#event-show").click(function(){
 			$("#group").hide();
-			$("#event").toggle();
-		});
-		});
-	</script>
-</head>
-<body>
+			
+			$("#group-show").click(function(){
+				$("#event").hide();
+				$("#group").toggle();
+			});
+			$("#event-show").click(function(){
+				$("#group").hide();
+				$("#event").toggle();
+			});
+			});
+		</script>
+	</head>
+	<body>
 		<header>
             <% include partials/header %>
         </header>
 		<main class="profile-body">
-		<div class="user-profile">
+			<div class="user-profile">
 				<img src="<%= profile.image %>" class="avatar" alt="Profile Picture" />
 				<div class="username"><%= profile.name %></div>
-			<div class="bio">
-				<p>Level: Noob </p>
-				<p>Age: <span id="age"></span> </p>
-				<p>Exp: <%= profile.gameProgress %> </p>
-				<% if(!user._id.equals(profile._id)){ %>
-					<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
-						<form action="/friends/toggle" method="POST">
-							<input type="hidden" name="friend" value="<%= profile._id %>" >
-							<input type="hidden" name="user" value="<%= user._id %>" >
-							<input type="hidden" name="isAdded" value="0" >
-							<button type="submit" class="follow">Follow</button>
-						</form>
-					<% }else{ %>
-						<form action="/friends/toggle" method="POST">
-							<input type="hidden" name="friend" value="<%= profile._id %>" >
-							<input type="hidden" name="user" value="<%= user._id %>" >
-							<input type="hidden" name="isAdded" value="1" >
-							<button type="submit" class="follow">Unfollow</button>
-						</form>
-				<% } } %>
-			</div>
-			<ul class="data">
-				<li>
-				  <button class="button" id="group-show">Groups</button>
-				</li>
-				<li>
-				  <button class="button" id="event-show">Events</button>
-				</li>
-			</ul>
-			<div id="group" class="bottom-part">
-				<div class="bottom-part-container">
-					<% if(groups === []){ %>
-						<div class="bottom-card">
-							<p>No Groups</p>
-						</div>
-					<% }else{ groups.forEach(function(group){ %>
-						<a href="/groups/<%= group._id %>"><div class="bottom-card">
-						<p><%= group.name %></p>
-					</div></a>
-					<% });}  %>
+				<div class="bio">
+					<p>Level: Noob </p>
+					<p>Exp: <%= profile.gameProgress %> </p>
+					<% if(!user._id.equals(profile._id)){ %>
+						<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
+							<form action="/friends/toggle" method="POST">
+								<input type="hidden" name="friend" value="<%= profile._id %>" >
+								<input type="hidden" name="user" value="<%= user._id %>" >
+								<input type="hidden" name="isAdded" value="0" >
+								<button type="submit" class="follow">Follow</button>
+							</form>
+						<% }else{ %>
+							<form action="/friends/toggle" method="POST">
+								<input type="hidden" name="friend" value="<%= profile._id %>" >
+								<input type="hidden" name="user" value="<%= user._id %>" >
+								<input type="hidden" name="isAdded" value="1" >
+								<button type="submit" class="follow">Unfollow</button>
+							</form>
+					<% } } %>
 				</div>
-			</div>
-			<div id="event" class="bottom-part">
-				<div class="bottom-part-container">
-					<% if(events === []){ %>
-						<div class="bottom-card">
-							<p>No Events</p>
-						</div>
-					<% }else{ events.forEach(function(event){ %>
-						<a href="/events/<%= event._id %>"><div class="bottom-card">
-							<p><%= event.name %></p>
+				<ul class="data">
+					<li>
+					  <button class="button" id="group-show">Groups</button>
+					</li>
+					<li>
+					  <button class="button" id="event-show">Events</button>
+					</li>
+				</ul>
+				<div id="group" class="bottom-part">
+					<div class="bottom-part-container">
+						<% if(groups === []){ %>
+							<div class="bottom-card">
+								<p>No Groups</p>
+							</div>
+						<% }else{ groups.forEach(function(group){ %>
+							<a href="/groups/<%= group._id %>"><div class="bottom-card">
+							<p><%= group.name %></p>
 						</div></a>
-					<% }); }%>
+						<% });}  %>
+					</div>
+				</div>
+				<div id="event" class="bottom-part">
+					<div class="bottom-part-container">
+						<% if(events === []){ %>
+							<div class="bottom-card">
+								<p>No Events</p>
+							</div>
+						<% }else{ events.forEach(function(event){ %>
+							<a href="/events/<%= event._id %>"><div class="bottom-card">
+								<p><%= event.name %></p>
+							</div></a>
+						<% }); }%>
+					</div>
 				</div>
 			</div>
-		</div>
 		</main>
-	<!-- ================== Age Script =================== -->
-	<script src="/js/profile.js" ></script>
+		<!-- ================== Age Script =================== -->
+		<script src="/js/profile.js" ></script>
         <script>
         	var ageElement = document.querySelector('#age');
         	var age = getAge('<%= profile.birthDate %>');
         	console.log(age);
         	ageElement.innerHTML = parseInt(age);
 		</script>		
-  </body>
-  </html>
+	</body>
+</html>

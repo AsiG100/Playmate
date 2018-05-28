@@ -40,19 +40,19 @@
 		</script>
     </head>
     <body class="profile-body">
-		<% include partials/header %>
-		<div class="container">
+	<% include partials/header %>
+		<div class="container container-padding">
 			<% include partials/errorHandeling %>
 			<div class="row">
 				<div class="col-sm-12 col-md-3">
 					<div class="side-box">
-						<h2> Friends </h2>
+						<h2> Members </h2>
 						<% event.participants.forEach(function(profile){ %>
 							<% include partials/profileViewCard %> 
 						<% }); %>
 					</div>
 				</div>
-				<div class="col-sm-12 col-md-8">
+				<div class="col-sm-12 col-md-6">
 					<div class="user-profile">
 							<div class="username"><%= event.name %></div>
 						<div class="bio">
@@ -86,26 +86,26 @@
 						     	<form action="/events/<%= event._id %>?_method=DELETE" method="POST" class="dis-inline">
 						            <input type="submit" class="join" value="Delete">
 					            </form>
-						        <a href="/groups/<%= event._id %>/edit" class="join">Edit</a>
+						        <a href="/events/<%= event._id %>/edit" class="join">Edit</a>
 						<% } %>						
 						</div>
-						<ul class="data">
+						<div class="data">
 							<div class="row">
 								<div class="col-sm-12 col-md-8">
-									<li>
-									  <button class="button" id="map-show">Map</button>
-									</li>
-									<li>
-									  <button class="button" id="details-show">Details</button>
-									</li>
-								</div>
-								<div class="col-sm-12 col-md-4">
-									<li>
-									  <button class="button" id="posts-show">Posts</button>
-									</li>
+									<ul>
+										<li>
+										  <button class="button" id="map-show">Map</button>
+										</li>
+										<li>
+										  <button class="button" id="details-show">Details</button>
+										</li>
+										<li>
+										  <button class="button" id="posts-show">Posts</button>
+										</li>
+									</ul>
 								</div>
 							</div>
-						</ul>
+						</div>
 						<div id="map" class="bottom-part">
 							<div class="bottom-part-container w-full">
 								<iframe
@@ -122,8 +122,6 @@
 							<div class="bottom-part-container">
 								<p>Admin: <%= event.participants[0].username %></p>
 								<p>From: <%= event.timeOfActivity.startTime %> To: <%= event.timeOfActivity.endTime %></p>
-								<p>Minimum experience: <%= event.gameLevel %></p>
-								<p>Ages eligible to participate: <%= event.agesRange %></p>
 								<p>Minimum number of participants: <%= event.minNumOfParticipants %></p>
 								<p>Maximum number of participants: <%= event.maxNumOfParticipants %></p>
 								<form action="/syncToCalendar" method="POST">
@@ -137,6 +135,7 @@
 						<div id="posts" class="bottom-part">
 							<div class="bottom-part-container w-full">
 								<div class="scroll col-sm-12">
+									<div class="force-overflow"></div>
 									<% var messages = event.messages.reverse(); %>
 									<% messages.forEach(function(message){ %>
 										<% if(message.name == user.username){ %>
@@ -147,21 +146,20 @@
 								</div>
 								<div class="container">
 									<div class="col-sm-12">
-											<div class="enterMessageBox" style="padding-bottom:0">
-									            <form accept-charset="UTF-8" action="/events/<%=event._id%>/messages/add" method="POST">
-									                <textarea class="span4" id="new_message" name="content"
-									                placeholder="Type in your message" rows="3"></textarea>
-									                <h6 class="pull-right">320 characters remaining</h6>
-									                <button class="btn btn-info" type="submit">Post New Message</button>
-									            </form>
-									        </div>
+										<div class="enterMessageBox" style="padding-bottom:0">
+								            <form accept-charset="UTF-8" action="/events/<%=event._id%>/messages/add" method="POST">
+								                <textarea class="span4" id="new_message" name="content"
+								                placeholder="Type in your message" rows="3"></textarea>
+								                <h6 class="pull-right">320 characters remaining</h6>
+								                <button class="btn btn-info" type="submit">Post New Message</button>
+								            </form>
+								        </div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div col-sm-12 col-md-1></div>
 			</div>
 		</div>
     </body>

@@ -94,6 +94,7 @@ router.get('/groups/:id', middlewares.isLoggedIn, function(req, res) {
 router.get('/groups/:id/edit',middlewares.isLoggedIn ,function(req, res) {
     var id = req.params.id;
     dataAcess.getGroupFromDB(id, function(group){
+        console.log(group);
             res.render('editGroup',{group:group});    
     });
 });
