@@ -125,6 +125,7 @@ button {
 	outline: none !important;
 	border: none;
 	background: transparent;
+	color: white;
 }
 
 button:hover {

@@ -29,63 +29,75 @@
             <% include partials/header %>
         </header>
 		<main class="profile-body">
-			<div class="user-profile">
-				<img src="<%= profile.image %>" class="avatar" alt="Profile Picture" />
-				<div class="username"><%= profile.name %></div>
-				<div class="bio">
-					<p>Level: Noob </p>
-					<p>Exp: <%= profile.gameProgress %> </p>
-					<% if(!user._id.equals(profile._id)){ %>
-						<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
-							<form action="/friends/toggle" method="POST">
-								<input type="hidden" name="friend" value="<%= profile._id %>" >
-								<input type="hidden" name="user" value="<%= user._id %>" >
-								<input type="hidden" name="isAdded" value="0" >
-								<button type="submit" class="follow">Follow</button>
-							</form>
-						<% }else{ %>
-							<form action="/friends/toggle" method="POST">
-								<input type="hidden" name="friend" value="<%= profile._id %>" >
-								<input type="hidden" name="user" value="<%= user._id %>" >
-								<input type="hidden" name="isAdded" value="1" >
-								<button type="submit" class="follow">Unfollow</button>
-							</form>
-					<% } } %>
-				</div>
-				<ul class="data">
-					<li>
-					  <button class="button" id="group-show">Groups</button>
-					</li>
-					<li>
-					  <button class="button" id="event-show">Events</button>
-					</li>
-				</ul>
-				<div id="group" class="bottom-part">
-					<div class="bottom-part-container">
-						<% if(groups === []){ %>
-							<div class="bottom-card">
-								<p>No Groups</p>
+			<div class="row">
+				<div class="col-sm-12 col-md-3"></div>
+					<div class="col-sm-12 col-md-6">
+						<div class="user-profile">
+							<img src="<%= profile.image %>" class="avatar" alt="Profile Picture" />
+							<div class="username"><%= profile.name %></div>
+							<div class="bio">
+								<p>Level: Noob </p>
+								<p>Exp: <%= profile.gameProgress %> </p>
+								<% if(!user._id.equals(profile._id)){ %>
+									<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
+										<form action="/friends/toggle" method="POST">
+											<input type="hidden" name="friend" value="<%= profile._id %>" >
+											<input type="hidden" name="user" value="<%= user._id %>" >
+											<input type="hidden" name="isAdded" value="0" >
+											<button type="submit" class="follow">Follow</button>
+										</form>
+									<% }else{ %>
+										<form action="/friends/toggle" method="POST">
+											<input type="hidden" name="friend" value="<%= profile._id %>" >
+											<input type="hidden" name="user" value="<%= user._id %>" >
+											<input type="hidden" name="isAdded" value="1" >
+											<button type="submit" class="follow">Unfollow</button>
+										</form>
+								<% } } %>
 							</div>
-						<% }else{ groups.forEach(function(group){ %>
-							<a href="/groups/<%= group._id %>"><div class="bottom-card">
-							<p><%= group.name %></p>
-						</div></a>
-						<% });}  %>
-					</div>
-				</div>
-				<div id="event" class="bottom-part">
-					<div class="bottom-part-container">
-						<% if(events === []){ %>
-							<div class="bottom-card">
-								<p>No Events</p>
+							<ul class="data">
+								<div class="row">
+									<div class="col-sm-6">
+										<li>
+										  <button class="button" id="group-show">Groups</button>
+										</li>
+									</div>
+									<div class="col-sm-6">
+										<li>
+										  <button class="button" id="event-show">Events</button>
+										</li>
+									</div>
+								</div>
+							</ul>
+							<div id="group" class="bottom-part">
+								<div class="bottom-part-container">
+									<% if(groups === []){ %>
+										<div class="bottom-card">
+											<p>No Groups</p>
+										</div>
+									<% }else{ groups.forEach(function(group){ %>
+										<a href="/groups/<%= group._id %>"><div class="bottom-card">
+										<p><%= group.name %></p>
+									</div></a>
+									<% });}  %>
+								</div>
 							</div>
-						<% }else{ events.forEach(function(event){ %>
-							<a href="/events/<%= event._id %>"><div class="bottom-card">
-								<p><%= event.name %></p>
-							</div></a>
-						<% }); }%>
+							<div id="event" class="bottom-part">
+								<div class="bottom-part-container">
+									<% if(events === []){ %>
+										<div class="bottom-card">
+											<p>No Events</p>
+										</div>
+									<% }else{ events.forEach(function(event){ %>
+										<a href="/events/<%= event._id %>"><div class="bottom-card">
+											<p><%= event.name %></p>
+										</div></a>
+									<% }); }%>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
+				<div class="col-sm-12 col-md-3"></div>
 			</div>
 		</main>
 		<!-- ================== Age Script =================== -->

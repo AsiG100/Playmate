@@ -47,7 +47,8 @@ header a {
 }
 
 .createBtn {
-  font-size: x-large;
+  font-size: 20px;
+  font-family: Poppins-Regular, sans-serif;
 }
 
 .list{

@@ -20,7 +20,6 @@ ul.data {
 
 .user-profile {
   margin: auto;
-	width: 35em; 
   height: auto;
   background: #fff;
   border-radius: .3em;
@@ -75,8 +74,8 @@ ul.data {
 	height: 5.70em;
   background: #143775;
   text-align: center;
-  
 }
+
 .user-profile li {
 	margin: 0 auto;
   padding: 1em; 
@@ -100,9 +99,10 @@ ul.data {
 	border-radius: 25px;
 	border: 2px solid;
 	text-align: center;
-	display: inline-block;
+	display: block;
+	margin: auto;
 	font-size: 16px;
-	color: #ffb471;
+	color: #8a54a2;
 	background-color: white;
 	font-weight: bold;
 	padding: 15px 32px;
@@ -111,7 +111,7 @@ ul.data {
 
 .button:hover{
 	color:white;
-	background-color: #ffb471;
+	background-color: #8a54a2;
 }
 
 .follow {
@@ -155,14 +155,14 @@ ul.data {
 	margin-top: 20px;
 	border-radius: 8px;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-	color: #ffb471;
+	color: #8a54a2;
 	font-size: 15px;
 	font-weight: bold;
 	cursor: pointer;
 }
 
-.bottom-card:hover{
-	color:white;
-	background-color: #ffb471;
+.bottom-card:hover {
+	color: white;
+	background-color: #8a54a2;
 }
 
