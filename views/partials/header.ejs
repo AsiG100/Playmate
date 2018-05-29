@@ -1,7 +1,6 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
 	<!--============================================ Bootstrap Jquery ==========================================-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -11,11 +10,12 @@
 	<!--============================================ FONTS ==========================================-->
 	<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 	<!--============================================ CSS Sheets ==========================================-->	
-	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="/css/header.css">
+	<link rel="stylesheet" type="text/css" href="/css/search.css">
 </head>
 <header>
 	<nav class="navbar navbar-expand nav-colors navbar-dark bg-light">
-		<a class="navbar-brand logo-settings" href="/index">Playmate</a>
+		<a class="navbar-brand logo-settings" href="/">Playmate</a>
 		<ul class="navbar-nav nav-settings">
 			<%if(user != undefined){%>
 				<a href='/profile/<%= user._id %>'>

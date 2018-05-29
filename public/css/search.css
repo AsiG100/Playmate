@@ -149,7 +149,7 @@ input#search-bar{
 	margin-left: 11px;
 }
 
-input[type=text]{
+input[type=text]#search-bar{
 	border-color: #4eb6b6;
 	color: #4eb6b6;
 	width: 77%;
@@ -157,11 +157,11 @@ input[type=text]{
 	border-radius: 15px;
 }
 
-input[type=text]::placeholder{
+input[type=text]#search-bar::placeholder{
 	color: #4eb6b6;
 }
 
-input[type=text]:focus{
+input[type=text]#search-bar:focus{
 	color: #4eb6b6;
 	transition-duration: 0.5s;
 	box-shadow: 0 4px 8px 0 rgb(236, 247, 255), 0 6px 20px 0 rgb(236, 247, 255);
