@@ -27,15 +27,12 @@
         		    </div>                     
                     <!--//////////////// CARDS /////////////////////////////-->
                     <% if(groups.length == 0 && events.length == 0){ %>
-                        <div class="card text-center cardEvent">
-                            <div class="card-header">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">No pending events or groups</h5>
-                            </div>
-                            <div class="card-footer text-muted">
-                            </div>
-                        </div>
+                        	<div class="bottom-card">
+                        		<label><h3> No pending events or groups </h3></label>
+                        		<div class="row bottom-card-info">
+                        			</div>
+                        		</div>
+                        	</div>
                         <% }else{ %>
                             <% var g=0,e=0; %>
                             <%while((g+e)<(groups.length+events.length)){%>
