@@ -6,8 +6,8 @@ var mongoose = require("mongoose"),
     fs       = require("fs"),
     upload   = require("./imgUpload");
     
-// mongoose.connect("mongodb://localhost/playmate");
-mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
+mongoose.connect("mongodb://localhost/playmate");
+// mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
 
 //MODELS----------------------------
 var models  = require("./schemas");
@@ -23,11 +23,7 @@ function saveUserToDB(user, userDetails)
 {
     user.email = userDetails.email;
     user.birthDate = userDetails.dateOfBirth;
-    user.address = {
-        city: userDetails.city,
-        street: userDetails.street,
-        streetNum: userDetails.number
-    };
+    user.district = userDetails.district;
     user.gameProgress= 0;
     console.log('saved content');
     user.save(function(err){
@@ -74,6 +70,7 @@ function saveGroupToDB(group, cb){
         days: group.days,
         time: group.time,
         location: group.location,
+        district: group.district,
         minParticipants: group.minParticipants,
         maxParticipants: group.maxParticipants,
         level: group.level,
@@ -120,6 +117,7 @@ function saveEventToDB(event, cb){
     Event.create({
          name: event.name,
          location: event.location, //The location URI
+         district: event.district,
          maxNumOfParticipants: event.maxNumOfParticipants,
          minNumOfParticipants: event.minNumOfParticipants,
          dateOfCreation: Date.now(),
@@ -288,6 +286,7 @@ function updateEventInDB(eventID,updatedData){
        }else{
          event.name = updatedData.name;
          event.location = updatedData.location; //The location URI
+         event.district = updatedData.district; 
          event.maxNumOfParticipants = updatedData.maxNumOfParticipants;
          event.minNumOfParticipants = updatedData.minNumOfParticipants;
          event.dateOfEvent = updatedData.date;
@@ -316,6 +315,7 @@ function updateGroupInDB(groupID,updatedData){
             group.dayOfActivity = updatedData.day;
             group.timeOfActivity = updatedData.time;
             group.location = updatedData.location;
+            group.district= updatedData.district;
             group.minParticipants = updatedData.minParticipants;
             group.maxParticipants = updatedData.maxParticipants;
             group.level = updatedData.level;
@@ -339,9 +339,7 @@ function updateUserInDB(userID,updatedData, cb){
             user.username = updatedData.username;
             user.email  = updatedData.email;
             user.birthDate = updatedData.dateOfBirth;
-            user.address.city = updatedData.city;
-            user.address.street = updatedData.street;
-            user.address.streetNum = updatedData.number;
+            user.address.district = updatedData.district;
             user.save(function(err){
              if(err){
                  console.log(err);

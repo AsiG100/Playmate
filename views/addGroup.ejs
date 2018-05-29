@@ -21,13 +21,13 @@
     					
                         <p class="txt1 m-t-20 col-md-12">Group Name</p>
                         <div class="wrap-input100 validate-input" data-validate="Group name is required">
-                            <input class="input100" type="text" name="group[name]" placeholder="My group name is...">
+                            <input class="input100" tabindex="1" type="text" name="group[name]" placeholder="My group name is...">
                             <span class="focus-input100"></span>
                         </div>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
                         <div class="wrap-input100 validate-input" data-validate="Sport type is required">
-                            <select class="input100" name="group[type]" size="1">
+                            <select class="input100" tabindex="2" name="group[type]" size="1">
     							<option value="Football"> Football </option>
     							<option value="Basketball"> Basketball </option>
     							<option value="Running"> Running </option>
@@ -40,45 +40,45 @@
                         </div>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Weekly Days Of Activity</p>
-                        <p class="col-sm-12"><label class="days-container">Sunday
-                            <input type="checkbox" name="group[days]" value="Sunday">
+                        <p class="col-sm-12"><label class="days-container" >Sunday
+                            <input type="checkbox" tabindex="3" name="group[days]" value="Sunday">
                             <span class="checkmark"></span>
                         </label></p>
                         <p class="col-sm-6"><label class="days-container">Monday
-                            <input type="checkbox" name="group[days]" value="Monday">
+                            <input type="checkbox" tabindex="4" name="group[days]" value="Monday">
                             <span class="checkmark"></span>
                         </label></p>
                         <p class="col-sm-6"><label class="days-container">Tuesday
-                            <input type="checkbox" name="group[days]" value="Tuesday">
+                            <input type="checkbox" tabindex="5" name="group[days]" value="Tuesday">
                             <span class="checkmark"></span>
                         </label></p>
                         <p class="col-sm-6"><label class="days-container">Wednesday
-                            <input type="checkbox" name="group[days]" value="Wednesday">
+                            <input type="checkbox" tabindex="6" name="group[days]" value="Wednesday">
                             <span class="checkmark"></span>
                         </label></p>
                         <p class="col-sm-6"><label class="days-container">Thursday
-                            <input type="checkbox" name="group[days]" value="Thursday">
+                            <input type="checkbox" tabindex="7" name="group[days]" value="Thursday">
                             <span class="checkmark"></span>
                         </label></p>
                         <p class="col-sm-6"><label class="days-container">Friday
-                            <input type="checkbox" name="group[days]" value="Friday">
+                            <input type="checkbox" tabindex="8" name="group[days]" value="Friday">
                             <span class="checkmark"></span>
                         </label></p>
                         <p class="col-sm-6"><label class="days-container">Saturday
-                            <input type="checkbox" name="group[days]" value="Saturday">
+                            <input type="checkbox" tabindex="9" name="group[days]" value="Saturday">
                             <span class="checkmark"></span>
                         </label></p>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Weekly Time Of Activity</p>
                         <div class="wrap-input100 validate-input" data-validate="Time Of Event is required">
-                            <input class="input100" type="time" name="group[time]">
+                            <input class="input100" tabindex="10" type="time" name="group[time]">
                             <span class="focus-input100"></span>
                         </div>
     					
     					
-                        <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
+                        <p class="txt1 p-t-13 p-b-9 col-md-12">District</p>
                         <div class="wrap-input100 validate-input" data-validate="Location is required">
-                            <select class="input100" name="group[location]" size="1">
+                            <select class="input100" tabindex="11" name="group[district]" size="1">
     							<option value="North"> North </option>
     							<option value="Haifa"> Haifa </option>
     							<option value="Center"> Center </option>
@@ -92,19 +92,19 @@
     					
                         <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
                         <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                            <input class="input100" type="number" name="group[minParticipants]">
+                            <input class="input100" tabindex="12" type="number" name="group[minParticipants]">
                             <span class="focus-input100"></span>
                         </div>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
                         <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                            <input class="input100" type="number" name="group[maxParticipants]">
+                            <input class="input100" tabindex="13" type="number" name="group[maxParticipants]">
                             <span class="focus-input100"></span>
                         </div>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
                         <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
-                            <select class="input100" name="group[level]" size="1">
+                            <select class="input100" tabindex="14" name="group[level]" size="1">
     							<option value="Noob"> Noob </option>
     							<option value="Rookie"> Rookie </option>
     							<option value="Intermediate"> Intermediate </option>
@@ -115,7 +115,7 @@
                         </div>
                         
                         <div class="col-md-12 m-t-17 container-login100-form-btn">
-                            <button class="login100-form-btn " href="/index.ejs">
+                            <button class="login100-form-btn " tabindex="15" href="/index.ejs">
     							Create Event
     						</button>
                         </div>
@@ -139,5 +139,7 @@
 	    <!--===============================================================================================-->
 		<script src="css/countdowntime/countdowntime.js"></script>
 	    <!--===============================================================================================-->
+ 
+ 
     </body>
 </html>

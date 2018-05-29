@@ -8,6 +8,7 @@
     <!--============================================ FONTS ==========================================-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Poppins:400,500" rel="stylesheet">
     <!--============================================ Extras =========================================-->
+    <script src="/js/auto-complete.js"></script>
     <% include partials/defaultLinks&Scripts %>
     <% include partials/specialStyles %>
 </head>
@@ -20,13 +21,13 @@
 					
                     <p class="txt1 m-t-20 col-md-12">Event Name</p>
                     <div class="wrap-input100 validate-input" data-validate="Event name is required">
-                        <input class="input100" type="text" name="event[name]" value="<%= event.name %>">
+                        <input class="input100" tabindex="1" type="text" name="event[name]" value="<%= event.name %>">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
                     <div class="wrap-input100 validate-input" data-validate="Sport type is required">
-                        <select class="input100" name="event[type]" size="1">
+                        <select class="input100" tabindex="2" name="event[type]" size="1">
 							<option value="Football" <% if(event.sportType == 'Football'){ %> selected <% } %> > Football </option>
 							<option value="Basketball" <% if(event.sportType == 'Basketball'){ %> selected <% } %> > Basketball </option>
 							<option value="Running" <% if(event.sportType == 'Running'){ %> selected <% } %> > Running </option>
@@ -38,51 +39,57 @@
                         <span class="focus-input100"></span>
                     </div>
 					
-                    <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
+                    <p class="txt1 p-t-13 p-b-9 col-md-12">District</p>
                     <div class="wrap-input100 validate-input" data-validate="Location is required">
-                        <select class="input100" value="<%= event.location %>" name="event[location]" size="1">
-							<option value="North" <% if(event.location == 'North'){ %> selected <% } %> > North </option>
-							<option value="Haifa" <% if(event.location == 'Haifa'){ %> selected <% } %> > Haifa </option>
-							<option value="Center" <% if(event.location == 'Center'){ %> selected <% } %> > Center </option>
-							<option value="Tel Aviv" <% if(event.location == 'Tel Aviv'){ %> selected <% } %> > Tel Aviv </option>
-							<option value="Jerusalem" <% if(event.location == 'Jerusalem'){ %> selected <% } %> > Jerusalem </option>
-							<option value="South" <% if(event.location == 'South'){ %> selected <% } %> > South </option>
-							<option value="Beer Sheva" <% if(event.location == 'Beer Sheva'){ %> selected <% } %> > Beer Sheva </option>
+                        <select class="input100" tabindex="3" value="<%= event.district %>" name="event[location]" size="1">
+							<option value="North" <% if(event.district == 'North'){ %> selected <% } %> > North </option>
+							<option value="Haifa" <% if(event.district == 'Haifa'){ %> selected <% } %> > Haifa </option>
+							<option value="Center" <% if(event.district == 'Center'){ %> selected <% } %> > Center </option>
+							<option value="Tel Aviv" <% if(event.district == 'Tel Aviv'){ %> selected <% } %> > Tel Aviv </option>
+							<option value="Jerusalem" <% if(event.district == 'Jerusalem'){ %> selected <% } %> > Jerusalem </option>
+							<option value="South" <% if(event.district == 'South'){ %> selected <% } %> > South </option>
+							<option value="Beer Sheva" <% if(event.district == 'Beer Sheva'){ %> selected <% } %> > Beer Sheva </option>
 						</select>
                         <span class="focus-input100"></span>
                     </div>
+
+                    <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
+                    <div class="wrap-input100 validate-input" data-validate="Location Of Event is required">
+                        <input id="autocomplete" tabindex="5" class="input100" onFocus="geolocate()" type="text" name="event[location]" value="<%= event.location %>">
+                        <span class="focus-input100"></span>
+                    </div>					
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Date Of Event</p>
                     <div class="wrap-input100 validate-input" data-validate="Date Of Event is required">
-                        <input class="input100" type="date" value="<%= event.dateOfEvent %>" name="event[date]">
+                        <input class="input100" tabindex="6" type="date" value="<%= event.dateOfEvent %>" name="event[date]">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Time Of Event</p>
                     <div class="wrap-input100 validate-input col-md-6" data-validate="Time Of Event is required">
-                        <input class="input100" type="time" value="<%= event.timeOfActivity.startTime %>" name="event[startTime]">
+                        <input class="input100" tabindex="7" type="time" value="<%= event.timeOfActivity.startTime %>" name="event[startTime]">
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input col-md-6" data-validate="Time Of Event is required">
-                        <input class="input100" type="time" value="<%= event.timeOfActivity.endTime %>" name="event[endTime]">
+                        <input class="input100" tabindex="8" type="time" value="<%= event.timeOfActivity.endTime %>" name="event[endTime]">
                         <span class="focus-input100"></span>
                     </div>
                     
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                        <input class="input100" type="number" value="<%= event.minNumOfParticipants %>" name="event[minNumOfParticipants]">
+                        <input class="input100" tabindex="9" type="number" value="<%= event.minNumOfParticipants %>" name="event[minNumOfParticipants]">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                        <input class="input100" type="number" value="<%= event.maxNumOfParticipants %>" name="event[maxNumOfParticipants]">
+                        <input class="input100" tabindex="10" type="number" value="<%= event.maxNumOfParticipants %>" name="event[maxNumOfParticipants]">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
-                        <select class="input100" value="<%= event.minParticipantLevel %>" name="event[minLevel]" size="1">
+                        <select class="input100" tabindex="11" value="<%= event.minParticipantLevel %>" name="event[minLevel]" size="1">
 							<option value="Noob" <% if(event.level == 'Noob'){ %> selected <% } %> > Noob </option>
 							<option value="Rookie" <% if(event.level == 'Rookie'){ %> selected <% } %> > Rookie </option>
 							<option value="Intermediate" <% if(event.level == 'Intermediate'){ %> selected <% } %> > Intermediate </option>
@@ -93,7 +100,7 @@
                     </div>
 					
                     <div class="col-md-12 m-t-17">
-                        <button type="submit" class="login100-form-btn">
+                        <button type="submit" tabindex="12" class="login100-form-btn">
 							Edit event
 						</button>
                     </div>
@@ -117,6 +124,16 @@
     <!--===============================================================================================-->
 	<script src="/css/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
+   
+    <script>
+        function init() {
+            var input = document.getElementById('locationTextField');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+        }
+ 
+        google.maps.event.addDomListener(window, 'load', init);
+    </script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-91Qs3aLTnNym02hCT_Mf6mQQq9XWLKA&libraries=places&callback=initAutocomplete"></script>
 </body>
 
 </html>

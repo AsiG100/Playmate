@@ -19,6 +19,7 @@ var groupSchema = new mongoose.Schema({
         days: [String],
         time: String,
         location: String,
+        district:String,
         minParticipants: Number,
         maxParticipants: Number,
         level: String,
@@ -33,6 +34,7 @@ var groupModel  = mongoose.model("Group", groupSchema);
 var eventSchema = new mongoose.Schema({
          name: String,
          location: String, //The location URI
+         district:String,
          maxNumOfParticipants: Number,
          minNumOfParticipants: Number,
          dateOfCreation: Date,

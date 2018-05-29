@@ -124,19 +124,19 @@
 								<% });} %> 
 							</div>
 						</div>
-						
-						<div id="map" class="bottom-part">
-							<div class="bottom-part-container w-full">
-								<iframe
-									width="100%"
-									height="450"
-									frameborder="0" style="border:0"
-									src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBU_bnBk2hij8xfyxUqxMsTDIoegx48EDs
-								    &q=<%= group.location.replace(' ','+') %>" allowfullscreen>
-								</iframe>
+						<% if(group.location != undefined){ %>
+							<div id="map" class="bottom-part">
+								<div class="bottom-part-container w-full">
+									<iframe
+										width="100%"
+										height="450"
+										frameborder="0" style="border:0"
+										src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBU_bnBk2hij8xfyxUqxMsTDIoegx48EDs
+									    &q=<%= group.location.replace(' ','+') %>" allowfullscreen>
+									</iframe>
+								</div>
 							</div>
-						</div>
-					
+						<% } %>
 						<div id="details" class="bottom-part">
 							<div class="bottom-part-container">
 								<!--<p>Group schedule: </p>-->

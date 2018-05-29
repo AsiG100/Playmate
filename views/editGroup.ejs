@@ -21,74 +21,90 @@
 					
                     <p class="txt1 m-t-20 col-md-12">Group Name</p>
                     <div class="wrap-input100 validate-input" data-validate="Group name is required">
-                        <input class="input100" type="text" name="group[name]" value="<%= group.name %>">
+                        <input class="input100" tabindex="1" type="text" name="group[name]" value="<%= group.name %>">
                         <span class="focus-input100"></span>
                     </div>
 					
-					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
+					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport type</p>
                     <div class="wrap-input100 validate-input" data-validate="Sport type is required">
-                        <select class="input100" name="group[type]" size="1">
-							<option value="Football" <% if(group.type == 'Football'){ %> selected <% } %> > Football </option>
-							<option value="Basketball" <% if(group.type == 'Basketball'){ %> selected <% } %> > Basketball </option>
-							<option value="Running" <% if(group.type == 'Running'){ %> selected <% } %> > Running </option>
-							<option value="Swimming" <% if(group.type == 'Swimming'){ %> selected <% } %> > Swimming </option>
-							<option value="TRX" <% if(group.type == 'TRX'){ %> selected <% } %> > TRX </option>
-							<option value="Tennis" <% if(group.type == 'Tennis'){ %> selected <% } %> > Tennis </option>
-							<option value="Bowling" <% if(group.type == 'Bowling'){ %> selected <% } %> > Bowling </option>
+                        <select class="input100" tabindex="2" name="group[type]" size="1">
+							<option value="Football" <% if(group.sportType == 'Football'){ %> selected <% } %> > Football </option>
+							<option value="Basketball" <% if(group.sportType == 'Basketball'){ %> selected <% } %> > Basketball </option>
+							<option value="Running" <% if(group.sportType == 'Running'){ %> selected <% } %> > Running </option>
+							<option value="Swimming" <% if(group.sportType == 'Swimming'){ %> selected <% } %> > Swimming </option>
+							<option value="TRX" <% if(group.sportType == 'TRX'){ %> selected <% } %> > TRX </option>
+							<option value="Tennis" <% if(group.sportType == 'Tennis'){ %> selected <% } %> > Tennis </option>
+							<option value="Bowling" <% if(group.sportType == 'Bowling'){ %> selected <% } %> > Bowling </option>
 						</select>
                         <span class="focus-input100"></span>
                     </div>
 					
-					<p class="txt1 p-t-13 p-b-9 col-md-12">Weekly day Of Activity</p>
-                    <div class="wrap-input100 validate-input" data-validate="Day of activity is required">
-                        <select class="input100" name="group[day]" size="1">
-							<option value="Sunday" <% if(group.dayOfActivity == 'Sunday'){ %> selected <% } %> > Sunday </option>
-							<option value="Monday" <% if(group.dayOfActivity == 'Monday'){ %> selected <% } %> > Monday </option>
-							<option value="Tuesday" <% if(group.dayOfActivity == 'Tuesday'){ %> selected <% } %> > Tuesday </option>
-							<option value="Wednesday" <% if(group.dayOfActivity == 'Wednesday'){ %> selected <% } %> > Wednesday </option>
-							<option value="Thursday" <% if(group.dayOfActivity == 'Thursday'){ %> selected <% } %> > Thursday </option>
-							<option value="Friday" <% if(group.dayOfActivity == 'Friday'){ %> selected <% } %> > Friday </option>
-							<option value="Saturday" <% if(group.dayOfActivity == 'Saturday'){ %> selected <% } %> > Saturday </option>
-						</select>
-                        <span class="focus-input100"></span>
-                    </div>
+    					<p class="txt1 p-t-13 p-b-9 col-md-12">Weekly Days Of Activity</p>
+                        <p class="col-sm-12"><label class="days-container" tabindex="3">Sunday
+                            <input type="checkbox" name="group[days]" value="Sunday" <% if(group.days.indexOf('Sunday')!= -1){ %> checked <% } %>>
+                            <span class="checkmark"></span>
+                        </label></p>
+                        <p class="col-sm-6"><label class="days-container">Monday
+                            <input type="checkbox" name="group[days]" value="Monday" <% if(group.days.indexOf('Monday')!= -1){ %> checked <% } %>>
+                            <span class="checkmark"></span>
+                        </label></p>
+                        <p class="col-sm-6"><label class="days-container">Tuesday
+                            <input type="checkbox" name="group[days]" value="Tuesday" <% if(group.days.indexOf('Tuesday')!= -1){ %> checked <% } %>>
+                            <span class="checkmark"></span>
+                        </label></p>
+                        <p class="col-sm-6"><label class="days-container">Wednesday
+                            <input type="checkbox" name="group[days]" value="Wednesday" <% if(group.days.indexOf('Wednesday')!= -1){ %> checked <% } %>>
+                            <span class="checkmark"></span>
+                        </label></p>
+                        <p class="col-sm-6"><label class="days-container">Thursday
+                            <input type="checkbox" name="group[days]" value="Thursday" <% if(group.days.indexOf('Thursday')!= -1){ %> checked <% } %>>
+                            <span class="checkmark"></span>
+                        </label></p>
+                        <p class="col-sm-6"><label class="days-container">Friday
+                            <input type="checkbox" name="group[days]" value="Friday" <% if(group.days.indexOf('Friday')!= -1){ %> checked <% } %>>
+                            <span class="checkmark"></span>
+                        </label></p>
+                        <p class="col-sm-6"><label class="days-container">Saturday
+                            <input type="checkbox" name="group[days]" value="Saturday" <% if(group.days.indexOf('Saturday')!= -1){ %> checked <% } %>>
+                            <span class="checkmark"></span>
+                        </label></p>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Weekly Time Of Activity</p>
                     <div class="wrap-input100 validate-input" data-validate="Time Of Event is required">
-                        <input class="input100" type="time" name="group[time]" value="<%= group.timeOfActivity %>">
+                        <input class="input100" tabindex="4" type="time" name="group[time]" value="<%= group.time %>">
                         <span class="focus-input100"></span>
                     </div>
 					
 					
-                    <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
+                    <p class="txt1 p-t-13 p-b-9 col-md-12">District</p>
                     <div class="wrap-input100 validate-input" data-validate="Location is required">
-                        <select class="input100" name="group[location]" size="1">
-							<option value="North" <% if(group.location == 'North'){ %> selected <% } %> > North </option>
-							<option value="Haifa" <% if(group.location == 'Haifa'){ %> selected <% } %> > Haifa </option>
-							<option value="Center" <% if(group.location == 'Center'){ %> selected <% } %> > Center </option>
-							<option value="Tel Aviv" <% if(group.location == 'Tel Aviv'){ %> selected <% } %> > Tel Aviv </option>
-							<option value="Jerusalem" <% if(group.location == 'Jerusalem'){ %> selected <% } %> > Jerusalem </option>
-							<option value="South" <% if(group.location == 'South'){ %> selected <% } %> > South </option>
-							<option value="Beer Sheva" <% if(group.location == 'Beer Sheva'){ %> selected <% } %> > Beer Sheva </option>
+                        <select class="input100" tabindex="5" name="group[district]" size="1">
+							<option value="North" <% if(group.district == 'North'){ %> selected <% } %> > North </option>
+							<option value="Haifa" <% if(group.district == 'Haifa'){ %> selected <% } %> > Haifa </option>
+							<option value="Center" <% if(group.district == 'Center'){ %> selected <% } %> > Center </option>
+							<option value="Tel Aviv" <% if(group.district == 'Tel Aviv'){ %> selected <% } %> > Tel Aviv </option>
+							<option value="Jerusalem" <% if(group.district == 'Jerusalem'){ %> selected <% } %> > Jerusalem </option>
+							<option value="South" <% if(group.district == 'South'){ %> selected <% } %> > South </option>
+							<option value="Beer Sheva" <% if(group.district == 'Beer Sheva'){ %> selected <% } %> > Beer Sheva </option>
 						</select>
                         <span class="focus-input100"></span>
                     </div>
 					
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                        <input class="input100" type="number" name="group[minParticipants]" value="<%= group.minParticipants %>">
+                        <input class="input100" tabindex="6" type="number" name="group[minParticipants]" value="<%= group.minParticipants %>">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                        <input class="input100" type="number" name="group[maxParticipants]" value="<%= group.maxParticipants %>">
+                        <input class="input100" tabindex="7" type="number" name="group[maxParticipants]" value="<%= group.maxParticipants %>">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
-                        <select class="input100" name="group[level]" size="1">
+                        <select class="input100" tabindex="8" name="group[level]" size="1">
 							<option value="Noob" <% if(group.level == 'Noob'){ %> selected <% } %> > Noob </option>
 							<option value="Rookie" <% if(group.level == 'Rookie'){ %> selected <% } %> > Rookie </option>
 							<option value="Intermediate" <% if(group.level == 'Intermediate'){ %> selected <% } %> > Intermediate </option>
@@ -99,14 +115,15 @@
                     </div>
 
                     <div class="col-md-12 m-t-17">
-                        <button class="login100-form-btn" type="submit">
-							Edit Event
+                        <button class="login100-form-btn" tabindex="9" type="submit">
+							Edit Group
 						</button>
                     </div>
                 </form>
             </div>
         </div>
 	</main>
+	
 </body>
 
 </html>
