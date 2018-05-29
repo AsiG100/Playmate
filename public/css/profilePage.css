@@ -102,7 +102,7 @@ ul.data {
 	display: block;
 	margin: auto;
 	font-size: 16px;
-	color: #8a54a2;
+	color: #4eb6b6;
 	background-color: white;
 	font-weight: bold;
 	padding: 15px 32px;
@@ -111,7 +111,7 @@ ul.data {
 
 .button:hover{
 	color:white;
-	background-color: #8a54a2;
+	background-color: #4eb6b6;
 }
 
 .follow {

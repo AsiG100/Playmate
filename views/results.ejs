@@ -23,35 +23,37 @@
 <body class="search-body">
 		<% include partials/header %>
 		<% include partials/searchBar %>
-		<div class="col-sm-7 col-centered">
-			<div class="bottom-part-seperator">
+		<div class="row">
+			<div class="col-sm-7 col-centered">
+				<div class="bottom-part-seperator">
+				</div>
 			</div>
-		</div>
-		<div class="col-sm-7 col-centered" id="results">
-			<div class="bottom-part">
-				<% if(content !=undefined && contentType != undefined){ %>
-					<p>Search Results</p>
-						<% if(contentType == 'Track'){ %>
-							<div class="bottom-card">
-								<label><h3> No results were found </h3></label>
-							</div>
-							<% if(content.length > 0){ %>
-								<% include partials/suggestedGroup %>
-							<% } %>
-						<% }else if(contentType == 'Group'){ %>
-							<% content.forEach(function(group){ %>
-								<% include partials/resultGroup %>
-							<% }) %>
-						<% }else if(contentType == 'Event'){ %>	
-							<% content.forEach(function(event){ %>
-								<% include partials/resultEvent %>
-							<% }) %>
-						<% }else{ %>
-							<% content.forEach(function(profile){ %>
-								<% include partials/resultUser %>
-							<% }) %>
-				<% } } %>
+			<div class="col-sm-7 col-centered" id="results">
+				<div class="bottom-part">
+					<% if(content !=undefined && contentType != undefined){ %>
+						<p>Search Results</p>
+							<% if(contentType == 'Track'){ %>
+								<div class="bottom-card">
+									<label><h3> No results were found </h3></label>
+								</div>
+								<% if(content.length > 0){ %>
+									<% include partials/suggestedGroup %>
+								<% } %>
+							<% }else if(contentType == 'Group'){ %>
+								<% content.forEach(function(group){ %>
+									<% include partials/resultGroup %>
+								<% }) %>
+							<% }else if(contentType == 'Event'){ %>	
+								<% content.forEach(function(event){ %>
+									<% include partials/resultEvent %>
+								<% }) %>
+							<% }else{ %>
+								<% content.forEach(function(profile){ %>
+									<% include partials/resultUser %>
+								<% }) %>
+					<% } } %>
+				</div>
 			</div>
-		</div>
+	</div>
 </body>
 </html>

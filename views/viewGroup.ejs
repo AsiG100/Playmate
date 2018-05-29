@@ -52,7 +52,7 @@
     <body class="profile-body">
 		<% include partials/header %>
 		<div class="container container-padding">
-			<div class="row">
+			<div class="row col-centered">
 				<div class="col-sm-12 col-md-3">
 					<div class="side-box">
 						<h2> Members </h2>
@@ -61,42 +61,44 @@
 							<% }); %>
 					</div>
 				</div>
-				<div class="col-sm-12 col-md-6">
+				<div class="col-sm-12 col-md-8">
 					<div class="user-profile">
 							<div class="username"><%= group.name %></div>
 						<div class="bio">
 							<p>Sport Type: <%= group.sportType %></p>
-							<p>Location: <%= group.location %></p>
+							<p>District: <%= group.district %></p>
 							<p>Min level: <%= group.level %></p>
-						<% if(!user._id.equals(group.participants[0]._id)){ %>
-							<% if(user.groups.indexOf(group._id)==-1){ %>
-								<form action="/group/toggle" method="POST">
-									<input type="hidden" name="group" value="<%= group._id %>" >
-									<input type="hidden" name="user" value="<%= user._id %>" >
-									<input type="hidden" name="isAdded" value="0" >
-									<button type="submit" class="join">Join group</button>
-								</form>
-							<% }else{ %>
-								<form action="/group/toggle" method="POST">
-									<input type="hidden" name="group" value="<%= group._id %>" >
-									<input type="hidden" name="user" value="<%= user._id %>" >
-									<input type="hidden" name="isAdded" value="1" >
-									<button type="submit" class="join">Leave group</button>
-								</form>
-						<% } }else{ %>
-								<% if(group.participants.length > 1){ %>
-									<form action="/group/toggle" method="POST" class="dis-inline">
+						<div class="text-center">
+							<% if(!user._id.equals(group.participants[0]._id)){ %>
+								<% if(user.groups.indexOf(group._id)==-1){ %>
+									<form action="/group/toggle" method="POST">
+										<input type="hidden" name="group" value="<%= group._id %>" >
+										<input type="hidden" name="user" value="<%= user._id %>" >
+										<input type="hidden" name="isAdded" value="0" >
+										<button type="submit" class="join">Join group</button>
+									</form>
+								<% }else{ %>
+									<form action="/group/toggle" method="POST">
 										<input type="hidden" name="group" value="<%= group._id %>" >
 										<input type="hidden" name="user" value="<%= user._id %>" >
 										<input type="hidden" name="isAdded" value="1" >
 										<button type="submit" class="join">Leave group</button>
-									</form>						
-						     	<% } %>
-						     	<form action="/groups/<%= group._id %>?_method=DELETE" method="POST" class="dis-inline">
-						            <input type="submit" class="join" value="Delete">
-					            </form>
-						        <a href="/groups/<%= group._id %>/edit" class="join">Edit</a>
-						<% } %>
+									</form>
+							<% } }else{ %>
+									<% if(group.participants.length > 1){ %>
+										<form action="/group/toggle" method="POST" class="dis-inline">
+											<input type="hidden" name="group" value="<%= group._id %>" >
+											<input type="hidden" name="user" value="<%= user._id %>" >
+											<input type="hidden" name="isAdded" value="1" >
+											<button type="submit" class="join">Leave group</button>
+										</form>						
+							     	<% } %>
+							     	<form action="/groups/<%= group._id %>?_method=DELETE" method="POST" class="dis-inline">
+							            <input type="submit" class="join" value="Delete">
+						            </form>
+							        <a href="/groups/<%= group._id %>/edit" class="join">Edit</a>
+							<% } %>
+						</div>
 						</div>
 						<ul class="data">
 							<li>
@@ -114,7 +116,7 @@
 						</ul>
 						
 						<div id="events" class="bottom-part">
-							<div class="bottom-part-container">
+							<div class="bottom-part-container text-center">
 					            <a href="/groups/<%= group._id %>/events/add" class="join">Add an event</a>
 								<% if(group.events.length == 0){ %>
 									<div class="bottom-card"><p>No events yet </p></div>

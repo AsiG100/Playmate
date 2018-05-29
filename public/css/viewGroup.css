@@ -11,7 +11,7 @@
 
 .title-pen {
   color: #333;
-  font-family: "Coda", sans-serif;
+  font-family: 'Poppins', sans-serif ;
   text-align: center;
 }
 .title-pen span {
@@ -26,22 +26,26 @@
   border-radius: .3em;
   text-align: center;
   min-width: 420px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 
 .user-profile  .username {
   margin: auto;
   margin-bottom: 8px;
-  color: #658585;
-  font-size: 2em;
-  font-family: "Coda", sans-serif;
-  font-weight: bold;
+  text-align:center;
+  font-weight:bold;
+  font-size:35px;
+  color:#4eb6b6;
+  font-family: 'Poppins', sans-serif ;
 }
 .user-profile  .bio {
-  margin: auto;
-  display: inline-block;
+  margin: 20px;
+  display: block;
+  text-align: left;
   color: #4eb6b6; 
   font-size: 1.2em;
-  font-family: "varela round", sans-serif;
+  font-family: 'Poppins', sans-serif ;
 }
 
 .user-profile .bio > p {
@@ -55,7 +59,7 @@
   width: 25.5em;
   color: #c0c5c5; 
   font-size: .87em;
-  font-family: "varela round", sans-serif;
+  font-family: 'Poppins', sans-serif ;
 }
 .user-profile > img.avatar {
 	padding: .7em;
@@ -69,8 +73,8 @@
 .user-profile ul.data {
 	margin: 2em auto;
 	height: 5.70em;
-  background: #4eb6b6;
-  text-align: center;
+	background: #143775;
+	text-align: center;
   	min-width: 420px;
   
 }
@@ -83,7 +87,7 @@
 }
 
 .user-profile span {
-	font-family: "varela round", sans-serif;
+	font-family: 'Poppins', sans-serif ;
 	color: #e3eeee;
   white-space: nowrap;
   font-size: 1.27em;
@@ -148,13 +152,13 @@ ul.data {
 }
 .bottom-part-container{
 	height: auto;
-	text-align: center;
+	text-align: left;
 	margin: auto;
-	margin-top: 50px;
+	/*margin-top: 50px;*/
 	display: block;
 	color: #4eb6b6; 	
 	font-size: 18px;
-	font-family: "varela round", sans-serif;
+	font-family: 'Poppins', sans-serif ;
 }
 
 .bottom-card{
@@ -184,12 +188,15 @@ ul.data {
 	height: auto;
 	margin-right: -15px;
 	min-height: 318px;
+    border-radius: .3em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	
 }
 
 .side-box h2 {
-	color: #658585;
+	color: #4eb6b6;
 	font-size: 30px;
-	font-family: "Coda", sans-serif;
+	font-family: 'Poppins', sans-serif ;
 	font-weight: bold;
 	text-align: center;
 	padding-top: 6px;
@@ -199,12 +206,12 @@ ul.data {
 	width: 100%;
 	height: 70px;
 	margin-top: 2px;
-	margin-left: 28px;
+	font-family: 'Poppins', sans-serif ;
 }
 
 .friend-card > .avatar {
 	padding: .7em;
-	margin-left: .1em;
+	margin-left: 20px;
 	height: 65px;
 	width: 70px;
 	border-radius: 50%;
@@ -212,9 +219,10 @@ ul.data {
 
 .friend-card > .username {
 	margin-bottom:5px;
+    padding-top: 20px;
 	color: #4eb6b6;
 	font-size: 15px;
-	font-family: "Coda", sans-serif;
+	font-family: 'Poppins', sans-serif ;
 	font-weight: bold;
 	display: inline;
 }
@@ -260,7 +268,6 @@ ul.data {
 @media (max-width: 992px) {
 	
 	.friend-card > .avatar {
-	display:block;
 	margin-left: 20px;
 	}
 	
