@@ -6,10 +6,12 @@
 
 .siteTitle {
     font-size: 45px;
-    font-family: 'Courgette', cursive;
+    font-family: 'Courgette', cursive !important;
+    margin-bottom:10px;
+    margin-left:-30px;
 }
 
-.subtitle {
-    color:white;
-    font-size: 28px;
+.subtitle{
+    font-size:17px;
+    margin-left:10px;
 }

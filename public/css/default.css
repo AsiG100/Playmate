@@ -29,7 +29,7 @@
 	margin: 0px; 
 	padding: 0px; 
 	box-sizing: border-box;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Poppins', sans-serif ;
   font-size: 16px;
 }
 
@@ -43,12 +43,12 @@ body, html {
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
 	transition: all 0.4s;
+	text-decoration: none;
 	-webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -60,8 +60,8 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #fc00ff;
-  border-color: #fc00ff;
+  color: #4eb6b6;
+  border-color: #4eb6b6;;
 }
 
 /*---------------------------------------------*/
@@ -156,7 +156,6 @@ iframe {
 }
 
 .txt2 {
-  font-family: Poppins-Regular;
   font-size: 18px;
   color: #999999;
   line-height: 1.5;
@@ -210,9 +209,20 @@ iframe {
 .login100-form-title {
   width: 100%;
   display: block;
-  font-family: Montserrat-Medium;
-  font-size: 28px;
-  color: #555555;
+  font-size: 30px;
+  font-weight:600;
+  color: #4eb6b6;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.login100-form-sub-title {
+  width: 100%;
+  display: block;
+  margin-top:26px;
+  font-size: 23px;
+  font-weight:600;
+  color: #4eb6b6;
   line-height: 1.2;
   text-align: center;
 }
@@ -502,12 +512,13 @@ iframe {
     padding-left: 15px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
+    color:#4eb6b6;
+    font-weight:500;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    
 }
 
 /* Hide the browser's default checkbox */
@@ -520,7 +531,7 @@ iframe {
 /* Create a custom checkbox */
 .checkmark {
     position: absolute;
-    top: 3px;
+    top: 5px;
     left: 0;
     height: 10px;
     width: 10px;
@@ -535,7 +546,7 @@ iframe {
 
 /* When the checkbox is checked, add a blue background */
 .days-container input:checked ~ .checkmark {
-    background-color: #2196F3;
+    background-color: #4eb6b6;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */

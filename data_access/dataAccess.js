@@ -339,7 +339,7 @@ function updateUserInDB(userID,updatedData, cb){
             user.username = updatedData.username;
             user.email  = updatedData.email;
             user.birthDate = updatedData.dateOfBirth;
-            user.address.district = updatedData.district;
+            user.district = updatedData.district;
             user.save(function(err){
              if(err){
                  console.log(err);
