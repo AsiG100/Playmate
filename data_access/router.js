@@ -174,6 +174,8 @@ router.get('/profile/:id',middlewares.isLoggedIn, function(req, res) {
     });
 });
 
+
+
 //OBJECT ASSOCIATIONS///////////////
 
 router.post('/friends/toggle', function(req, res) {

@@ -8,81 +8,72 @@
         <link rel="stylesheet" type="text/css" href="/css/header.css">
         <!--============================================ FONTS ==========================================-->
         <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
         <!--============================================ Extras =========================================-->
         <% include partials/defaultLinks&Scripts %>
     </head>
     <body class="home-body">
         <% include partials/header %>
-        <main class="container home-main">
+        <main class="home-main">
             <% include partials/errorHandeling %>
             <% include partials/searchBar %>
             <div class="row">
-                <div class="col-sm-12 col-md-2"></div>
-                <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-md-7 col-centered">
                     
-    	        	<div class="col-sm-12 col-centered">
+    	        	<div class="col-centered">
         		    	<div class="bottom-part-seperator">
-                            <h2>Your events and groups</h2>
+                            <h1 class="p-t-20">Your events and groups</h1>
         			    </div>
         		    </div>                     
                     <!--//////////////// CARDS /////////////////////////////-->
-                    <% if(groups.length == 0 && events.length == 0){ %>
-                        	<div class="bottom-card">
-                        		<label><h3> No pending events or groups </h3></label>
-                        		<div class="row bottom-card-info">
-                        			</div>
-                        		</div>
-                        	</div>
-                        <% }else{ %>
-                            <% var g=0,e=0; %>
-                            <%while((g+e)<(groups.length+events.length)){%>
-                                <% var group = groups[g], event = events[e]; %>
-                                <%if(g>=groups.length){%>
-                                    <% include partials/resultEvent %>
-                                    <% e++;%>
-                                <% }else if(e>=events.length){ %>
-                                    <% include partials/resultGroup %>
-                                    <% g++; %>
-                                <% }else if(groups[g].dateOfCreation > events[e].dateOfCreation){%>
-                                    <% include partials/resultGroup %>
-                                    <% g++;%>
-                                <% }else{ %>
-                                    <% include partials/resultEvent %>
-                                    <% e++; %>
-                    <% } } } %>
-                    <% if(friendsEvents.length > 0 || friendsGroups.length > 0){ %>
-        	        	<div class="col-sm-12 col-centered">
-            		    	<div class="bottom-part-seperator">
-                                <h2>Suggested events and groups</h2>
-            			    </div>
-        		        </div>                     
-                        <!--//////////////// SUGGESTED CARDS /////////////////////////////-->
-                        <% if(friendsGroups.length == 0 && friendsEvents.length == 0){ %>
-                            <div class="card text-center cardEvent">
-                                <div class="card-header"></div>
-                                <div class="card-body">
-                                    <h5 class="card-title">No pending events or groups</h5>
-                                </div>
-                                <div class="card-footer text-muted"></div>
-                            </div>
-                    <% }else{ %>
-                        <% var group=0,event=0; %>
-                        <%while((group+event)<(friendsGroups.length+friendsEvents.length)){%>
-                            <%if(group>=friendsGroups.length){%>
-                                <% include partials/friendEventCard %>
-                                <% event++;%>
-                            <% }else if(event>=friendsEvents.length){ %>
-                                <% include partials/friendGroupCard %>
-                                <% group++; %>
-                            <% }else if(friendsGroups[group].dateOfCreation > friendsEvents[event].dateOfCreation){%>
-                                <% include partials/friendGroupCard %>
-                                <% group++;%>
+                    <div class="bottom-part">
+                        <% if(groups.length == 0 && events.length == 0){ %>
+                            	<div class="bottom-card">
+                            		<label><h1> No pending events or groups </h1></label>
+                            		<div class="row bottom-card-info">
+                            			</div>
+                            		</div>
                             <% }else{ %>
-                                <% include partials/friendEventCard %>
-                                <% event++; %>
-                    <% } } } }%>
+                                <% var g=0,e=0; %>
+                                <%while((g+e)<(groups.length+events.length)){%>
+                                    <% var group = groups[g], event = events[e]; %>
+                                    <%if(g>=groups.length){%>
+                                        <% include partials/resultEvent %>
+                                        <% e++;%>
+                                    <% }else if(e>=events.length){ %>
+                                        <% include partials/resultGroup %>
+                                        <% g++; %>
+                                    <% }else if(groups[g].dateOfCreation > events[e].dateOfCreation){%>
+                                        <% include partials/resultGroup %>
+                                        <% g++;%>
+                                    <% }else{ %>
+                                        <% include partials/resultEvent %>
+                                        <% e++; %>
+                        <% } } } %>
+                        <% if(friendsEvents.length > 0 || friendsGroups.length > 0){ %>
+            	        	<div class="col-sm-12 col-centered">
+                		    	<div class="bottom-part-seperator">
+                                    <h1>Suggested events and groups</h1>
+                			    </div>
+            		        </div>                     
+                            <!--//////////////// SUGGESTED CARDS /////////////////////////////-->
+                            <% var group=0,event=0; %>
+                            <%while((group+event)<(friendsGroups.length+friendsEvents.length)){%>
+                                <%if(group>=friendsGroups.length){%>
+                                    <% include partials/friendEventCard %>
+                                    <% event++;%>
+                                <% }else if(event>=friendsEvents.length){ %>
+                                    <% include partials/friendGroupCard %>
+                                    <% group++; %>
+                                <% }else if(friendsGroups[group].dateOfCreation > friendsEvents[event].dateOfCreation){%>
+                                    <% include partials/friendGroupCard %>
+                                    <% group++;%>
+                                <% }else{ %>
+                                    <% include partials/friendEventCard %>
+                                    <% event++; %>
+                        <% } } }%>
                 </div>        
-                <div class="col-sm-12 col-md-2"></div>
+            </div>
             </div>
         </main>
     </body>

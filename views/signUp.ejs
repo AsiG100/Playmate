@@ -22,7 +22,7 @@
                         <div class="col-sm-12 col-md-6 center">
                             <p class="txt1 m-t-20">Profile Image</p>
                             <div class="wrap-input100 validate-input resizeImgInput" data-validate="Profile Image is required">
-                                <input type="file" name="avatar" id="avatar" accept="css/images/*" onchange="preview_image(event)">
+                                <input type="file" name="avatar" tabindex="1" id="avatar" accept="css/images/*" onchange="preview_image(event)">
                                 <button id="upload" value="Upload" />
                                 <% if(image == undefined){ %>
                                     <img id="output_image" />
@@ -35,47 +35,45 @@
                     <form action="/signup" method="POST" id="detailsUpload" class="login100-form validate-form flex-sb flex-w">
                         <p class="txt1 m-t-20">Username</p>
                         <div class="wrap-input100 validate-input col-sm-12" data-validate="Username is required">
-                            <input class="input100" type="text" name="user[username]" placeholder="My user name is...">
+                            <input class="input100" tabindex="2" type="text" name="user[username]" placeholder="My user name is...">
                             <span class="focus-input100"></span>
                         </div>
     
                         <p class="txt1 p-t-13 p-b-9">Password</p>
                         <div class="wrap-input100 validate-input col-sm-12" data-validate="Password is required">
-                            <input class="input100" type="password" name="user[password]" placeholder="My password is...">
+                            <input class="input100" tabindex="3" type="password" name="user[password]" placeholder="My password is...">
                             <span class="focus-input100"></span>
                         </div>
     
                         <p class="txt1 p-t-13 p-b-9 col-sm-12">E-mail</p>
                         <div class="wrap-input100 validate-input" data-validate="E-mail is required">
-                            <input class="input100" type="email" name="user[email]" placeholder="My E-mail is...">
+                            <input class="input100" tabindex="4" type="email" name="user[email]" placeholder="My E-mail is...">
                             <span class="focus-input100"></span>
                         </div>
     
                         <p class="txt1 p-t-13 p-b-9 col-sm-12">Date Of Birth</p>
                         <div class="wrap-input100 validate-input" data-validate="Date Of Birth is required">
-                            <input class="input100" type="date" name="user[dateOfBirth]">
+                            <input class="input100" tabindex="5" type="date" name="user[dateOfBirth]">
                             <span class="focus-input100"></span>
                         </div>
     
-                        <p class="txt1 p-t-13 p-b-9 col-sm-12">City</p>
-                        <div class="wrap-input100 validate-input" data-validate="City is required">
-                            <input class="input100" type="text" name="user[city]" placeholder="I live in...">
+                        <p class="txt1 p-t-13 p-b-9 col-md-12">District</p>
+                        <div class="wrap-input100 validate-input" id="pac-container" data-validate="Location is required">
+                            <select class="input100" tabindex="6" name="user[district]" size="1">
+    							<option value="North"> North </option>
+    							<option value="Haifa"> Haifa </option>
+    							<option value="Center"> Center </option>
+    							<option value="Tel Aviv"> Tel Aviv </option>
+    							<option value="Jerusalem"> Jerusalem </option>
+    							<option value="South"> South </option>
+    							<option value="Beer Sheva"> Beer Sheva </option>
+    						</select>
                             <span class="focus-input100"></span>
                         </div>
-    
-                        <p class="txt1 p-t-13 p-b-9 col-sm-12">Street</p>
-                        <div class="wrap-input100 validate-input" data-validate="Street name is required">
-                            <input class="input100" type="text" name="user[street]" placeholder="My street name is...">
-                            <span class="focus-input100"></span>
-                        </div>
-    
-                        <p class="txt1 p-t-13 p-b-9 col-sm-12">Number</p>
-                        <div class="wrap-input100 validate-input" data-validate="House number is required">
-                            <input class="input100" type="text" name="user[number]" placeholder="My house number is...">
-                            <span class="focus-input100"></span>
+                        
                         </div>
                         <div class="container-login100-form-btn col-sm-12 m-t-17">
-                            <button class="login100-form-btn" type="submit">
+                            <button class="login100-form-btn" tabindex="7" type="submit">
     							Sign Up
     						</button>
                         </div>

@@ -28,6 +28,8 @@
 	margin: 0px; 
 	padding: 0px; 
 	box-sizing: border-box;
+  font-family: 'Yanone Kaffeesatz', sans-serif !important;
+  font-size: 18px;
 }
 
 body, html {
@@ -68,7 +70,6 @@ h1,h2,h3,h4,h5,h6 {
 
 p {
 	font-family: Poppins-Regular;
-	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -146,14 +147,14 @@ iframe {
 
 .txt1 {
   font-family: Montserrat-SemiBold;
-  font-size: 16px;
+  font-size: 18px;
   color: #555555;
   line-height: 1.5;
 }
 
 .txt2 {
   font-family: Poppins-Regular;
-  font-size: 14px;
+  font-size: 18px;
   color: #999999;
   line-height: 1.5;
 }

@@ -8,6 +8,7 @@
     <!--============================================ FONTS ==========================================-->
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Poppins:400,500" rel="stylesheet">
+    <script src="/js/auto-complete.js"></script>
     <!--============================================ Extras =========================================-->
     <% include partials/defaultLinks&Scripts %>
     <% include partials/specialStyles %>
@@ -75,10 +76,15 @@
                         <span class="focus-input100"></span>
                     </div>
 					
-					
+                    <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
+                        <div class="wrap-input100 validate-input" data-validate="Location Of Event is required">
+                            <input id="autocomplete" tabindex="5" class="input100" onFocus="geolocate()" type="text" name="group[location]" value="<%= group.location %>">
+                            <span class="focus-input100"></span>
+                        </div>
+                        
                     <p class="txt1 p-t-13 p-b-9 col-md-12">District</p>
                     <div class="wrap-input100 validate-input" data-validate="Location is required">
-                        <select class="input100" tabindex="5" name="group[district]" size="1">
+                        <select class="input100" tabindex="6" name="group[district]" size="1">
 							<option value="North" <% if(group.district == 'North'){ %> selected <% } %> > North </option>
 							<option value="Haifa" <% if(group.district == 'Haifa'){ %> selected <% } %> > Haifa </option>
 							<option value="Center" <% if(group.district == 'Center'){ %> selected <% } %> > Center </option>
@@ -92,19 +98,19 @@
 					
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                        <input class="input100" tabindex="6" type="number" name="group[minParticipants]" value="<%= group.minParticipants %>">
+                        <input class="input100" tabindex="7" type="number" name="group[minParticipants]" value="<%= group.minParticipants %>">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                        <input class="input100" tabindex="7" type="number" name="group[maxParticipants]" value="<%= group.maxParticipants %>">
+                        <input class="input100" tabindex="8" type="number" name="group[maxParticipants]" value="<%= group.maxParticipants %>">
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
-                        <select class="input100" tabindex="8" name="group[level]" size="1">
+                        <select class="input100" tabindex="9" name="group[level]" size="1">
 							<option value="Noob" <% if(group.level == 'Noob'){ %> selected <% } %> > Noob </option>
 							<option value="Rookie" <% if(group.level == 'Rookie'){ %> selected <% } %> > Rookie </option>
 							<option value="Intermediate" <% if(group.level == 'Intermediate'){ %> selected <% } %> > Intermediate </option>
@@ -115,7 +121,7 @@
                     </div>
 
                     <div class="col-md-12 m-t-17">
-                        <button class="login100-form-btn" tabindex="9" type="submit">
+                        <button class="login100-form-btn" tabindex="10" type="submit">
 							Edit Group
 						</button>
                     </div>
@@ -123,6 +129,17 @@
             </div>
         </div>
 	</main>
+
+   
+    <script>
+        function init() {
+            var input = document.getElementById('locationTextField');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+        }
+ 
+        google.maps.event.addDomListener(window, 'load', init);
+    </script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-91Qs3aLTnNym02hCT_Mf6mQQq9XWLKA&libraries=places&callback=initAutocomplete"></script>
 	
 </body>
 

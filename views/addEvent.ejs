@@ -4,13 +4,29 @@
     <title>Playmate - add an event</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/header.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="/js/auto-complete.js"></script>
     <!--============================================ FONTS ==========================================-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Poppins:400,500" rel="stylesheet">
+    
+    <!--===============================================================================================-->
+	<script src="css/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    	<script src="css/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    	<script src="css/bootstrap/js/popper.js"></script>
+    	<script src="css/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    	<script src="css/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    	<script src="css/daterangepicker/moment.min.js"></script>
+    	<script src="css/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    	<script src="css/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    
     <!--============================================ Extras =========================================-->
     <% include partials/defaultLinks&Scripts %>
     <% include partials/specialStyles %>
@@ -117,21 +133,7 @@
 	
 	<div id="dropDownSelect1"></div>
 	
-<!--===============================================================================================-->
-	<script src="css/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="css/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="css/bootstrap/js/popper.js"></script>
-	<script src="css/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="css/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="css/daterangepicker/moment.min.js"></script>
-	<script src="css/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="css/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
+
    
     <script>
         function init() {
@@ -142,6 +144,7 @@
         google.maps.event.addDomListener(window, 'load', init);
     </script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-91Qs3aLTnNym02hCT_Mf6mQQq9XWLKA&libraries=places&callback=initAutocomplete"></script>
+<link rel="stylesheet" type="text/css" href="/css/header.css">
 </body>
 
 </html>

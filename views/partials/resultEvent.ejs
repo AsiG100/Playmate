@@ -1,7 +1,7 @@
 <a href="/events/<%= event._id %>" class="text-no-dec"><div class="bottom-card">
-	<label><h3> Event: <%= event.name %> </h3></label>
+	<label><h1> Event: <%= event.name %> </h1></label>
 	<div class="row bottom-card-info">
-		<div class="col-sm-6">
+		<div class="col-sm-6 text-left">
 			<p>Sport type: <%= event.sportType %></p>
 			<p>Level: <%= event.level %></p>
 			<p>Participants required: <%=event.minNumOfParticipants%> - <%= event.maxNumOfParticipants%></p>
@@ -9,7 +9,13 @@
 			<p>Time: <%= event.timeOfActivity.startTime %> - <%= event.timeOfActivity.endTime %></p>
 		</div>
 		<div class="col-sm-6">
-			
+			<iframe
+				width="80%"
+				height="150"
+				frameborder="0" style="border:0"
+				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBU_bnBk2hij8xfyxUqxMsTDIoegx48EDs
+			    &q=<%= event.location.replace(' ','+') %>" allowfullscreen>
+			</iframe>
 		</div>
 	</div>
 </div></a>

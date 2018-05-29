@@ -4,10 +4,10 @@
         <title>Playmate - add a group</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="/css/header.css">
         <!--============================================ FONTS ==========================================-->
         <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Poppins:400,500" rel="stylesheet">
+        <script src="/js/auto-complete.js"></script>
         <!--============================================ Extras =========================================-->
         <% include partials/defaultLinks&Scripts %>
         <% include partials/specialStyles %>
@@ -75,10 +75,15 @@
                             <span class="focus-input100"></span>
                         </div>
     					
-    					
+                    <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
+                        <div class="wrap-input100 validate-input" data-validate="Location Of Event is required">
+                            <input id="autocomplete" tabindex="11" class="input100" onFocus="geolocate()" type="text" name="group[location]" placeholder="Enter a location">
+                            <span class="focus-input100"></span>
+                        </div>
+                        
                         <p class="txt1 p-t-13 p-b-9 col-md-12">District</p>
                         <div class="wrap-input100 validate-input" data-validate="Location is required">
-                            <select class="input100" tabindex="11" name="group[district]" size="1">
+                            <select class="input100" tabindex="12" name="group[district]" size="1">
     							<option value="North"> North </option>
     							<option value="Haifa"> Haifa </option>
     							<option value="Center"> Center </option>
@@ -92,19 +97,19 @@
     					
                         <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
                         <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                            <input class="input100" tabindex="12" type="number" name="group[minParticipants]">
+                            <input class="input100" tabindex="13" type="number" name="group[minParticipants]">
                             <span class="focus-input100"></span>
                         </div>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
                         <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                            <input class="input100" tabindex="13" type="number" name="group[maxParticipants]">
+                            <input class="input100" tabindex="14" type="number" name="group[maxParticipants]">
                             <span class="focus-input100"></span>
                         </div>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
                         <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
-                            <select class="input100" tabindex="14" name="group[level]" size="1">
+                            <select class="input100" tabindex="15" name="group[level]" size="1">
     							<option value="Noob"> Noob </option>
     							<option value="Rookie"> Rookie </option>
     							<option value="Intermediate"> Intermediate </option>
@@ -115,7 +120,7 @@
                         </div>
                         
                         <div class="col-md-12 m-t-17 container-login100-form-btn">
-                            <button class="login100-form-btn " tabindex="15" href="/index.ejs">
+                            <button class="login100-form-btn " tabindex="16" href="/index.ejs">
     							Create Event
     						</button>
                         </div>
@@ -140,6 +145,16 @@
 		<script src="css/countdowntime/countdowntime.js"></script>
 	    <!--===============================================================================================-->
  
+    
+    <script>
+        function init() {
+            var input = document.getElementById('locationTextField');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+        }
  
+        google.maps.event.addDomListener(window, 'load', init);
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-91Qs3aLTnNym02hCT_Mf6mQQq9XWLKA&libraries=places&callback=initAutocomplete"></script>
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
     </body>
 </html>

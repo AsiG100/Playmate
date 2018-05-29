@@ -1,71 +1,94 @@
-.navStyle {
-  background-color: #143775;
-  -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
-  -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
-  box-shadow: 0px 2px 10px 0px rgba(1, 79, 82, 0.58);
-  overflow: visible;
-  position: relative;
-  top: 0;
-  width: 100%;
-  z-index: 3;
+/*====================NAVBAR====================*/
+
+.nav-settings{
+	width: 100%;
 }
 
-header a {
-  color: white;
+.profile-pic {
+	border-radius: 50%;
 }
 
-.a-nav {
-  text-decoration: none;
-  color: inherit;
+.username-nav{
+	font-size: 25px;
+	padding:5px;
+	font-family:Poppins-Regular, sans-serif;
 }
 
-.header {
-  position: fixed;
-  left: 0;
-  right: 0;
+.username-nav:hover{
+	font-weight:bold;
+	cursor:pointer;
 }
 
-.navbar-nav {
-  margin: 5px 10px;
+.logo-settings{
+	margin-bottom: 11px;
+	font-family: 'Courgette', cursive !important;
+	font-size: 30px;
+	margin-right: 10px;
 }
 
-.nav-item {
-  margin-left: 5px;
+.logo-settings:hover{
+	font-weight:bold;
 }
 
-.nav-link {
-  font-size: 20px;
+.nav-colors{
+	background-color:#143775!important;
+	color:white;
+	height: 65px;
 }
 
-.siteBrand {
-  font-family: 'Courgette', cursive;
-  font-size: x-large;
-  color: white;
-  padding: .31rem 0 .31rem;
-  line-height: inherit;
-  display: inline-block;
+.drop-button{
+	color:white!important;
+	font-size: 25px;
+	font-family: Poppins-Regular, sans-serif;
 }
 
-.createBtn {
-  font-size: 20px;
-  font-family: Poppins-Regular, sans-serif;
+.drop-button:hover{
+	color:white!important;
+	font-weight:bold;
 }
 
-.list{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.drop-menu{
+	background: #143775!important;
+	margin-top: 7px;
+	border-radius: 0px;
+	box-shadow: 0px 2px 10px 0px rgba(0, 7, 53, 0.58)
 }
 
-.navbar-brand {
-  padding: 0px;
+.drop-menu > a{
+	color: white;
+	font-family: Poppins-Regular, sans-serif;
 }
 
-.usernameNav {
-  font-size: 20px;
-  padding: 8px;
+.drop-menu > a:hover{
+	color:#143775;
+	font-weight:bold;
 }
 
-div.dropdown.open {
-  height: 25px;
+.drop-menu-user{
+	background: #143775!important;
+	margin-top: 7px;
+	margin-left: -137px;
+	width: 115px;
+	border-radius: 0px;
+	box-shadow: 0px 2px 10px 0px rgba(0, 7, 53, 0.58)
+}
+
+.drop-menu-user > a{
+	color: white;
+	font-family: Poppins-Regular, sans-serif;
+}
+
+.drop-menu-user > a:hover{
+	color:#143775;
+	font-weight:bold;
+}
+
+.dropdown-item {
+	font-size: 18px;
+}
+
+@media (max-width: 480px){
+	.nav-colors{
+		width: 480px;
+	}
 }

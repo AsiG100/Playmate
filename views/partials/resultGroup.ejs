@@ -1,14 +1,20 @@
 <a href="/groups/<%= group._id %>" class="text-no-dec">
 	<div class="bottom-card">
-		<label><h3> Group: <%= group.name %> </h3></label>
+		<label><h1> Group: <%= group.name %> </h1></label>
 		<div class="row bottom-card-info">
-			<div class="col-sm-6">
+			<div class="col-sm-6 text-left">
 				<p>Sport type: <%= group.sportType%></p>
 				<p>Level: <%= group.level %></p>
 				<p>Participants required: <%= group.minParticipants %> - <%= group.maxParticipants%></p>
 			</div>
 			<div class="col-sm-6">
-				
+			<iframe
+				width="80%"
+				height="150"
+				frameborder="0" style="border:0"
+				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBU_bnBk2hij8xfyxUqxMsTDIoegx48EDs
+			    &q=<%= group.location.replace(' ','+') %>" allowfullscreen>
+			</iframe>				
 			</div>
 		</div>
 	</div>

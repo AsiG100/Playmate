@@ -1,33 +1,51 @@
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="/css/images/icons/Playmate logo.ico"/>
+	<!--============================================ Bootstrap Jquery ==========================================-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	<!--============================================ FONTS ==========================================-->
+	<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+	<!--============================================ CSS Sheets ==========================================-->	
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+</head>
 <header>
-	<nav class="navbar navbar-expand-lg navbar-light navStyle">
-		<li class="list">
-			<a class="siteBrand" href="/">Playmate</a>
-		</li>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<div class="dropdown">
-				<button class="dropdown-toggle createBtn" type="button" data-toggle="dropdown" style="z-index: 6;">Create 
-    			</button>
-				<ul class="dropdown-menu">
-					<li><a href="/events/add">Create event</a></li>
-					<li class="divider"></li>
-					<li><a href="/groups/add">Create group</a></li>
-				</ul>
-			</div>
-			<div class="profile">
-				<ul class="nav navbar-nav navbar-right">
-					<%if(user != undefined){%>
-						<a href='/profile/<%= user._id %>'>
-						<li>
-							<img src="<%= user.image %>" alt="profile image" width="50" height="50"/>
-							<span class="usernameNav"><%= user.username %></span>
-						</li></a>
-					<% } %>
-				</ul>
-			</div>
-		</div>
+	<nav class="navbar navbar-expand nav-colors navbar-dark bg-light">
+		<a class="navbar-brand logo-settings" href="/index">Playmate</a>
+		<ul class="navbar-nav nav-settings">
+			<%if(user != undefined){%>
+				<a href='/profile/<%= user._id %>'>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle drop-button" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Create
+				</a>
+				<div class="dropdown-menu drop-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="https://playmate-zmirnoff.c9users.io/events/add">Group</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="https://playmate-zmirnoff.c9users.io/groups/add">Event</a>
+				</div>
+			  </li>
+			  <li class="ml-auto m-t-10">
+				<span class="username-nav" ><%= user.username %></span>
+				<img src="<%= user.image %>" class="profile-pic-small" alt="profile image" width="50" height="50"/>
+				
+			  </li>
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle drop-button" href="#" id="user-settings" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				</a>
+				<div class="dropdown-menu drop-menu-user" aria-labelledby="user-settings">
+					<a class="dropdown-item" href="/profile/<%= user._id %>">Profile</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="/signup/<%= user._id %>/edit">Edit Profile</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="/logout">Log Out</a>
+				</div>
+			  </li>
+			  <% } %>
+		</ul>
 	</nav>
 </header>
-
