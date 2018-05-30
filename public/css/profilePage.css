@@ -2,7 +2,7 @@
 @import url(http://weloveiconfonts.com/api/?family=entypo);
 
 .profile-body {
-  padding: 2.23em;
+  padding-top: 2.23em;
 }
 
 .title-pen {
@@ -173,7 +173,7 @@ ul.data {
 
 @media (max-width: 576px){
 	.user-profile{
-		min-width:410px;
+		min-width:360px;
 	}
 	
 	

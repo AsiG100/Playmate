@@ -222,12 +222,13 @@ router.post('/syncToCalendar', function(req, res) {
     userID = req.body.user;
          
     googleApi.syncEventToCalendar(syncedEvent, userID, function(url){
-        if(url == undefined){
+        // if(url == undefined){
             req.flash('success', 'The event is synced');
-            res.redirect('back');
-        }else{
+            // res.redirect('back');
+        // }else{
+            // console.log(url);
             res.redirect(url);
-        }
+        // }
         });
 });
 

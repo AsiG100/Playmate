@@ -57,11 +57,11 @@ function authorize(credentials, callback) {
       client_id, client_secret, redirect_uris[0]);
 
   // Check if we have previously stored a token.
-  if(TOKEN_PATH == undefined){
+  // if(TOKEN_PATH == undefined){
       console.log('no token');
     var url = getAuthURL(oAuth2Client);
     return url;
-  }
+  // }
 
   console.log('there is a token');
   oAuth2Client.setCredentials(JSON.parse(TOKEN_PATH));
@@ -82,7 +82,7 @@ function getAuthURL(oAuth2Client){
     access_type: 'offline',
     scope: SCOPES,
   });
-
+  console.log(authUrl);
   return authUrl;
 } 
  

@@ -25,7 +25,7 @@
   background: #fff;
   border-radius: .3em;
   text-align: center;
-  min-width: 420px;
+  min-width: 360px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -75,7 +75,7 @@
 	height: 5.70em;
 	background: #143775;
 	text-align: center;
-  	min-width: 420px;
+  	min-width: 360px;
   
 }
 .user-profile li {
@@ -349,6 +349,13 @@ ul.data {
 
 @media (max-width: 520px){
 	
+	.container-padding{
+		padding-top:10px;
+		padding-bottom:10px;
+		margin-left:0;
+		margin-right:0;
+	}
+	
 	.button{
 		padding: 8px 14px;
 	}
@@ -359,11 +366,11 @@ ul.data {
 	}
 	
 	.side-box{
-		min-width: 420px;
+		min-width: 360px;
 	}
 	
 	.bottom-part{
-		min-width: 420px;
+		min-width: 360px;
 	}
 }
 

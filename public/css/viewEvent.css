@@ -342,6 +342,10 @@
 
 @media (max-width: 500px){
 	
+	.container-padding{
+		padding:0;
+	}
+	
 	.button{
 		padding: 8px 14px;
 	}
@@ -351,11 +355,11 @@
 	}
 	
 	.side-box{
-		min-width: 409px;
+		min-width: 360px;
 	}
 	
 	.bottom-part{
-		min-width: 409px;
+		min-width: 360px;
 	}
 	
 	.span4 {

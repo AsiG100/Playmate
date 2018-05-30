@@ -20,7 +20,6 @@
 }
 
 .logo-settings{
-	margin-bottom: 11px;
 	font-family: 'Courgette', cursive !important;
 	font-size: 30px;
 	margin-right: 10px;
@@ -96,18 +95,49 @@
 	
 }
 
-@media (max-width: 570px){
+@media (max-width: 605px){
+	.logo-settings{
+		font-size:22px;
+		margin-top:4px;
+	}
 	
 	.username-nav{
 		font-size:20px;
 	}
+	
+	.drop-button{
+		font-size:20px;
+		margin-top:5px;
+	}
+	
+	.right-part{
+		margin-right:-10px;
+	}
 }
 
-@media (max-width: 460px){
+@media (max-width: 510px){
 	
 	.logo-settings{
 		font-size:20px;
-		margin-top:24px;
+		margin-top:4px;
+	}
+	
+	.username-nav{
+		font-size:18px;
+	}
+	
+	.drop-button{
+		font-size:18px;
+		margin-top:5px;
+	}
+}
+
+
+
+@media (max-width: 480px){
+	
+	.logo-settings{
+		font-size:20px;
 	}
 	
 	.username-nav{
@@ -117,20 +147,19 @@
 	
 	.drop-button{
 		font-size:16px;
-		margin-top:10px;
+		margin-top:7px;
 	}
 	
 	.right-part{
-		margin-right:15px;
 		margin-top:-3px;
 	}
 
 }
 
-@media (max-width: 420px){
+@media (max-width: 460px){
 	.logo-settings{
-		font-size:22px;
-		margin-top:22px;
+		font-size:20px;
+		margin-top:7px;
 	}
 	
 	.username-nav{
@@ -144,12 +173,49 @@
 	}
 }
 
-@media (max-width: 380px){
+@media (max-width: 420px){
+	.logo-settings{
+		font-size:18px;
+	}
+	
 	.username-nav{
 		font-size:12px;
+		padding-bottom:5px;
 	}
+	
 	.drop-button{
 		font-size:12px;
+		margin-top:10px;
+	}
+}
+
+@media (max-width: 400px){
+	.logo-settings{
+		font-size:16px;
+	}
+	
+	.username-nav{
+		font-size:11px;
+		padding-bottom:5px;
+	}
+	
+	.drop-button{
+		font-size:11px;
+		margin-top:10px;
+	}
+}
+
+
+@media (max-width: 380px){
+	.logo-settings{
+		font-size:16px;
+	}
+	
+	.username-nav{
+		font-size:10px;
+	}
+	.drop-button{
+		font-size:10px;
 	}
 }
 
@@ -159,23 +225,21 @@
 	}
 	
 	.logo-settings{
-		font-size:20px;
-		margin-top:25px;
+		margin-top:9px;
 	}
 	
 	.username-nav{
-		font-size:10px;
-		padding-bottom:5px;
+		
+		
 	}
 	
 	.drop-button{
-		font-size:12px;
-		margin-top:10px;
+		margin-top:12px;
+		
 	}
 	
 	.right-part{
-		margin-right:15px;
-		margin-top:-3px;
+		margin-right:-4px;
 	}
 	
 	
