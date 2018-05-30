@@ -1,4 +1,6 @@
-<div class="friend-card row">
-		<img class="avatar" src="<%= profile.image %>" alt="profile picture"/>
-		<div class="username"><%= profile.username %></div>
-</div>
+<a href="/profile/<%= profile._id %>" class="text-no-dec">
+	<div class="friend-card row">
+			<img class="avatar" src="<%= profile.image %>" alt="profile picture"/>
+			<div class="username"><%= profile.username %></div>
+	</div>
+</a>

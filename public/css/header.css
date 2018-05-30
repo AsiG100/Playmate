@@ -87,10 +87,91 @@
 	font-size: 18px;
 }
 
-@media (max-width: 480px){
-	.nav-colors{
-		width: 480px;
+@media (max-width: 767px){
+
+	.right-part{
+		padding-bottom:15px;
+		margin-right:10px;
 	}
+	
+}
+
+@media (max-width: 460px){
+	
+	.logo-settings{
+		font-size:20px;
+		margin-top:24px;
+	}
+	
+	.username-nav{
+		font-size:16px;
+		padding-bottom:5px;
+	}
+	
+	.drop-button{
+		font-size:16px;
+		margin-top:10px;
+	}
+	
+	.right-part{
+		margin-right:15px;
+		margin-top:-3px;
+	}
+
+}
+
+@media (max-width: 420px){
+	.logo-settings{
+		font-size:22px;
+		margin-top:22px;
+	}
+	
+	.username-nav{
+		font-size:13px;
+		padding-bottom:5px;
+	}
+	
+	.drop-button{
+		font-size:13px;
+		margin-top:10px;
+	}
+}
+
+@media (max-width: 380px){
+	.username-nav{
+		font-size:12px;
+	}
+	.drop-button{
+		font-size:12px;
+	}
+}
+
+@media (max-width: 360px){
+	.nav-colors{
+		width: 360px;
+	}
+	
+	.logo-settings{
+		font-size:20px;
+		margin-top:25px;
+	}
+	
+	.username-nav{
+		font-size:10px;
+		padding-bottom:5px;
+	}
+	
+	.drop-button{
+		font-size:12px;
+		margin-top:10px;
+	}
+	
+	.right-part{
+		margin-right:15px;
+		margin-top:-3px;
+	}
+	
+	
 }
 
 

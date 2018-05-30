@@ -39,19 +39,25 @@
 								<% if(content.length > 0){ %>
 									<% include partials/suggestedGroup %>
 								<% } %>
-							<% }else if(contentType == 'Group'){ %>
-								<% content.forEach(function(group){ %>
-									<% include partials/resultGroup %>
-								<% }) %>
-							<% }else if(contentType == 'Event'){ %>	
-								<% content.forEach(function(event){ %>
-									<% include partials/resultEvent %>
-								<% }) %>
 							<% }else{ %>
-								<% content.forEach(function(profile){ %>
-									<% include partials/resultUser %>
-								<% }) %>
-					<% } } %>
+								<% if(content.length == 0){ %>
+									<div class="bottom-card">
+										<label><h3> No results were found </h3></label>
+									</div>								
+								<% } %>							
+								<% if(contentType == 'Group'){ %>
+									<% content.forEach(function(group){ %>
+										<% include partials/resultGroup %>
+									<% }) %>
+								<% }else if(contentType == 'Event'){ %>	
+									<% content.forEach(function(event){ %>
+										<% include partials/resultEvent %>
+									<% }) %>
+								<% }else{ %>
+									<% content.forEach(function(profile){ %>
+										<% include partials/resultUser %>
+									<% }) %>
+					<% } } }%>
 				</div>
 			</div>
 	</div>

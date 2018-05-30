@@ -67,6 +67,7 @@
 						<div class="bio">
 							<p>Sport Type: <%= group.sportType %></p>
 							<p>District: <%= group.district %></p>
+							<p>Days: <%= group.days.toString() %></p>
 							<p>Min level: <%= group.level %></p>
 						<div class="text-center">
 							<% if(!user._id.equals(group.participants[0]._id)){ %>

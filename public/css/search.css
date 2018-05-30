@@ -254,3 +254,27 @@ input[type=text]#search-bar:focus{
 	color: #4eb6b6;
 	
 }
+
+
+@media (max-width: 360px){
+	.search-window{
+		width: 360px;
+	}
+	
+	.bottom-part-seperator{
+		width: 360px;
+	}
+	
+	.bottom-part{
+		width: 360px;
+	}
+	
+	.profile-pic-small{
+		margin-top:-5px;
+	}
+	
+  	.col-centered{
+    	width:360px;
+  	}
+}
+
