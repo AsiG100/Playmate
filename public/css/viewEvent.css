@@ -19,7 +19,6 @@
 }
 
 .user-profile {
-  margin: auto;
 	width: 35em; 
   height: auto;
   background: #fff;
@@ -252,12 +251,6 @@
 
 /*====================RESPONSIVENESS====================*/
 
-@media (max-width: 768px) {
-	
-    .chat_list .list-group-item {
-        min-height: inherit;
-  	  }
-	}
 
 @media (max-width: 992px) {
 	
@@ -284,23 +277,26 @@
 }
 
 @media (max-width: 768px) {
-	
-	.friend-card > .avatar {
-	display:inline;
-	}
-	
+
 	.side-box{
 		width: 33em;
 		min-height: 115px;
 		margin-bottom: 10px;
-		
 	}
-}
+	
+	.friend-card > .avatar {
+		display:inline;
+	}
+	
+	.chat_list .list-group-item {
+        min-height: inherit;
+  	  }
+	}
+	
 
 @media (max-width: 576px) {
 	
 	.side-box{
-		margin: auto;
 		margin-bottom: 10px;
 		width: 90%;
 	}
@@ -322,7 +318,7 @@
 		padding: 12px 26px;
 	}
 	
-			.user-profile .data {
+	.user-profile .data {
 		height:5.9em;
 	}
 	
@@ -334,7 +330,7 @@
 		padding: 10px 20px;
 	}
 	
-		.user-profile .data {
+	.user-profile .data {
 		height:5.3em;
 	}
 	
@@ -342,12 +338,25 @@
 
 @media (max-width: 500px){
 	
-	.container-padding{
-		padding:0;
-	}
-	
 	.button{
 		padding: 7px 14px;
+	}
+	
+	
+	.user-profile{
+		width: 90%;
+	}
+	
+	.user-profile .data{
+		width: 90%;
+	}
+	
+	.side-box{
+		width: 90%;
+	}
+	
+	.bottom-part{
+		width: 90%;
 	}
 
 }
@@ -356,23 +365,25 @@
 	
 	.user-profile{
 		min-width: 360px;
+		margin-left:0;
 	}
 	
 	.user-profile .data {
 		height:5.0em;
 		min-width: 360px;
+		margin-left:0;
 	}
 	
 	.side-box{
 		min-width: 360px;
+		margin-left:0;
 	}
 	
 	.bottom-part{
 		min-width: 360px;
+		margin-left:0;
 	}
 	
-	.span4 {
-	min-width: 308px;
-	}
+	
 	
 }

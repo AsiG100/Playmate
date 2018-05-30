@@ -19,7 +19,6 @@
 }
 
 .user-profile {
-  margin: auto;
 	width: 35em; 
   height: auto;
   background: #fff;
@@ -361,7 +360,6 @@ ul.data {
 	
 	
 }
-
 
 @media (max-width: 360px){
 	

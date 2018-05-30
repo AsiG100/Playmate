@@ -75,6 +75,7 @@ input#search-bar{
 
 .filters-button {
 	border-radius: 25px;
+	font-size:13px;
 	border: 1px solid;
 	text-align: center;
 	display: inline-block;
@@ -95,6 +96,7 @@ input#search-bar{
 
 .search-button{
 	border-radius: 25px;
+	font-size:13px;
 	border: 1px solid;
 	text-align: center;
 	display: inline-block;
