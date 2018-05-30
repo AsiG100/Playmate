@@ -101,16 +101,17 @@
 @media (max-width: 605px){
 	.logo-settings{
 		font-size:28px;
+		margin-top:5px;
 	}
 	
 	.username-nav{
 		font-size:18px;
-		margin-top:5px;
+		margin-top:12px;
 	}
 	
 	.drop-button{
 		font-size:18px;
-		
+		margin-top:7px;
 	}
 	
 	.right-part{
@@ -226,7 +227,7 @@
 
 @media (max-width: 360px){
 	.nav-colors{
-		width: 360px;
+		min-width: 360px;
 	}
 	
 	.username-nav{

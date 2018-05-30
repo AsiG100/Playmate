@@ -223,7 +223,7 @@ router.post('/syncToCalendar', function(req, res) {
          
     googleApi.syncEventToCalendar(syncedEvent, userID, function(url){
         // if(url == undefined){
-        //     req.flash('success', 'The event is synced');
+            req.flash('success', 'The event is synced');
         //     res.redirect('back');
         // }else{
             console.log(url);

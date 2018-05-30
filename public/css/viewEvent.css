@@ -347,11 +347,20 @@
 	}
 	
 	.button{
-		padding: 8px 14px;
+		padding: 7px 14px;
+	}
+
+}
+
+@media (max-width: 360px){
+	
+	.user-profile{
+		min-width: 360px;
 	}
 	
 	.user-profile .data {
 		height:5.0em;
+		min-width: 360px;
 	}
 	
 	.side-box{
@@ -364,6 +373,6 @@
 	
 	.span4 {
 	min-width: 308px;
-}
+	}
 	
 }
