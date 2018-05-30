@@ -3,7 +3,7 @@
 	<label><h3> Would you like to create a <%= content[0].sportType %> group </h3></label>
 	<% var names = [] %> 
 	<% content.forEach(function(track){ %>
-        <%names.concat(track.user.username) %>	
+        <%names = names.concat(track.user.username) %>	
 	<% }) %>
 	<h2> with: <%= names.toString() %> </h2>
 	<input type="hidden" value="<%= content[0].sportType %>" name="search[type]" >

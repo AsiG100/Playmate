@@ -96,6 +96,13 @@
 	
 }
 
+@media (max-width: 570px){
+	
+	.username-nav{
+		font-size:20px;
+	}
+}
+
 @media (max-width: 460px){
 	
 	.logo-settings{
