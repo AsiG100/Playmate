@@ -57,11 +57,11 @@ function authorize(credentials, callback) {
       client_id, client_secret, redirect_uris[0]);
 
   // Check if we have previously stored a token.
-  // if(TOKEN_PATH == undefined){
+  if(TOKEN_PATH == undefined){
       console.log('no token');
     var url = getAuthURL(oAuth2Client);
     return url;
-  // }
+  }
 
   console.log('there is a token');
   oAuth2Client.setCredentials(JSON.parse(TOKEN_PATH));
@@ -108,7 +108,7 @@ function getAccessToken(code, callback) {
 }
 
 function insertEvent(auth, cb){
-
+TOKEN_PATH = undefined;
 const calendar = google.calendar({version: 'v3', auth});
 EventModel.findById(syncedEvent, function(err, syncedEvent){
     if(err){
