@@ -58,7 +58,7 @@ input#search-bar{
 }
 
 .col-centered{
-	float: none;
+	float: none !important;
 	margin: 0 auto;
 	height: auto;
 }
@@ -235,8 +235,10 @@ input[type=text]#search-bar:focus{
 
 .profile-pic {
 	border-radius: 50%;
-	height: 200px;
-	width: 220px;
+	/*height: 200px;*/
+	height: 10em;
+	/*width: 220px;*/
+	width: 10em;
 	margin-top: -12px;
 }
 

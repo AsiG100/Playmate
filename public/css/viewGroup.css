@@ -42,7 +42,7 @@
 .user-profile  .bio {
   margin: 20px;
   display: block;
-  text-align: left;
+  text-align: center;
   color: #4eb6b6; 
   font-size: 1.2em;
   font-family: 'Poppins', sans-serif ;
@@ -324,7 +324,7 @@ ul.data {
 	}
 	
 	.button{
-		padding: 12px 20px;
+		padding: 12px 15px;
 		margin-right: -1px;
 	}
 	
@@ -337,7 +337,7 @@ ul.data {
 @media (max-width: 555px){
 	
 	.button{
-		padding: 10px 17px;
+		padding: 10px 13px;
 		
 	}
 	
@@ -355,6 +355,7 @@ ul.data {
 	
 .user-profile ul.data {
 		height:5.0em;
+		
 	}
 	
 	.side-box{

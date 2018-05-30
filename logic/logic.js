@@ -13,7 +13,7 @@ function addSuggestedContentToFeed(userID, res, cb){
                 user.favoriteUsers.forEach(function(friendID){
                 dataAccess.getUserContent(friendID, function(user, groups, events){
                   groups.forEach(function(group){
-                     if(group.participants.indexOf(user._id) == -1)
+                     if(group.participants.indexOf(userID) == -1)
                      {
                         console.log('add: %s',group);
                         res.locals.friendsGroups = res.locals.friendsGroups.concat(group);
@@ -22,7 +22,7 @@ function addSuggestedContentToFeed(userID, res, cb){
                      } 
                   });
                   events.forEach(function(event){
-                     if(isEventPassed(event.dateOfEvent) && event.participants.indexOf(user._id) == -1)
+                     if(isEventPassed(event.dateOfEvent) && event.participants.indexOf(userID) == -1)
                      {
                         console.log('add: %s',event);
                         res.locals.friendsEvents = res.locals.friendsEvents.concat(event);

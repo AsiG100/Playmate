@@ -1,11 +1,10 @@
 <a href="/profile/<%= profile._id %>" class="text-no-dec">
-	<div class="bottom-card">
+	<div class="bottom-card shadow">
 		<label><h3> <%= profile.username %> </h3></label>
 		<div class="row bottom-card-info">
 			<div class="col-sm-6">
-				<p>Level: <%= profile.level %></p>
+				<p>District: <%= profile.district %> </p>
 				<p>Exp: <%= profile.gameProgress %> </p>
-				<p>Location: <%= profile.address %> </p>
 			</div>
 			<div class="col-sm-6">
 				<img class="profile-pic" src="<%= profile.image %>" alt="Profile Picture">

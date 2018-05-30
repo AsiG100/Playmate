@@ -37,6 +37,7 @@
 							<h2 class="username"><%= profile.username %></h2>
 							<div class="bio">
 								<p>Level: Noob </p>
+								<p>District: <%= profile.district %> </p>
 								<p>Exp: <%= profile.gameProgress %> </p>
 								<% if(!user._id.equals(profile._id)){ %>
 									<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
@@ -57,12 +58,12 @@
 							</div>
 							<ul class="data">
 								<div class="row">
-									<div class="col-sm-6">
+									<div class="col-xs-6">
 										<li>
 										  <button class="button" id="group-show">Groups</button>
 										</li>
 									</div>
-									<div class="col-sm-6">
+									<div class="col-xs-6">
 										<li>
 										  <button class="button" id="event-show">Events</button>
 										</li>

@@ -38,8 +38,9 @@
   font-weight: bold;
 }
 .user-profile  .bio {
-  margin: auto;
+  margin: 20px;
   display: inline-block;
+  text-align:center;
   color: #4eb6b6; 
   font-size: 1.2em;
   font-family: 'Poppins', sans-serif ;
@@ -205,7 +206,6 @@
 .friend-card > .avatar {
 	padding: .7em;
 	margin-left: 20px;
-	padding-top:20px;
 	height: 65px;
 	width: 70px;
 	border-radius: 50%;
@@ -215,6 +215,7 @@
 	margin-bottom:5px;
 	color: #4eb6b6;
 	font-size: 15px;
+	padding-top:20px;
 	font-family: 'Poppins', sans-serif ;
 	font-weight: bold;
 	display: inline;

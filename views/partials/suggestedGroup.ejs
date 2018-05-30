@@ -1,12 +1,12 @@
 <form method="POST" action="/groups/add/suggested">
-<div class="bottom-card">
+<div class="bottom-card shadow">
 	<label><h3> Would you like to create a <%= content[0].sportType %> group </h3></label>
 	<h2> with: <% content.forEach(function(track){ %>
-        ,<%= track.user.username %>	
+        <%= track.user.username %>	
 	<% }) %></h2>
 	<input type="hidden" value="<%= content[0].sportType %>" name="search[type]" >
 	<input type="hidden" value="<%= content[0].level %>" name="search[level]" >
 	<input type="hidden" value="<%= content[0].district %>" name="search[district]" >
-	<button type="submit" class="search-button">Yes</button>
+	<button type="submit" class="search-button m-b-10">Yes</button>
 </div>
 </form>

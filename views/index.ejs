@@ -53,24 +53,25 @@
                         <% if(friendsEvents.length > 0 || friendsGroups.length > 0){ %>
             	        	<div class="col-sm-12 col-centered">
                 		    	<div class="bottom-part-seperator">
-                                    <h1>Suggested events and groups</h1>
+                                    <h1 class="p-t-20">Suggested events and groups</h1>
                 			    </div>
             		        </div>                     
                             <!--//////////////// SUGGESTED CARDS /////////////////////////////-->
-                            <% var group=0,event=0; %>
-                            <%while((group+event)<(friendsGroups.length+friendsEvents.length)){%>
-                                <%if(group>=friendsGroups.length){%>
-                                    <% include partials/friendEventCard %>
-                                    <% event++;%>
-                                <% }else if(event>=friendsEvents.length){ %>
-                                    <% include partials/friendGroupCard %>
-                                    <% group++; %>
-                                <% }else if(friendsGroups[group].dateOfCreation > friendsEvents[event].dateOfCreation){%>
-                                    <% include partials/friendGroupCard %>
-                                    <% group++;%>
+                            <% var g=0,e=0; %>
+                            <%while((g+e)<(friendsGroups.length+friendsEvents.length)){%>
+                                <% var group = friendsGroups[g], event = friendsEvents[e]; %>
+                                <%if(g>=friendsGroups.length){%>
+                                    <% include partials/resultEvent %>
+                                    <% e++;%>
+                                <% }else if(e>=friendsEvents.length){ %>
+                                    <% include partials/resultGroup %>
+                                    <% g++; %>
+                                <% }else if(friendsGroups[g].dateOfCreation > friendsEvents[e].dateOfCreation){%>
+                                    <% include partials/resultGroup %>
+                                    <% g++;%>
                                 <% }else{ %>
-                                    <% include partials/friendEventCard %>
-                                    <% event++; %>
+                                    <% include partials/resultEvent %>
+                                    <% e++; %>
                         <% } } }%>
                 </div>        
             </div>

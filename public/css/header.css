@@ -16,7 +16,7 @@
 
 .username-nav:hover{
 	font-weight:bold;
-	cursor:pointer;
+	/*cursor:pointer;*/
 }
 
 .logo-settings{

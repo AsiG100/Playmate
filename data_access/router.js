@@ -8,14 +8,6 @@ let express = require("express"),
 
 //INDEX//////////////////////////
 router.get('/', middlewares.isLoggedIn, function(req, res) {
-        // dataAcess.getMyContent(req.user, res, function(){
-        //     dataAcess.getUserFromDB(req.user, function(user) {
-        //       dataAcess.getFriendsContent(user.favoriteUsers, res, function(){
-        //             res.render('index'); 
-        //         });
-        //     });
-        // });
-        // dataAcess.getFavoritesFromFB(req.user);
         var userID = req.user._id;
         
         logic.addSuggestedContentToFeed(userID, res, function(){

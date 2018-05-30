@@ -30,12 +30,12 @@ ul.data {
 
 .user-profile  .username {
   margin: auto;
-  margin-top: -2.80em;
-  margin-left: 4.4em;
+  margin-top: -3.80em;
+  margin-left: 140px;
   margin-bottom: 8px;
-  color: #658585;
-  font-size: 2em;
-  font-family: "Coda", sans-serif;
+  color: #4eb6b6;
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif ;
   font-weight: bold;
 }
 .user-profile  .bio {
@@ -44,7 +44,7 @@ ul.data {
   margin-left: 7.4em;
   color: #4eb6b6; 
   font-size: 1.2em;
-  font-family: "varela round", sans-serif;
+  font-family: 'Poppins', sans-serif ;
 }
 
 .user-profile .bio > p {
@@ -143,19 +143,18 @@ ul.data {
 	padding-bottom: 20px;
 }
 .bottom-part-container{
-	margin-top: 48px;
+	margin-top: 20px;
 }
 
 .bottom-card{
 	text-align: center;
 	padding-top: 8px;
-	/*border: 0.5px solid #ffb471;*/
 	width: 50%;
 	margin: auto;
 	margin-top: 20px;
 	border-radius: 8px;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-	color: #8a54a2;
+	color: #4eb6b6;
 	font-size: 15px;
 	font-weight: bold;
 	cursor: pointer;
@@ -163,6 +162,21 @@ ul.data {
 
 .bottom-card:hover {
 	color: white;
-	background-color: #8a54a2;
+	background-color: #4eb6b6;
 }
+
+
+.bottom-part-container a:hover {
+	text-decoration:none;
+}
+
+
+@media (max-width: 576px){
+	.user-profile{
+		min-width:410px;
+	}
+	
+	
+}
+
 
