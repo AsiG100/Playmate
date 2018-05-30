@@ -10,8 +10,8 @@ const client_secret = '{"web":{'
                                 +'"token_uri":"https://accounts.google.com/o/oauth2/token",'
                                 +'"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",'
                                 +'"client_secret":"gARqs0nO3UUY7cFgZhnfzxcy",'
-                                +'"redirect_uris":["https://playmate1.herokuapp.com/googleCallback"],'
-                                +'"javascript_origins":["https://playmate1.herokuapp.com"]'
+                                +'"redirect_uris":["https://playmate-zmirnoff.c9users.io/googleCallback"],'
+                                +'"javascript_origins":["https://playmate-zmirnoff.c9users.io"]'
                              +'}'
                         +'}';
 const EventModel = require("../data_access/schemas.js").event;

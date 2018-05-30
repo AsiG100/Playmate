@@ -222,18 +222,19 @@ router.post('/syncToCalendar', function(req, res) {
     userID = req.body.user;
          
     googleApi.syncEventToCalendar(syncedEvent, userID, function(url){
-        if(url == undefined){
-            req.flash('success', 'The event is synced');
-            res.redirect('back');
-        }else{
+        // if(url == undefined){
+        //     req.flash('success', 'The event is synced');
+        //     res.redirect('back');
+        // }else{
             console.log(url);
             res.redirect(url);
-        }
+        // }
         });
 });
 
 router.get('/googleCallback', function(req, res) {
     var code = req.query.code;
+    console.log('code',code);
     googleApi.getAccessToken(code,function(auth){
         googleApi.syncEventToCalendar(syncedEvent, userID, function(){
             req.flash('success', 'The event is synced');
