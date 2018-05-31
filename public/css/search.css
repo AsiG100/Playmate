@@ -63,6 +63,13 @@ input#search-bar{
 	height: auto;
 }
 
+@media (max-width: 360px){
+	.col-centered{
+		margin-left:0;
+		margin-right:0;
+	}
+}
+
 .search-window{
 	width: auto; 
 	margin: 0 auto;

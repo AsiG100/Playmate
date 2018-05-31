@@ -5,10 +5,6 @@
   background: #ecf7ff;
 }
 
-.container-padding{
-	padding: 2.23em;
-}
-
 .title-pen {
   color: #333;
   font-family: 'Poppins', sans-serif ;
@@ -22,9 +18,10 @@
 	width: 35em; 
   height: auto;
   background: #fff;
+  margin-top:1em;
+  margin-left:1em;
   border-radius: .3em;
   text-align: center;
-  min-width: 360px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -74,13 +71,13 @@
 	height: 5.70em;
 	background: #143775;
 	text-align: center;
-  	min-width: 360px;
   
 }
 .user-profile li {
   padding: 1em; 
-  width: 33%;
-  display: table-cell;
+  float:left;
+  width: 25%;
+  display: inline-block;
   text-align: center;
 }
 
@@ -185,7 +182,7 @@ ul.data {
 .side-box{
 	background: white;
 	height: auto;
-	margin-right: -15px;
+	margin-top:1em;
 	min-height: 318px;
     border-radius: .3em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -257,13 +254,6 @@ ul.data {
 
 /*====================RESPONSIVENESS====================*/
 
-@media (max-width: 768px) {
-	
-    .chat_list .list-group-item {
-        min-height: inherit;
-  	  }
-	}
-
 @media (max-width: 992px) {
 	
 	.friend-card > .avatar {
@@ -271,11 +261,12 @@ ul.data {
 	}
 	
 	.side-box{
-		width: 10em;
+		width: 11em;
 	}
 	
 	.user-profile{
 		width: 33em;
+		margin-left:1em;
 	}
 	
 	.bottom-part{
@@ -289,8 +280,18 @@ ul.data {
 
 @media (max-width: 768px) {
 	
+	.chat_list .list-group-item {
+        min-height: inherit;
+  	  }
+	
+	
 	.friend-card > .avatar {
 	display:inline;
+	}
+	
+	.user-profile{
+		width: 33em;
+		margin-left:0;
 	}
 	
 	.side-box{
@@ -304,31 +305,42 @@ ul.data {
 @media (max-width: 576px) {
 	
 	.side-box{
-		margin: auto;
-		margin-bottom: 10px;
-		width: 90%;
+		margin-bottom: 11px;
+		width: 100%;
+		margin-left:0;
+		margin-right:0;
+		padding-left:0;
+		padding-right:0;
 	}
 	
 	.user-profile{
-		width: 90%;
+		width: 100%;
+		margin-left:0;
+		margin-right:0;
+		padding-left:0;
+		padding-right:0;
 	}
 	
 	.bottom-part{
-		width: 90%;
+		width: 100%;
+		margin-left:0;
+		margin-right:0;
+		padding-left:0;
+		padding-right:0;
 	}
 	
 	.user-profile ul.data{
-		width: auto;
+		
 		height:5.5em;
 	}
 	
 	
 	.button{
 		padding: 12px 15px;
-		margin-right: -1px;
+		
 	}
 	
-			.user-profile .data {
+	.user-profile .data {
 		height:5.9em;
 	}
 	
@@ -357,22 +369,44 @@ ul.data {
 		height:5.0em;
 		
 	}
+}
+
+@media (max-width: 530px){
 	
-	
+	.button{
+		padding: 5px 8px;
+	}
 }
 
 @media (max-width: 360px){
 	
 	.user-profile{
-		min-width: 360px;
+		
+		margin-left:0;
+		margin-right:0;
+		padding-left:0;
+		padding-right:0;
 	}
 	
 	.side-box{
-		min-width: 360px;
+		
+		margin-left:0;
+		margin-right:0;
+		padding-left:0;
+		padding-right:0;
 	}
 	
 	.bottom-part{
-		min-width: 360px;
+		
+		margin-left:0;
+		margin-right:0;
+		padding-left:0;
+		padding-right:0;
+	}
+	
+	.button{
+		padding: 5px 8px;
+		margin-left:-0.4em;
 	}
 	
 }

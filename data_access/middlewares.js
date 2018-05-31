@@ -19,5 +19,4 @@ function addErrHandeling(req, res){
 
 module.exports = {
                     isLoggedIn: isLoggedIn
-                        
                  }

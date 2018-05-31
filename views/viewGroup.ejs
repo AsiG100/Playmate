@@ -51,7 +51,7 @@
     </head>
     <body class="profile-body">
 		<% include partials/header %>
-		<div class="container container-padding">
+		<div class="container">
 			<div class="row col-centered">
 				<div class="col-sm-12 col-md-3">
 					<div class="side-box">
@@ -69,53 +69,54 @@
 							<p>District: <%= group.district %></p>
 							<p>Days: <%= group.days.toString() %></p>
 							<p>Min level: <%= group.level %></p>
-						<div class="text-center">
-							<% if(!user._id.equals(group.participants[0]._id)){ %>
-								<% if(user.groups.indexOf(group._id)==-1){ %>
-									<form action="/group/toggle" method="POST">
-										<input type="hidden" name="group" value="<%= group._id %>" >
-										<input type="hidden" name="user" value="<%= user._id %>" >
-										<input type="hidden" name="isAdded" value="0" >
-										<button type="submit" class="join">Join group</button>
-									</form>
-								<% }else{ %>
-									<form action="/group/toggle" method="POST">
-										<input type="hidden" name="group" value="<%= group._id %>" >
-										<input type="hidden" name="user" value="<%= user._id %>" >
-										<input type="hidden" name="isAdded" value="1" >
-										<button type="submit" class="join">Leave group</button>
-									</form>
-							<% } }else{ %>
-									<% if(group.participants.length > 1){ %>
-										<form action="/group/toggle" method="POST" class="dis-inline">
+							<div class="text-center">
+								<% if(!user._id.equals(group.participants[0]._id)){ %>
+									<% if(user.groups.indexOf(group._id)==-1){ %>
+										<form action="/group/toggle" method="POST">
+											<input type="hidden" name="group" value="<%= group._id %>" >
+											<input type="hidden" name="user" value="<%= user._id %>" >
+											<input type="hidden" name="isAdded" value="0" >
+											<button type="submit" class="join">Join group</button>
+										</form>
+									<% }else{ %>
+										<form action="/group/toggle" method="POST">
 											<input type="hidden" name="group" value="<%= group._id %>" >
 											<input type="hidden" name="user" value="<%= user._id %>" >
 											<input type="hidden" name="isAdded" value="1" >
 											<button type="submit" class="join">Leave group</button>
-										</form>						
-							     	<% } %>
-							     	<form action="/groups/<%= group._id %>?_method=DELETE" method="POST" class="dis-inline">
-							            <input type="submit" class="join" value="Delete">
-						            </form>
-							        <a href="/groups/<%= group._id %>/edit" class="join">Edit</a>
-							<% } %>
+										</form>
+								<% } }else{ %>
+										<% if(group.participants.length > 1){ %>
+											<form action="/group/toggle" method="POST" class="dis-inline">
+												<input type="hidden" name="group" value="<%= group._id %>" >
+												<input type="hidden" name="user" value="<%= user._id %>" >
+												<input type="hidden" name="isAdded" value="1" >
+												<button type="submit" class="join">Leave group</button>
+											</form>						
+								     	<% } %>
+								     	<form action="/groups/<%= group._id %>?_method=DELETE" method="POST" class="dis-inline">
+								            <input type="submit" class="join" value="Delete">
+							            </form>
+								        <a href="/groups/<%= group._id %>/edit" class="join">Edit</a>
+								<% } %>
+							</div>
 						</div>
+						<div class="w-full">
+							<ul class="data">
+								<li>
+								  <button class="button" id="events-show">Events</button>
+								</li>
+								<li>
+								  <button class="button" id="map-show">Map</button>
+								</li>
+								<li>
+								  <button class="button" id="details-show">Details</button>
+								</li>
+								<li>
+								  <button class="button" id="posts-show">Posts</button>
+								</li>
+							</ul>
 						</div>
-						<ul class="data">
-							<li>
-							  <button class="button" id="events-show">Events</button>
-							</li>
-							<li>
-							  <button class="button" id="map-show">Map</button>
-							</li>
-							<li>
-							  <button class="button" id="details-show">Details</button>
-							</li>
-							<li>
-							  <button class="button" id="posts-show">Posts</button>
-							</li>
-						</ul>
-						
 						<div id="events" class="bottom-part">
 							<div class="bottom-part-container text-center">
 					            <a href="/groups/<%= group._id %>/events/add" class="join">Add an event</a>
@@ -168,7 +169,6 @@
 									            <form accept-charset="UTF-8" action="/groups/<%=group._id%>/messages/add" method="POST">
 									                <textarea class="span4" id="new_message" name="content"
 									                placeholder="Type in your message" rows="3"></textarea>
-									                <h6 class="pull-right">320 characters remaining</h6>
 									                <button class="btn btn-info" type="submit">Post New Message</button>
 									            </form>
 									        </div>

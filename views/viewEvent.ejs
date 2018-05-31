@@ -41,7 +41,7 @@
     </head>
     <body class="profile-body">
 	<% include partials/header %>
-		<div class="container container-padding">
+		<div class="container">
 			<% include partials/errorHandeling %>
 			<div class="row">
 				<div class="col-sm-12 col-md-3">
@@ -90,22 +90,18 @@
 						        <a href="/events/<%= event._id %>/edit" class="join">Edit</a>
 						<% } %>						
 						</div>
-						<div class="data">
-							<div class="row">
-								<div class="col-sm-12 col-md-8">
-									<ul>
-										<li>
-										  <button class="button" id="map-show">Map</button>
-										</li>
-										<li>
-										  <button class="button" id="details-show">Details</button>
-										</li>
-										<li>
-										  <button class="button" id="posts-show">Posts</button>
-										</li>
-									</ul>
-								</div>
-							</div>
+						<div class="w-full">
+							<ul class="data">
+								<li>
+								  <button class="button" id="map-show">Map</button>
+								</li>
+								<li>
+								  <button class="button" id="details-show">Details</button>
+								</li>
+								<li>
+								  <button class="button" id="posts-show">Posts</button>
+								</li>
+							</ul>
 						</div>
 						<% if(event.location != undefined){ %>
 							<div id="map" class="bottom-part">
