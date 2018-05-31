@@ -78,7 +78,7 @@
 						<% } } else{%>
 								<% if(event.participants.length > 1){ %>
 									<form action="/event/toggle" method="POST" class="dis-inline">
-										<input type="hidden" name="group" value="<%= group._id %>" >
+										<input type="hidden" name="event" value="<%= event._id %>" >
 										<input type="hidden" name="user" value="<%= user._id %>" >
 										<input type="hidden" name="isAdded" value="1" >
 										<button type="submit" class="join">Leave event</button>
@@ -148,7 +148,6 @@
 								            <form accept-charset="UTF-8" action="/events/<%=event._id%>/messages/add" method="POST">
 								                <textarea class="span4" id="new_message" name="content"
 								                placeholder="Type in your message" rows="3"></textarea>
-								                <h6 class="pull-right">320 characters remaining</h6>
 								                <button class="btn btn-info" type="submit">Post New Message</button>
 								            </form>
 								        </div>
