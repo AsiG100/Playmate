@@ -246,6 +246,7 @@ iframe {
   align-items: center;
   padding: 15px;
   width: calc((100% - 20px) / 2);
+  min-width:8em;
   height: 70px;
   border-radius: 10px;
   box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.2);
@@ -566,5 +567,17 @@ iframe {
   font-weight:bold;
   font-size:35px;
   color:#4eb6b6;
+}
+
+@media (max-width: 405px){
+  
+  .login100-form-btn{
+    min-width:10.2em;
+  }
+  
+  .container-login100-form-btn{
+    margin:0 auto;
+    margin-left:-1em;
+  }
 }
 

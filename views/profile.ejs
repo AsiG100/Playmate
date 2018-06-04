@@ -37,6 +37,7 @@
 							<h2 class="username"><%= profile.username %></h2>
 							<div class="bio">
 								<p>Level: Noob </p>
+								<p>District: <%= profile.district %> </p>
 								<p>Exp: <%= profile.gameProgress %> </p>
 								<% if(!user._id.equals(profile._id)){ %>
 									<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
