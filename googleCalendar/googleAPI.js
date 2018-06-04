@@ -103,7 +103,7 @@ function getAccessToken(code, callback) {
         console.error(err);
       }
       
-      callback(oAuth2Client);
+      callback(oAuth2Client, syncedEvent);
     });
 }
 

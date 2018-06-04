@@ -235,7 +235,7 @@ router.post('/syncToCalendar', function(req, res) {
 router.get('/googleCallback', function(req, res) {
     var code = req.query.code;
     console.log('code',code);
-    googleApi.getAccessToken(code,function(auth){
+    googleApi.getAccessToken(code,function(auth, syncedEvent){
         googleApi.syncEventToCalendar(syncedEvent, userID, function(){
             req.flash('success', 'The event is synced');
             res.redirect('/events/'+syncedEvent._id);
