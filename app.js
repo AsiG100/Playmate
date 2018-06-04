@@ -63,6 +63,7 @@ app.post('/signup', function(req, res) {
                 if (err) {
                 console.log(err);
                 }
+            req.flash('success','You earned 20 points for signing up');  
             return res.redirect('/');
             });
             }

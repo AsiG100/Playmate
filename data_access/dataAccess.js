@@ -6,8 +6,8 @@ var mongoose = require("mongoose"),
     fs       = require("fs"),
     upload   = require("./imgUpload");
     
-// mongoose.connect("mongodb://localhost/playmate");
-mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
+mongoose.connect("mongodb://localhost/playmate");
+// mongoose.connect("mongodb://playmate:playmate@ds117730.mlab.com:17730/playmate");
 
 //MODELS----------------------------
 var models  = require("./schemas");
@@ -16,6 +16,7 @@ var Group   = models.group;
 var Event   = models.event;
 var Track   = models.track;
 var Message = models.Message;
+var levels = models.levels;
 
 
 //GETS AND SAVES/////////////////////////////////
@@ -24,7 +25,8 @@ function saveUserToDB(user, userDetails)
     user.email = userDetails.email;
     user.birthDate = userDetails.dateOfBirth;
     user.district = userDetails.district;
-    user.gameProgress= 0;
+    user.exp = 20;
+    user.level = levels[0];
     console.log('saved content');
     user.save(function(err){
         if(err){
@@ -674,6 +676,24 @@ function addMessageToEvent(eventID, message, cb){
     });
 }
 
+//GAMIFICATION/////////////////////////////////
+
+function addPoints(userId, points){
+    getUserFromDB({_id: userId}, function(user){
+        user.exp += points;
+        if(user.exp > user.level.maxExp){
+            console.log(user.exp,user.level.maxExp);
+        var index = user.level.index;
+            console.log(levels[index+1]);
+            user.level = levels[index+1];
+        }
+        
+        user.save(function(){
+            console.log('points saved!');
+        });
+    });
+}
+
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {
                 saveUserToDB: saveUserToDB,
@@ -704,7 +724,8 @@ var funcs = {
                 addTrackSearch: addTrackSearch,
                 getAllTracksForSearch: getAllTracksForSearch,
                 addMessageToGroup: addMessageToGroup,
-                addMessageToEvent: addMessageToEvent
+                addMessageToEvent: addMessageToEvent,
+                addPoints: addPoints
              }
 
 //EXPORT---------------------------------------

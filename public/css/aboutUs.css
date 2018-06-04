@@ -1,0 +1,10 @@
+.home-body, .home-html {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+	height: 100%;
+	font-family: Poppins-Regular, sans-serif;
+    background: #ecf7ff;
+    /*background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);*/
+    /*background: linear-gradient(to left, #F8FFAE, #43C6AC);*/
+}

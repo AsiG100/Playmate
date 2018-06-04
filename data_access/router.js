@@ -42,6 +42,9 @@ router.post('/groups/add/suggested', middlewares.isLoggedIn, function(req, res) 
 });
 
 router.post('/groups',middlewares.isLoggedIn, function(req, res){
+    //add point
+    dataAcess.addPoints(req.user._id, 120);    
+    
     var groupDetails = req.body.group;
     dataAcess.saveGroupToDB(groupDetails, function(group){
         User.findById(req.user._id, function(err, user){
@@ -61,7 +64,7 @@ router.post('/groups',middlewares.isLoggedIn, function(req, res){
             }
         }
     });
-    req.flash('success','The group,'+group.name+' is added');
+    req.flash('success','The group,'+group.name+' is added and you gained 120 points');
     res.redirect("/");  
     });
     
@@ -109,6 +112,9 @@ router.get('/events/add',middlewares.isLoggedIn, function(req, res) {
 });
 
 router.post('/events', middlewares.isLoggedIn, function(req, res) {
+    //add point
+    dataAcess.addPoints(req.user._id, 120);
+    
     var eventDetails = req.body.event;
     dataAcess.saveEventToDB(eventDetails, function(event){
          User.findById(req.user._id, function(err, user){
@@ -122,7 +128,7 @@ router.post('/events', middlewares.isLoggedIn, function(req, res) {
                 dataAcess.associateEventToGroup(event, eventDetails.groupID);
             }
         }});
-        req.flash('success','The event,'+event.name+' is added');
+        req.flash('success','The event,'+event.name+' is added and you gained 120 points');
         res.redirect('/');
     })
 });
@@ -176,7 +182,11 @@ router.post('/friends/toggle', function(req, res) {
         isAdded = req.body.isAdded;
         
     if(isAdded == 0){
+        //add points
+        dataAcess.addPoints(req.user._id, 40);    
+        
         dataAcess.addFavoriteFriendToDB(user, friend);
+        req.flash('success','You gained 40 points for adding a friend');
         res.redirect('back');        
     }else{
     dataAcess.removeFavoriteFriendFromDB(user, friend);
@@ -190,7 +200,11 @@ router.post('/event/toggle', function(req, res) {
         isAdded = req.body.isAdded;
         
     if(isAdded == 0){
+        //add points
+        dataAcess.addPoints(req.user._id, 40);    
+        
         dataAcess.addEventToUserDB(user, event);
+        req.flash('success','You gained 40 points for adding an event');
         res.redirect('back');        
     }else{
         dataAcess.removeEventFromUserDB(user, event);
@@ -204,7 +218,11 @@ router.post('/group/toggle', function(req, res) {
         isAdded = req.body.isAdded;
         
     if(isAdded == 0){
+        //add points
+        dataAcess.addPoints(req.user._id, 40);    
+        
         dataAcess.addGroupToUserDB(user, group);
+        req.flash('success','You gained 40 points for adding a group');
         res.redirect('back');        
     }else{
     dataAcess.removeGroupFromUserDB(user, group);
@@ -247,6 +265,9 @@ router.get('/googleCallback', function(req, res) {
 
 router.post('/results', middlewares.isLoggedIn ,function(req, res) {
    var search = req.body.search;
+   //add point to the user
+    dataAcess.addPoints(req.user._id, 50);
+
     if(search.name.length > 0){
         logic.showSearchedContentWithName(search, function(content){
             if(search.contentType == 'Group' && content.length == 0){
@@ -270,7 +291,8 @@ router.post('/results', middlewares.isLoggedIn ,function(req, res) {
                             res.render('results',{content: suggested, contentType: 'Track'});                  
                           });                      
                   });
-                  }else{                
+                  }else{     
+                        req.flash('success','You gained 50 points for searching');
                         res.render('results',{content: content, contentType: search.contentType});
               }
           });
@@ -315,6 +337,12 @@ router.post('/events/:id/messages/add', function(req, res) {
        }, function(){
            res.redirect('back');
        });
+});
+
+//ABOUT US/////////////////
+
+router.get('/aboutUs', middlewares.isLoggedIn, function(req, res) {
+   res.render('aboutUs'); 
 });
 
 /////////////////////////////

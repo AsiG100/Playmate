@@ -36,9 +36,9 @@
 							<img src="<%= profile.image %>" class="avatar" alt="Profile Picture" />
 							<h2 class="username"><%= profile.username %></h2>
 							<div class="bio">
-								<p>Level: Noob </p>
+								<p>Level: <%= profile.level.name %> <span><img src="<%= profile.level.image %>" alt="badge" width="50" height="50"></span></p>
 								<p>District: <%= profile.district %> </p>
-								<p>Exp: <%= profile.gameProgress %> </p>
+								<p>Exp: <%= profile.exp %> </p>
 								<% if(!user._id.equals(profile._id)){ %>
 									<% if(user.favoriteUsers.indexOf(profile._id)==-1){ %>
 										<form action="/friends/toggle" method="POST">

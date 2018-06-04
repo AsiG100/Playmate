@@ -2,6 +2,47 @@ var mongoose = require("mongoose"),
     passportLocalMongoose = require("passport-local-mongoose");
 
 //SCHEMAS AND MODELS/////////////////////////////////////
+
+const levels = [
+                        {
+                        name: 'Noob',
+                        maxExp: 100,
+                        index: 0,
+                        image: 'http://icons.iconarchive.com/icons/glyphish/glyphish/32/108-badge-icon.png'
+                        },
+                        {
+                        name: 'Rookie',
+                        maxExp: 500,
+                        index: 1,
+                        image: 'http://icons.iconarchive.com/icons/emey87/trainee/48/Badge-Prize-icon.png'
+                        },
+                        {
+                        name: 'Junior',
+                        maxExp: 1000,
+                        index: 2,
+                        image: 'http://icons.iconarchive.com/icons/icojam/onebit-4/48/badge-silver-icon.png'
+                        },
+                        {
+                        name: 'GrownUp',
+                        maxExp: 2000,
+                        index: 3,
+                        image: 'http://icons.iconarchive.com/icons/icojam/onebit-4/48/badge-gold-icon.png'
+                        },
+                        {
+                        name: 'Knight',
+                        maxExp: 5000,
+                        index: 4,
+                        image: 'http://icons.iconarchive.com/icons/google/noto-emoji-activities/64/52726-sports-medal-icon.png'
+                        },
+                        {
+                        name: 'King',
+                        maxExp: Infinity,
+                        index: 5,
+                        image: 'http://icons.iconarchive.com/icons/google/noto-emoji-people-clothing-objects/64/12200-crown-icon.png'
+                        }
+                ];
+
+
 const sportTypes =  [
                         'TRX',
                         'Football',
@@ -10,7 +51,7 @@ const sportTypes =  [
                         'Swimming',
                         'Tennis',
                         'Bowling'
-                    ] 
+                    ] ;
 
 var groupSchema = new mongoose.Schema({
         dateOfCreation: Date,
@@ -44,8 +85,8 @@ var eventSchema = new mongoose.Schema({
              endTime: String
          },
          sportType: String,
-         level: String, // From beginner to expert
-         gameLevel: Number,//The individual score
+         level: Object, // From beginner to expert
+         exp: Number,//The individual score
          group: {type: mongoose.Schema.Types.ObjectId, ref: "Group"},
          participants: [{type:mongoose.Schema.Types.ObjectId, ref:"User"}],
          messages: [{type: mongoose.Schema.Types.ObjectId, ref:"Message"}]
@@ -61,12 +102,13 @@ var userSchema = new mongoose.Schema({
             credentials: Object
         },
         birthDate: String,
+        level: Object,
         email: String,
         district:String,
         sportTypes: [String], //Sport types the user interested in
         events: [{type: mongoose.Schema.Types.ObjectId, ref: "Event"}], //Events the user participates in
         groups: [{type: mongoose.Schema.Types.ObjectId, ref: "Group"}], //Groups the user participates in
-        gameProgress: Number, //The score of each user
+        exp: Number, //The score of each user
         favoriteUsers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
         image: String
 });
@@ -94,5 +136,6 @@ module.exports = {'user' : userModel,
                   'group': groupModel,
                   'track': searchTrackModel,
                   'Message': messageModel,
-                  sportTypes: sportTypes
+                  sportTypes: sportTypes,
+                  levels: levels
                   };
