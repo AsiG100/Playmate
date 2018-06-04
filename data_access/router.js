@@ -238,7 +238,7 @@ router.get('/googleCallback', function(req, res) {
     googleApi.getAccessToken(code,function(auth){
         googleApi.syncEventToCalendar(syncedEvent, userID, function(){
             req.flash('success', 'The event is synced');
-            res.redirect('back');
+            res.redirect('/events/'+syncedEvent._id);
         });  
     });
 });
