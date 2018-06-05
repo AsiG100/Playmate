@@ -36,7 +36,9 @@
 							<img src="<%= profile.image %>" class="avatar" alt="Profile Picture" />
 							<h2 class="username"><%= profile.username %></h2>
 							<div class="bio">
-								<p>Level: <%= profile.level.name %> <span><img src="<%= profile.level.image %>" alt="badge" width="50" height="50"></span></p>
+								<% if(profile.level != undefined){ %>
+									<p>Level: <%= profile.level.name %> <span><img src="<%= profile.level.image %>" alt="badge" width="50" height="50"></span></p>
+								<% } %>	
 								<p>District: <%= profile.district %> </p>
 								<p>Exp: <%= profile.exp %> </p>
 								<% if(!user._id.equals(profile._id)){ %>

@@ -6,6 +6,7 @@ var express = require("express"),
     flash   = require("connect-flash"),
     imageConvert = require("image-convert"),
     methodOverride = require("method-override"),
+    middlewares = require("./data_access/middlewares.js"),
     bodyParser = require('body-parser'),
     passport = require("passport"),
     localStrategy = require("passport-local"),
@@ -104,7 +105,7 @@ app.post('/imageUpdate/:id', function(req, res){
      });
 });
 
-app.get('/signup/:id/edit', function(req, res) {
+app.get('/signup/:id/edit', middlewares.isLoggedIn, function(req, res) {
    var id = req.params.id;
    dataAcess.getUserFromDB({_id:id}, function(user){
          res.render('editUser',{user:user, image: user.image || undefined});
