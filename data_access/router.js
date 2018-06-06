@@ -397,7 +397,7 @@ router.post('/events/:id/messages/add', function(req, res) {
 
 //ABOUT US/////////////////
 
-router.get('/aboutUs', middlewares.isLoggedIn, function(req, res) {
+router.get('/aboutUs', function(req, res) {
    res.render('aboutUs'); 
 });
 
