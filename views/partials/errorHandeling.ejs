@@ -1,5 +1,5 @@
 <% if(successMessage && successMessage.length>0){ %>
     <div class="alert alert-success m-t-10" role="alert"><%=successMessage%></div>
-<% }else if(errorMessage && errorMessage.length>0){%>
+<% } if(errorMessage && errorMessage.length>0){%>
     <div class="alert alert-danger m-t-10" role="alert"><%= errorMessage %></div>
 <% } %>
