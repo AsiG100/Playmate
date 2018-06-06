@@ -21,15 +21,15 @@
                     <form action="/groups" method="POST" class="login100-form validate-form flex-sb flex-w">
     					
                         <p class="txt1 m-t-20 col-md-12">Group Name</p>
-                        <div class="wrap-input100 validate-input" data-validate="Group name is required">
-                            <input class="input100" tabindex="1" type="text" name="group[name]" placeholder="My group name is...">
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" tabindex="1" type="text" name="group[name]" placeholder="My group name is..." required>
                             <span class="focus-input100"></span>
                         </div>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
-                        <div class="wrap-input100 validate-input" data-validate="Sport type is required">
+                        <div class="wrap-input100 validate-input" >
                             <select class="input100" tabindex="2" name="group[type]" size="1">
-    							<option value="Football"> Football </option>
+    							<option selected value="Football"> Football </option>
     							<option value="Basketball"> Basketball </option>
     							<option value="Running"> Running </option>
     							<option value="Swimming"> Swimming </option>
@@ -72,20 +72,20 @@
                         </label></p>    					
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Weekly Time Of Activity</p>
-                        <div class="wrap-input100 validate-input" data-validate="Time Of Event is required">
-                            <input class="input100" tabindex="10" type="time" name="group[time]">
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" tabindex="10" type="time" name="group[time]" required>
                             <span class="focus-input100"></span>
                         </div>
     					
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
-                        <div class="wrap-input100 validate-input" data-validate="Location Of Event is required">
-                            <input id="autocomplete" tabindex="11" class="input100" onFocus="geolocate()" type="text" name="group[location]" placeholder="Enter a location">
+                        <div class="wrap-input100 validate-input">
+                            <input id="autocomplete" tabindex="11" class="input100" onFocus="geolocate()" type="text" name="group[location]" placeholder="Enter a location" required>
                             <span class="focus-input100"></span>
                         </div>
                         
                         <p class="txt1 p-t-13 p-b-9 col-md-12">District</p>
-                        <div class="wrap-input100 validate-input" data-validate="Location is required">
-                            <select class="input100" tabindex="12" name="group[district]" size="1">
+                        <div class="wrap-input100 validate-input">
+                            <select class="input100" tabindex="12" name="group[district]" size="1" required>
     							<option value="North"> North </option>
     							<option value="Haifa"> Haifa </option>
     							<option value="Center"> Center </option>
@@ -98,25 +98,26 @@
                         </div>
     					
                         <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
-                        <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                            <input class="input100" tabindex="13" type="number" name="group[minParticipants]">
+                        <div class="wrap-input100 validate-input" >
+                            <input class="input100" tabindex="13" type="number" name="group[minParticipants]" required>
                             <span class="focus-input100"></span>
                         </div>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
-                        <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                            <input class="input100" tabindex="14" type="number" name="group[maxParticipants]">
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" tabindex="14" type="number" name="group[maxParticipants]" required>
                             <span class="focus-input100"></span>
                         </div>
     					
     					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
-                        <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
+                        <div class="wrap-input100 validate-input">
                             <select class="input100" tabindex="15" name="group[level]" size="1">
-    							<option value="Noob"> Noob </option>
+    							<option selected value="Noob"> Noob </option>
     							<option value="Rookie"> Rookie </option>
-    							<option value="Intermediate"> Intermediate </option>
-    							<option value="Advanced"> Advanced </option>
-    							<option value="Master"> Master </option>
+    							<option value="Junior"> Junior </option>
+    							<option value="GrownUp"> GrownUp </option>
+    							<option value="Knight"> Knight </option>
+    							<option value="King"> King </option>
     						</select>
                             <span class="focus-input100"></span>
                         </div>

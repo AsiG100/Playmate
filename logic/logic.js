@@ -1,5 +1,6 @@
 const dataAccess = require("../data_access/dataAccess.js"),
       sportTypes = require("../data_access/schemas.js").sportTypes,
+      levels    = require("../data_access/schemas.js").levels,
       request    = require("request");
 
 
@@ -170,12 +171,45 @@ function showSearchedContentWithName(search, cb){
         cb(finalContent);
         });
 }
+
+//GAMIFICATION//////////////////////////
+
+function getLevelIndex(level, cb){
+    levels.forEach(function(element){
+       if(element.name == level){
+           cb(element.index);
+       } 
+    });
+}
+
+function compareLevelWithGroup(user,group, cb){
+    dataAccess.getUserFromDB({_id: user}, function(user){
+        dataAccess.getGroupFromDB(group, function(group){
+           getLevelIndex(group.level, function(groupLevelIndex){
+                    cb(user.level.index >= groupLevelIndex);                   
+           });
+        });
+    });   
+}
+
+function compareLevelWithEvent(user,event, cb){
+    dataAccess.getUserFromDB({_id: user}, function(user){
+        dataAccess.getEventFromDB(event, function(event){
+           getLevelIndex(event.level, function(eventLevelIndex){
+                    cb(user.level.index >= eventLevelIndex);                   
+           });
+        });
+    });   
+}
+
 ///////////////////////////////////////////
 module.exports = {
     addSuggestedContentToFeed: addSuggestedContentToFeed,
     addYourContentToFeed: addYourContentToFeed,
     getAllRelevantTracksForSearch: getAllRelevantTracksForSearch,
     showSearchedContent: showSearchedContent,
-    showSearchedContentWithName: showSearchedContentWithName
+    showSearchedContentWithName: showSearchedContentWithName,
+    compareLevelWithEvent: compareLevelWithEvent,
+    compareLevelWithGroup: compareLevelWithGroup
 }
 

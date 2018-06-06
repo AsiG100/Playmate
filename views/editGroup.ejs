@@ -23,7 +23,7 @@
 					
                     <p class="txt1 m-t-20 col-md-12">Group Name</p>
                     <div class="wrap-input100 validate-input" data-validate="Group name is required">
-                        <input class="input100" tabindex="1" type="text" name="group[name]" value="<%= group.name %>">
+                        <input class="input100" tabindex="1" type="text" name="group[name]" value="<%= group.name %>" required>
                         <span class="focus-input100"></span>
                     </div>
 					
@@ -73,13 +73,13 @@
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Weekly Time Of Activity</p>
                     <div class="wrap-input100 validate-input" data-validate="Time Of Event is required">
-                        <input class="input100" tabindex="4" type="time" name="group[time]" value="<%= group.time %>">
+                        <input class="input100" tabindex="4" type="time" name="group[time]" value="<%= group.time %>" required>
                         <span class="focus-input100"></span>
                     </div>
 					
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
                         <div class="wrap-input100 validate-input" data-validate="Location Of Event is required">
-                            <input id="autocomplete" tabindex="5" class="input100" onFocus="geolocate()" type="text" name="group[location]" value="<%= group.location %>">
+                            <input id="autocomplete" tabindex="5" class="input100" onFocus="geolocate()" type="text" name="group[location]" value="<%= group.location %>" required>
                             <span class="focus-input100"></span>
                         </div>
                         
@@ -99,13 +99,13 @@
 					
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                        <input class="input100" tabindex="7" type="number" name="group[minParticipants]" value="<%= group.minParticipants %>">
+                        <input class="input100" tabindex="7" type="number" name="group[minParticipants]" value="<%= group.minParticipants %>" required>
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                        <input class="input100" tabindex="8" type="number" name="group[maxParticipants]" value="<%= group.maxParticipants %>">
+                        <input class="input100" tabindex="8" type="number" name="group[maxParticipants]" value="<%= group.maxParticipants %>" required>
                         <span class="focus-input100"></span>
                     </div>
 					

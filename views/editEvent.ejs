@@ -22,7 +22,7 @@
 					
                     <p class="txt1 m-t-20 col-md-12">Event Name</p>
                     <div class="wrap-input100 validate-input" data-validate="Event name is required">
-                        <input class="input100" tabindex="1" type="text" name="event[name]" value="<%= event.name %>">
+                        <input class="input100" tabindex="1" type="text" name="event[name]" value="<%= event.name %>" required>
                         <span class="focus-input100"></span>
                     </div>
 					
@@ -56,35 +56,35 @@
 
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
                     <div class="wrap-input100 validate-input" data-validate="Location Of Event is required">
-                        <input id="autocomplete" tabindex="5" class="input100" onFocus="geolocate()" type="text" name="event[location]" value="<%= event.location %>">
+                        <input id="autocomplete" tabindex="5" class="input100" onFocus="geolocate()" type="text" name="event[location]" value="<%= event.location %>" required>
                         <span class="focus-input100"></span>
                     </div>					
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Date Of Event</p>
                     <div class="wrap-input100 validate-input" data-validate="Date Of Event is required">
-                        <input class="input100" tabindex="6" type="date" value="<%= event.dateOfEvent %>" name="event[date]">
+                        <input class="input100" tabindex="6" type="date" value="<%= event.dateOfEvent %>" name="event[date]" required>
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Time Of Event</p>
                     <div class="wrap-input100 validate-input col-md-6" data-validate="Time Of Event is required">
-                        <input class="input100" tabindex="7" type="time" value="<%= event.timeOfActivity.startTime %>" name="event[startTime]">
+                        <input class="input100" tabindex="7" type="time" value="<%= event.timeOfActivity.startTime %>" name="event[startTime]" required>
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input col-md-6" data-validate="Time Of Event is required">
-                        <input class="input100" tabindex="8" type="time" value="<%= event.timeOfActivity.endTime %>" name="event[endTime]">
+                        <input class="input100" tabindex="8" type="time" value="<%= event.timeOfActivity.endTime %>" name="event[endTime]" required>
                         <span class="focus-input100"></span>
                     </div>
                     
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                        <input class="input100" tabindex="9" type="number" value="<%= event.minNumOfParticipants %>" name="event[minNumOfParticipants]">
+                        <input class="input100" tabindex="9" type="number" value="<%= event.minNumOfParticipants %>" name="event[minNumOfParticipants]" required>
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                        <input class="input100" tabindex="10" type="number" value="<%= event.maxNumOfParticipants %>" name="event[maxNumOfParticipants]">
+                        <input class="input100" tabindex="10" type="number" value="<%= event.maxNumOfParticipants %>" name="event[maxNumOfParticipants]" required>
                         <span class="focus-input100"></span>
                     </div>
 					

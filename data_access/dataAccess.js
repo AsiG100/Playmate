@@ -678,7 +678,8 @@ function addMessageToEvent(eventID, message, cb){
 
 //GAMIFICATION/////////////////////////////////
 
-function addPoints(userId, points){
+function addPoints(userId, points, cb){
+    var leveledUp = '';
     getUserFromDB({_id: userId}, function(user){
         user.exp += points;
         if(user.exp > user.level.maxExp){
@@ -686,13 +687,16 @@ function addPoints(userId, points){
         var index = user.level.index;
             console.log(levels[index+1]);
             user.level = levels[index+1];
+            leveledUp = levels[index+1].name;
         }
         
         user.save(function(){
             console.log('points saved!');
+            cb(leveledUp);
         });
     });
 }
+
 
 //FUNCTIONS OBJECT TO EXPORT-------------------
 var funcs = {

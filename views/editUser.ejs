@@ -22,7 +22,7 @@
                         <div class="col-sm-12 col-md-6 center">
                             <p class="txt1 m-t-20">Profile Image</p>
                             <div class="wrap-input100 validate-input resizeImgInput" data-validate="Profile Image is required">
-                                <input type="file" tabindex="1" name="avatar" id="avatar" accept="css/images/*" onchange="preview_image(event)">
+                                <input type="file" tabindex="1" name="avatar" id="avatar" accept="css/images/*" onchange="preview_image(event)" required>
                                 <button id="upload" value="Upload" />
                                 <% if(image == undefined){ %>
                                     <img id="output_image"/>
@@ -38,19 +38,19 @@
                     <form action="/signup/<%= user._id %>?_method=PUT" method="POST" id="detailsUpload" class="login100-form validate-form flex-sb flex-w">
                                 <p class="txt1 m-t-20">Username</p>
                                 <div class="wrap-input100 validate-input col-sm-12" data-validate="Username is required">
-                                    <input class="input100" tabindex="2" type="text" name="user[username]" value="<%= user.username %>">
+                                    <input class="input100" tabindex="2" type="text" name="user[username]" value="<%= user.username %>" required>
                                     <span class="focus-input100"></span>
                                 </div>
                         
                         <p class="txt1 p-t-13 p-b-9 col-sm-12">E-mail</p>
                         <div class="wrap-input100 validate-input" data-validate="E-mail is required">
-                            <input class="input100" tabindex="3" type="email" name="user[email]" value="<%= user.email %>">
+                            <input class="input100" tabindex="3" type="email" name="user[email]" value="<%= user.email %>" required>
                             <span class="focus-input100"></span>
                         </div>
     
                         <p class="txt1 p-t-13 p-b-9 col-sm-12">Date Of Birth</p>
                         <div class="wrap-input100 validate-input" data-validate="Date Of Birth is required">
-                            <input class="input100" tabindex="4" type="date" name="user[dateOfBirth]" value="<%= user.birthDate %>">
+                            <input class="input100" tabindex="4" type="date" name="user[dateOfBirth]" value="<%= user.birthDate %>" required>
                             <span class="focus-input100"></span>
                         </div>
     

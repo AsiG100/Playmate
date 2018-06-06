@@ -98,7 +98,12 @@ app.post('/imageUpdate/:id', function(req, res){
                 console.log("File uploaded sucessfully!.");
                 uploadedImage = req.file;
                 console.log(uploadedImage)
-                res.render('editUser',{user: user, image: uploadedImage.filename});                
+                res.render('editUser', {
+                    user: user, 
+                    image: uploadedImage.filename, 
+                    successMessage: [], 
+                    errorMessage: []}
+                    );                
             })
 
          }

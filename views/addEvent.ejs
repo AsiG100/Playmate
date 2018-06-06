@@ -41,14 +41,14 @@
 					
                     <p class="txt1 m-t-20 col-md-12">Event Name</p>
                     <div class="wrap-input100 validate-input" data-validate="Event name is required">
-                        <input class="input100" tabindex="1" type="text" name="event[name]" placeholder="My event name is...">
+                        <input class="input100" tabindex="1" type="text" name="event[name]" placeholder="My event name is..." required>
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Sport Type</p>
                     <div class="wrap-input100 validate-input" data-validate="Sport type is required">
                         <select class="input100" tabindex="2" name="event[type]" size="1">
-							<option value="Football"> Football </option>
+							<option selected value="Football"> Football </option>
 							<option value="Basketball"> Basketball </option>
 							<option value="Running"> Running </option>
 							<option value="Swimming"> Swimming </option>
@@ -61,7 +61,7 @@
 					
                     <p class="txt1 p-t-13 p-b-9 col-md-12">District</p>
                     <div class="wrap-input100 validate-input" id="pac-container" data-validate="Location is required">
-                        <select class="input100" tabindex="3" name="event[district]" size="1">
+                        <select class="input100" tabindex="3" name="event[district]" size="1" required>
 							<option value="North"> North </option>
 							<option value="Haifa"> Haifa </option>
 							<option value="Center"> Center </option>
@@ -75,48 +75,49 @@
 
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Location</p>
                         <div class="wrap-input100 validate-input" data-validate="Location Of Event is required">
-                            <input id="autocomplete" tabindex="4" class="input100" onFocus="geolocate()" type="text" name="event[location]" placeholder="Enter a location">
+                            <input id="autocomplete" tabindex="4" class="input100" onFocus="geolocate()" type="text" name="event[location]" placeholder="Enter a location" required>
                             <span class="focus-input100"></span>
                         </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Date Of Event</p>
                     <div class="wrap-input100 validate-input" data-validate="Date Of Event is required">
-                        <input class="input100" tabindex="5" type="date" name="event[date]">
+                        <input class="input100" tabindex="5" type="date" name="event[date]" required>
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Time Of Event</p>
                     <div class="wrap-input100 validate-input col-md-5" data-validate="Time Of Event is required">
                         <p class="text-center">Starts at</p>
-                        <input class="input100" tabindex="6" type="time" placeholder="Starts at..." name="event[startTime]">
+                        <input class="input100" tabindex="6" type="time" placeholder="Starts at..." name="event[startTime]" required>
                         <span class="focus-input100"></span>
                     </div>
                     <div class="wrap-input100 validate-input col-md-5" data-validate="Time Of Event is required">
                         <p class="text-center">Ends at</p>
-                        <input class="input100" tabindex="7" type="time" placeholder="Ends at..." name="event[endTime]">
+                        <input class="input100" tabindex="7" type="time" placeholder="Ends at..." name="event[endTime]" required>
                         <span class="focus-input100"></span>
                     </div>
                 
                     <p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum number of participants are required">
-                        <input class="input100" tabindex="8" type="number" name="event[minNumOfParticipants]">
+                        <input class="input100" tabindex="8" type="number" name="event[minNumOfParticipants]" required>
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Maximum Participants</p>
                     <div class="wrap-input100 validate-input" data-validate="Maximum number of participants are required">
-                        <input class="input100" tabindex="9" type="number" name="event[maxNumOfParticipants]">
+                        <input class="input100" tabindex="9" type="number" name="event[maxNumOfParticipants]" required>
                         <span class="focus-input100"></span>
                     </div>
 					
 					<p class="txt1 p-t-13 p-b-9 col-md-12">Minimum Participant Level</p>
                     <div class="wrap-input100 validate-input" data-validate="Minimum level of participants are required">
                         <select class="input100" tabindex="10" name="event[minLevel]" size="1">
-							<option value="Noob"> Noob </option>
+							<option selected value="Noob"> Noob </option>
 							<option value="Rookie"> Rookie </option>
-							<option value="Intermediate"> Intermediate </option>
-							<option value="Advanced"> Advanced </option>
-							<option value="Master"> Master </option>
+							<option value="Junior"> Junior </option>
+							<option value="GrownUp"> GrownUp </option>
+							<option value="Knight"> Knight </option>
+							<option value="King"> King </option>
 						</select>
                         <span class="focus-input100"></span>
                     </div>
