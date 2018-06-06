@@ -65,6 +65,7 @@ app.post('/signup', function(req, res) {
                 console.log(err);
                 }
             req.flash('success','You earned 20 points for signing up');  
+            req.flash('error','Please edit your profile to complete your details');  
             return res.redirect('/');
             });
             }
