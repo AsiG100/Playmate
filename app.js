@@ -12,7 +12,8 @@ var express = require("express"),
     localStrategy = require("passport-local"),
     facebookStrategy = require("passport-facebook").Strategy,
     upload           = require("./data_access/imgUpload"),
-    User = require("./data_access/schemas.js").user;
+    User = require("./data_access/schemas.js").user,
+    levels = require("./data_access/schemas.js").levels;
 //FILES
 var dataAcess = require("./data_access/dataAccess.js");
 
@@ -65,7 +66,6 @@ app.post('/signup', function(req, res) {
                 console.log(err);
                 }
             req.flash('success','You earned 20 points for signing up');  
-            req.flash('error','Please edit your profile to complete your details');  
             return res.redirect('/');
             });
             }
@@ -188,8 +188,10 @@ passport.use(new facebookStrategy({
                 newUser.image = "https://graph.facebook.com/"+profile.id+"/picture?type=large";
                 newUser.username = profile.name.givenName +" "+profile.name.familyName;
                 newUser.email = profile.emails[0].value;
-                newUser.birthDate = profile._json.birthday;
-                newUser.gameProgress = 0;
+                newUser.birthDate = undefined;
+                newUser.exp = 20;
+                newUser.level = levels[0];
+                newUser.district = undefined;
                 newUser.save();
                 console.log(newUser);
                 done(null, newUser);
@@ -207,6 +209,11 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('Successful authentication, redirect home.');
+  
+    if(req.user.district == undefined || req.user.birthDate == undefined){
+        req.flash('success','You earned 20 points for signing up');
+        req.flash('error','Please edit your profile to complete your details');
+    }
     res.redirect('/');
   });
 ////////////////
